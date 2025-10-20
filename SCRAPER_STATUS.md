@@ -45,11 +45,13 @@ That's **~35-40 game entries** total!
 ## Known Limitations
 
 ### Event-Exclusive Pokémon Parsing
+
 Pokemon that are **only available via Events** (like Mew, Celebi, Jirachi, Deoxys, etc.) have incomplete data because their Bulbapedia tables use a very complex nested structure that the scraper struggles to parse correctly.
 
 **Current status for Mew:**
-- ✅ Has 8 entries (Yellow, Emerald, FireRed, LeafGreen, Let's Go, Brilliant Diamond/Pearl)
-- ❌ Missing ~27 other entries (Red, Blue, Gold, Silver, Crystal, Ruby, Sapphire, and all Gen 4-9 games where it's Event-only)
+
+-   ✅ Has 8 entries (Yellow, Emerald, FireRed, LeafGreen, Let's Go, Brilliant Diamond/Pearl)
+-   ❌ Missing ~27 other entries (Red, Blue, Gold, Silver, Crystal, Ruby, Sapphire, and all Gen 4-9 games where it's Event-only)
 
 The Bulbapedia table for these Pokemon has 70+ rows with complex rowspan/colspan structures that make it difficult to reliably map games to locations. This is an area for future improvement.
 

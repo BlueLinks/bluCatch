@@ -82,9 +82,41 @@ const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) =>
   const [touchCurrent, setTouchCurrent] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   
+  // Filter out unhelpful acquisition methods that require already having the Pokemon
+  const isValidAcquisitionMethod = (location) => {
+    const invalidMethods = [
+      'trade',
+      'poké transfer',
+      'poke transfer',
+      'pal park',
+      'time capsule',
+      'poké transporter',
+      'poke transporter',
+      'pokémon bank',
+      'pokemon bank',
+      'pokémon home',
+      'pokemon home'
+    ];
+    
+    const locationLower = location.toLowerCase();
+    
+    // Check if the location is ONLY one of these methods (not a specific trade like "In-game trade")
+    const isOnlyTransferMethod = invalidMethods.some(method => 
+      locationLower === method || locationLower === method + ',' || locationLower === method + '.'
+    );
+    
+    return !isOnlyTransferMethod;
+  };
+  
   const allGames = allPokemonGamesMap.get(pokemon?.id) || [];
-  const selectedGames = useMemo(() => allGames.filter(g => g.isSelected), [allGames]);
-  const unselectedGames = useMemo(() => allGames.filter(g => !g.isSelected), [allGames]);
+  const selectedGames = useMemo(() => 
+    allGames.filter(g => g.isSelected && isValidAcquisitionMethod(g.location)), 
+    [allGames]
+  );
+  const unselectedGames = useMemo(() => 
+    allGames.filter(g => !g.isSelected && isValidAcquisitionMethod(g.location)), 
+    [allGames]
+  );
   
   // Prevent body scroll when sheet is open
   useEffect(() => {
