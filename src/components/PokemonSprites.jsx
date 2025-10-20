@@ -145,32 +145,64 @@ const PokemonTooltip = React.memo(function PokemonTooltip({ pokemon, position, a
 
 const PokemonSprites = React.memo(function PokemonSprites({ generationData, pokemonGameMap, allPokemonGamesMap }) {
   const [hoveredPokemon, setHoveredPokemon] = useState(null);
+  const [pinnedPokemon, setPinnedPokemon] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseEnter = useCallback((pokemon, event) => {
-    setHoveredPokemon(pokemon);
-    setTooltipPosition({
-      x: event.clientX,
-      y: event.clientY
-    });
-  }, []);
-
-  const handleMouseMove = useCallback((event) => {
-    if (hoveredPokemon) {
+    // Don't show hover tooltip if this pokemon is pinned
+    if (pinnedPokemon?.id !== pokemon.id) {
+      setHoveredPokemon(pokemon);
       setTooltipPosition({
         x: event.clientX,
         y: event.clientY
       });
     }
-  }, [hoveredPokemon]);
+  }, [pinnedPokemon]);
+
+  const handleMouseMove = useCallback((event) => {
+    // Only update position if hovering (not pinned)
+    if (hoveredPokemon && !pinnedPokemon) {
+      setTooltipPosition({
+        x: event.clientX,
+        y: event.clientY
+      });
+    }
+  }, [hoveredPokemon, pinnedPokemon]);
 
   const handleMouseLeave = useCallback(() => {
-    setHoveredPokemon(null);
-  }, []);
+    // Only clear hover if not pinned
+    if (!pinnedPokemon) {
+      setHoveredPokemon(null);
+    }
+  }, [pinnedPokemon]);
+
+  const handleClick = useCallback((pokemon, event) => {
+    event.stopPropagation();
+    if (pinnedPokemon?.id === pokemon.id) {
+      // Unpin if clicking the same pokemon
+      setPinnedPokemon(null);
+      setHoveredPokemon(null);
+    } else {
+      // Pin this pokemon
+      setPinnedPokemon(pokemon);
+      setHoveredPokemon(null);
+      setTooltipPosition({
+        x: event.clientX,
+        y: event.clientY
+      });
+    }
+  }, [pinnedPokemon]);
+
+  // Close pinned tooltip when clicking outside
+  const handleContainerClick = useCallback(() => {
+    if (pinnedPokemon) {
+      setPinnedPokemon(null);
+    }
+  }, [pinnedPokemon]);
 
 
   return (
-    <div className="pokemon-sprites-container">
+    <div className="pokemon-sprites-container" onClick={handleContainerClick}>
       <h1>Pokémon Collection Tracker</h1>
       
       {Object.entries(generationData).map(([gen, data]) => (
@@ -185,10 +217,12 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
             {data.pokemon.map(pokemon => (
               <div
                 key={pokemon.id}
-                className={`sprite-container ${pokemon.isAvailable ? 'available' : 'unavailable'}`}
+                className={`sprite-container ${pokemon.isAvailable ? 'available' : 'unavailable'} ${pinnedPokemon?.id === pokemon.id ? 'pinned' : ''}`}
                 onMouseEnter={(e) => handleMouseEnter(pokemon, e)}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
+                onClick={(e) => handleClick(pokemon, e)}
+                style={{ cursor: 'pointer' }}
               >
                 <img 
                   src={pokemon.sprite} 
@@ -201,9 +235,9 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
         </div>
       ))}
 
-      {hoveredPokemon && (
+      {(hoveredPokemon || pinnedPokemon) && (
         <PokemonTooltip
-          pokemon={hoveredPokemon}
+          pokemon={hoveredPokemon || pinnedPokemon}
           position={tooltipPosition}
           allPokemonGamesMap={allPokemonGamesMap}
         />

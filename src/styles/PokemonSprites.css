@@ -72,6 +72,29 @@
   transition: all 0.3s ease;
   cursor: pointer;
   border: 2px solid transparent;
+  position: relative;
+}
+
+.sprite-container.pinned {
+  border: 2px solid #4a9eff;
+  background: rgba(74, 158, 255, 0.15);
+  box-shadow: 0 0 12px rgba(74, 158, 255, 0.4);
+}
+
+.sprite-container.pinned::after {
+  content: '📌';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 14px;
+  background: rgba(74, 158, 255, 0.9);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .sprite-container img {
