@@ -64,6 +64,36 @@ function detectAcquisitionMethod(location) {
 }
 
 /**
+ * Check if a location is a valid acquisition method (not just a transfer)
+ * @param {string} location - Location string
+ * @returns {boolean} True if it's a valid acquisition method
+ */
+function isValidAcquisitionMethod(location) {
+  const invalidMethods = [
+    'trade',
+    'poké transfer',
+    'poke transfer',
+    'pal park',
+    'time capsule',
+    'poké transporter',
+    'poke transporter',
+    'pokémon bank',
+    'pokemon bank',
+    'pokémon home',
+    'pokemon home'
+  ];
+  
+  const locationLower = location.toLowerCase();
+  
+  // Check if the location is ONLY one of these methods (not a specific trade like "In-game trade")
+  const isOnlyTransferMethod = invalidMethods.some(method => 
+    locationLower === method || locationLower === method + ',' || locationLower === method + '.'
+  );
+  
+  return !isOnlyTransferMethod;
+}
+
+/**
  * Calculate which Pokemon are available based on selected games
  * Also builds a map of ALL games where each Pokemon can be found
  * @param {Array} selectedGames - Array of game IDs that are selected
@@ -79,6 +109,11 @@ export function calculateAvailablePokemon(selectedGames, games, pokemon, enabled
   // First, build a map of ALL games where each Pokemon appears
   games.forEach(game => {
     game.pokemon.forEach(pokemonEntry => {
+      // Skip transfer-only methods that aren't real acquisition methods
+      if (!isValidAcquisitionMethod(pokemonEntry.location)) {
+        return;
+      }
+      
       const method = detectAcquisitionMethod(pokemonEntry.location);
       const isMethodEnabled = enabledMethods[method] !== false; // Default to enabled
       
@@ -101,6 +136,11 @@ export function calculateAvailablePokemon(selectedGames, games, pokemon, enabled
   
   selectedGameObjects.forEach(game => {
     game.pokemon.forEach(pokemonEntry => {
+      // Skip transfer-only methods that aren't real acquisition methods
+      if (!isValidAcquisitionMethod(pokemonEntry.location)) {
+        return;
+      }
+      
       const method = detectAcquisitionMethod(pokemonEntry.location);
       const isMethodEnabled = enabledMethods[method] !== false;
       
