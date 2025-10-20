@@ -751,6 +751,23 @@ async function main() {
   let batchCount = 0;
   
   for (const pokemon of pokemonToProcess) {
+    // Skip if Pokemon already has data and we're not in replace mode
+    if (!replace) {
+      const hasData = gamesData.games.some(game => 
+        game.pokemon.some(p => p.id === pokemon.id)
+      );
+      
+      if (hasData) {
+        console.log(`  [${pokemon.id}] ${pokemon.name.padEnd(20)} ⏭️  Already has data, skipping...`);
+        log(`  #${pokemon.id} ${pokemon.name}: Skipped (already has data)`, true);
+        
+        // Update progress even for skipped Pokemon
+        progress.lastProcessedId = pokemon.id;
+        progress.lastProcessedName = pokemon.name;
+        continue;
+      }
+    }
+    
     const result = await processPokemon(pokemon, gamesData);
     
     // HALT on error - don't continue

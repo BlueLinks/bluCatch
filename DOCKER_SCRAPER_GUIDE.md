@@ -6,9 +6,11 @@ The scraper service automatically updates your Pokémon data from Bulbapedia whe
 
 ## How It Works
 
-1. **Startup Scrape (Resume)**: When you run `docker-compose up`, the scraper runs immediately and **resumes from where it left off** (using `.bulbapedia-progress.json`)
-2. **Scheduled Updates (Full)**: The cron job runs on schedule (default: daily at 3:30 AM) and does a **full refresh starting from the beginning**
+1. **Startup Scrape (Auto-Resume)**: When you run `docker-compose up`, the scraper runs immediately and **automatically resumes from where it left off** (using `public/data/.bulbapedia-progress.json`)
+2. **Scheduled Updates (Full Refresh)**: The cron job runs on schedule (default: daily at 3:30 AM) and does a **full refresh starting from the beginning** (uses `--fresh --replace` flags)
 3. **Shared Data**: The scraped data is shared with the main app via a Docker volume
+
+**Note**: The scraper doesn't need a `--resume` flag - it automatically resumes by default unless you use `--fresh`
 
 ## Usage
 
@@ -59,16 +61,19 @@ environment:
 
 ### Trigger Manual Scrape
 
-**Resume from last position:**
-
+**Resume from last position (automatic):**
 ```bash
-docker exec blucatch-scraper node /app/scripts/scrape-bulbapedia.js --range=1-1025 --resume
+docker exec blucatch-scraper node /app/scripts/scrape-bulbapedia.js
 ```
 
 **Full refresh from beginning:**
-
 ```bash
-docker exec blucatch-scraper node /app/scripts/scrape-bulbapedia.js --range=1-1025 --replace
+docker exec blucatch-scraper node /app/scripts/scrape-bulbapedia.js --fresh --replace
+```
+
+**Process specific range:**
+```bash
+docker exec blucatch-scraper node /app/scripts/scrape-bulbapedia.js --range=1-151
 ```
 
 ## Troubleshooting
@@ -105,10 +110,11 @@ docker exec blucatch-scraper crontab -l
 
 ## Notes
 
--   **Startup behavior**: Resumes from last position (uses `public/data/.bulbapedia-progress.json`)
--   **Scheduled behavior**: Full refresh from beginning (uses `--replace`)
+-   **Startup behavior**: Automatically resumes from last position (reads `public/data/.bulbapedia-progress.json`)
+-   **Scheduled behavior**: Full refresh from beginning (uses `--fresh --replace` to clear progress and data)
+-   **No --resume flag needed**: The scraper auto-resumes by default unless you use `--fresh`
 -   A full scrape takes 30-60 minutes for all 1025 Pokémon
--   The scraper uses Playwright for better reliability
+-   The scraper uses simple HTTP requests (reliable and works well)
 -   Data is persisted in the `data` Docker volume
 -   The main app will automatically use the updated data
 -   Scraper restarts automatically if it crashes (`restart: unless-stopped`)

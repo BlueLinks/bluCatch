@@ -35,13 +35,13 @@ RUN printf '%s\n' '#!/bin/bash' \
     'echo "Starting scraper container..."' \
     'echo "Cron schedule: ${CRON_SCHEDULE}"' \
     '' \
-    '# Run scraper immediately on startup (resume from last position)' \
-    'echo "Running initial scrape (resuming from last position)..."' \
-    'node /app/scripts/scrape-bulbapedia.js --range=1-1025 --resume 2>&1 | tee /var/log/initial-scrape.log' \
+    '# Run scraper immediately on startup (automatically resumes from last position)' \
+    'echo "Running initial scrape (will auto-resume from progress file)..."' \
+    'node /app/scripts/scrape-bulbapedia.js 2>&1 | tee /var/log/initial-scrape.log' \
     'echo "Initial scrape completed with exit code: $?"' \
     '' \
-    '# Set up cron for scheduled full updates (starts from beginning)' \
-    'echo "${CRON_SCHEDULE} node /app/scripts/scrape-bulbapedia.js --range=1-1025 --replace >> /var/log/cron.log 2>&1" > /etc/crontabs/root' \
+    '# Set up cron for scheduled full updates (fresh start with --fresh)' \
+    'echo "${CRON_SCHEDULE} node /app/scripts/scrape-bulbapedia.js --fresh --replace >> /var/log/cron.log 2>&1" > /etc/crontabs/root' \
     'touch /var/log/cron.log' \
     '' \
     '# Start cron in foreground' \
