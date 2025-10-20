@@ -18,6 +18,25 @@ const simplifyGameName = (fullName) => {
   return fullName.replace('Pokémon ', '');
 };
 
+const getBulbapediaUrl = (pokemonName) => {
+  // Convert special names to Bulbapedia format
+  let cleanName = pokemonName;
+  if (pokemonName === 'Nidoran F') cleanName = 'Nidoran♀';
+  else if (pokemonName === 'Nidoran M') cleanName = 'Nidoran♂';
+  else if (pokemonName === 'Ho Oh') cleanName = 'Ho-Oh';
+  else if (pokemonName === 'Farfetchd') cleanName = "Farfetch'd";
+  else if (pokemonName === 'Mr Mime') cleanName = 'Mr. Mime';
+  else if (pokemonName === 'Mr Rime') cleanName = 'Mr. Rime';
+  else if (pokemonName === 'Mime Jr') cleanName = 'Mime Jr.';
+  else if (pokemonName === 'Porygon Z') cleanName = 'Porygon-Z';
+  else if (pokemonName === 'Type Null') cleanName = 'Type: Null';
+  else if (pokemonName === 'Jangmo O') cleanName = 'Jangmo-o';
+  else if (pokemonName === 'Hakamo O') cleanName = 'Hakamo-o';
+  else if (pokemonName === 'Kommo O') cleanName = 'Kommo-o';
+  
+  return `https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(cleanName)}_(Pokémon)`;
+};
+
 const getGameGeneration = (gameName) => {
   const sortedKeys = Object.keys(GAME_GENERATION_MAP).sort((a, b) => b.length - a.length);
   
@@ -153,6 +172,15 @@ const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) =>
               <div>
                 <h3>{pokemon.name}</h3>
                 <span className="bottom-sheet-id">#{pokemon.id}</span>
+                <a 
+                  href={getBulbapediaUrl(pokemon.name)} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bottom-sheet-bulbapedia-link"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  📖 View on Bulbapedia
+                </a>
               </div>
             </div>
             <button className="bottom-sheet-close" onClick={onClose}>✕</button>

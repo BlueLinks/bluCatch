@@ -15,6 +15,25 @@ const GAME_GENERATION_MAP = {
   'Scarlet': 9, 'Violet': 9
 };
 
+const getBulbapediaUrl = (pokemonName) => {
+  // Convert special names to Bulbapedia format
+  let cleanName = pokemonName;
+  if (pokemonName === 'Nidoran F') cleanName = 'Nidoran♀';
+  else if (pokemonName === 'Nidoran M') cleanName = 'Nidoran♂';
+  else if (pokemonName === 'Ho Oh') cleanName = 'Ho-Oh';
+  else if (pokemonName === 'Farfetchd') cleanName = "Farfetch'd";
+  else if (pokemonName === 'Mr Mime') cleanName = 'Mr. Mime';
+  else if (pokemonName === 'Mr Rime') cleanName = 'Mr. Rime';
+  else if (pokemonName === 'Mime Jr') cleanName = 'Mime Jr.';
+  else if (pokemonName === 'Porygon Z') cleanName = 'Porygon-Z';
+  else if (pokemonName === 'Type Null') cleanName = 'Type: Null';
+  else if (pokemonName === 'Jangmo O') cleanName = 'Jangmo-o';
+  else if (pokemonName === 'Hakamo O') cleanName = 'Hakamo-o';
+  else if (pokemonName === 'Kommo O') cleanName = 'Kommo-o';
+  
+  return `https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(cleanName)}_(Pokémon)`;
+};
+
 const simplifyGameName = (fullName) => {
   return fullName.replace('Pokémon ', '');
 };
@@ -108,8 +127,20 @@ const PokemonTooltip = memo(function PokemonTooltip({ pokemon, position, allPoke
     return (
       <div className="pokemon-tooltip" style={tooltipStyle}>
         <div className="tooltip-header">
-          <strong>{pokemon.name}</strong>
-          <span className="tooltip-id">#{pokemon.id}</span>
+          <img src={pokemon.sprite_url || pokemon.sprite} alt={pokemon.name} />
+          <div className="tooltip-info">
+            <strong>{pokemon.name}</strong>
+            <span className="tooltip-id">#{pokemon.id}</span>
+            <a 
+              href={getBulbapediaUrl(pokemon.name)} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="tooltip-bulbapedia-link"
+              onClick={(e) => e.stopPropagation()}
+            >
+              📖 Bulbapedia
+            </a>
+          </div>
         </div>
         <div className="tooltip-unavailable">No data available</div>
       </div>
@@ -143,8 +174,20 @@ const PokemonTooltip = memo(function PokemonTooltip({ pokemon, position, allPoke
       onClick={(e) => e.stopPropagation()}
     >
       <div className="tooltip-header">
-        <strong>{pokemon.name}</strong>
-        <span className="tooltip-id">#{pokemon.id}</span>
+        <img src={pokemon.sprite_url || pokemon.sprite} alt={pokemon.name} />
+        <div className="tooltip-info">
+          <strong>{pokemon.name}</strong>
+          <span className="tooltip-id">#{pokemon.id}</span>
+          <a 
+            href={getBulbapediaUrl(pokemon.name)} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="tooltip-bulbapedia-link"
+            onClick={(e) => e.stopPropagation()}
+          >
+            📖 Bulbapedia
+          </a>
+        </div>
       </div>
       <div className="tooltip-games">
         {selectedGenKeys.length > 0 && (

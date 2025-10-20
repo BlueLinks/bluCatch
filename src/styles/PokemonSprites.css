@@ -169,9 +169,30 @@
 }
 
 .tooltip-id {
+  display: block;
   font-size: 0.9rem;
   color: #a8dadc;
   font-weight: normal;
+  margin-top: 0.25rem;
+}
+
+.tooltip-bulbapedia-link {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: #4a9eff;
+  text-decoration: none;
+  padding: 0.2rem 0.4rem;
+  background: rgba(74, 158, 255, 0.1);
+  border-radius: 3px;
+  border: 1px solid rgba(74, 158, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.tooltip-bulbapedia-link:hover {
+  background: rgba(74, 158, 255, 0.2);
+  border-color: rgba(74, 158, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 .tooltip-section-title {

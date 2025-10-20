@@ -194,9 +194,20 @@ function stopSpinner(clearLine = true) {
 
 // Clean Pokemon name for Bulbapedia lookup (remove forme suffixes)
 function cleanPokemonName(name) {
-  // Convert Nidoran F/M to proper symbols for Bulbapedia
+  // Special character fixes for Bulbapedia URLs
   if (name === 'Nidoran F') return 'Nidoran♀';
   if (name === 'Nidoran M') return 'Nidoran♂';
+  if (name === 'Ho Oh') return 'Ho-Oh';
+  if (name === 'Farfetchd') return 'Farfetch\'d';
+  if (name === 'Mr Mime') return 'Mr. Mime';
+  if (name === 'Mr Rime') return 'Mr. Rime';
+  if (name === 'Mime Jr') return 'Mime Jr.';
+  if (name === 'Porygon2') return 'Porygon2';
+  if (name === 'Porygon Z') return 'Porygon-Z';
+  if (name === 'Type Null') return 'Type: Null';
+  if (name === 'Jangmo O') return 'Jangmo-o';
+  if (name === 'Hakamo O') return 'Hakamo-o';
+  if (name === 'Kommo O') return 'Kommo-o';
   
   // Remove forme suffixes like "Normal", "Attack", "Defense", "Speed"
   // These are used in pokemon.json but Bulbapedia uses base name
