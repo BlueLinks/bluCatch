@@ -23,6 +23,9 @@ public/data/games.backup.json
 public/data/games.before-*.json
 public/data/games.before-*.json
 
+# Generated API endpoints (can be regenerated)
+public/api/
+
 # Progress tracking files
 .bulbapedia-progress.json
 

@@ -327,15 +327,12 @@ function extractRegionalDexNumber(document, gameId) {
   return null;
 }
 
-// Parse game locations from HTML
+// Parse game locations from HTML - COMPLETELY REWRITTEN for proper cell-by-cell parsing
 function parseGameLocations(html, pokemonId, pokemonName) {
   const dom = new JSDOM(html);
   const document = dom.window.document;
   
   const gameLocations = {};
-  
-  // PERFORMANCE FIX: Cache regional dex lookups (was calling extractRegionalDexNumber hundreds of times!)
-  const regionalDexCache = {};
   
   // Find the "Game locations" section
   const headers = document.querySelectorAll('h3');
@@ -361,177 +358,163 @@ function parseGameLocations(html, pokemonId, pokemonName) {
     if (currentElement.tagName === 'TABLE') {
       tables.push(currentElement);
     }
-    // Stop at next major section
-    if (currentElement.tagName === 'H2' || 
-        (currentElement.tagName === 'H3' && 
-         !currentElement.textContent.includes('side games'))) {
+    // Stop at next major section OR side games section
+    if (currentElement.tagName === 'H2') {
       break;
+    }
+    if (currentElement.tagName === 'H3') {
+      const h3Text = currentElement.textContent.toLowerCase();
+      if (h3Text.includes('side games') || h3Text.includes('in events') || h3Text.includes('held items')) {
+        break;
+      }
+    }
+    if (currentElement.tagName === 'H4') {
+      const h4Text = currentElement.textContent.toLowerCase();
+      if (h4Text.includes('side') || h4Text.includes('event')) {
+        break;
+      }
     }
     currentElement = currentElement.nextElementSibling;
   }
   
-  // Parse each table
-  for (const table of tables) {
-    const rows = Array.from(table.querySelectorAll('tr'));
+  // Only parse the FIRST table (main games table), ignore the rest (side games, events, etc.)
+  const mainTables = tables.slice(0, 1);
+  
+  // Helper: Extract game from a cell
+  function extractGameFromCell(cell) {
+    const cellText = cell.textContent.trim();
     
-    // Strategy 1: Look for rows with game headers (th) and location data (td)
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i];
-      const headers = Array.from(row.querySelectorAll('th'));
-      
-      // Find game names in headers
-      const gamesInRow = [];
-      for (const th of headers) {
-        const thText = th.textContent.trim();
-        const links = th.querySelectorAll('a');
-        
-        // Check links first
-        for (const link of links) {
-          const linkText = link.textContent.trim();
-          if (GAME_NAME_MAP[linkText]) {
-            gamesInRow.push({ name: linkText, id: GAME_NAME_MAP[linkText] });
-            break;
-          }
-        }
-        
-        // Check text content
-        if (gamesInRow.length < headers.length) {
-          for (const [name, id] of Object.entries(GAME_NAME_MAP)) {
-            if (thText.includes(name)) {
-              gamesInRow.push({ name, id });
-              break;
-            }
-          }
-        }
+    // Skip generation labels
+    if (cellText.match(/^Generation\s+[IVX]+$/i)) {
+      return null;
+    }
+    
+    // Check links first (most reliable)
+    const links = cell.querySelectorAll('a');
+    for (const link of links) {
+      const linkText = link.textContent.trim();
+      if (GAME_NAME_MAP[linkText]) {
+        return { name: linkText, id: GAME_NAME_MAP[linkText] };
       }
+    }
+    
+    // Try text matching
+    for (const [name, id] of Object.entries(GAME_NAME_MAP)) {
+      if (cellText === name || cellText.includes(name)) {
+        return { name, id };
+      }
+    }
+    
+    return null;
+  }
+  
+  // Helper: Clean location text
+  function cleanLocation(text) {
+    return text
+      .replace(/\s+/g, ' ')
+      .replace(/\[.*?\]/g, '') // Remove [1], [2] reference markers
+      .replace(/\n+/g, ' ')
+      .trim();
+  }
+  
+  // Helper: Check if location is valid
+  function isValidLocation(location) {
+    if (!location || location.length < 3) return false;
+    const lower = location.toLowerCase();
+    if (lower.includes('unavailable')) return false;
+    if (lower.includes('unobtainable')) return false;
+    if (lower.includes('none')) return false;
+    if (lower.includes(pokemonName.toLowerCase())) return false;
+    if (lower.match(/^generation\s+[ivx]+$/i)) return false;
+    return true;
+  }
+  
+  // Parse each table - Look for INNER tables (Bulbapedia nests tables!)
+  for (const table of mainTables) {
+    // Find inner tables (the actual data is nested)
+    const innerTables = table.querySelectorAll('table table');
+    const tablesToParse = innerTables.length > 0 ? Array.from(innerTables) : [table];
+    
+    for (const dataTable of tablesToParse) {
+      const rows = Array.from(dataTable.querySelectorAll('tr'));
       
-      // If we found games, look for location in next row or same row
-      if (gamesInRow.length > 0) {
-        let locationRow = row;
-        let locationCells = row.querySelectorAll('td');
+      for (const row of rows) {
+        // Get DIRECT children only (not nested)
+        const ths = Array.from(row.querySelectorAll(':scope > th'));
+        const tds = Array.from(row.querySelectorAll(':scope > td'));
         
-        // If no td in current row, check next row
-        if (locationCells.length === 0 && i + 1 < rows.length) {
-          locationRow = rows[i + 1];
-          locationCells = locationRow.querySelectorAll('td');
+        // Skip rows without both headers and data
+        if (ths.length === 0 || tds.length === 0) {
+          continue;
         }
         
-        if (locationCells.length > 0) {
-          // Usually there's one td that spans multiple games or one per game
-          for (const td of locationCells) {
-            let location = td.textContent.trim();
-            
-            // Clean up
-            location = location
-              .replace(/\s+/g, ' ')
-              .replace(/\[.*?\]/g, '')
-              .replace(/\n/g, ' ')
-              .trim();
-            
-            // Skip empty, "unavailable", OR if it's just the Pokemon name (parsing error)
-            if (!location || 
-                location.toLowerCase().includes('unavailable') ||
-                location.toLowerCase().includes('unobtainable') ||
-                location.toLowerCase().includes('none') ||
-                location.length < 3 ||
-                location.toLowerCase().includes(pokemonName.toLowerCase())) {
-              continue;
-            }
-            
-            // Truncate long locations but preserve key info
-            if (location.length > 200) {
-              location = location.substring(0, 197) + '...';
-            }
-            
-            // Add to each game found in the row
-            for (const game of gamesInRow) {
+        // Extract games from headers
+        const games = [];
+        for (const th of ths) {
+          const game = extractGameFromCell(th);
+          if (game) {
+            games.push(game);
+          }
+        }
+        
+        // Skip if no valid games found
+        if (games.length === 0) {
+          continue;
+        }
+        
+        // BEST CASE: games.length === tds.length (perfect 1:1 mapping!)
+        if (tds.length === games.length) {
+          // Each game gets its own location from corresponding TD
+          games.forEach((game, idx) => {
+            const location = cleanLocation(tds[idx].textContent);
+            if (isValidLocation(location)) {
               if (!gameLocations[game.id]) {
                 gameLocations[game.id] = [];
               }
               
-              // Extract regional dex info and clean location
-              const { cleanLocation, regionalDex } = extractRegionalDexInfo(location);
+              const { cleanLocation: loc, regionalDex } = extractRegionalDexInfo(location);
+              const entry = { id: pokemonId, location: loc };
+              if (regionalDex) entry.regionalDex = regionalDex;
               
-              // Try to get regional dex from page structure if not in location (CACHED!)
-              if (!regionalDexCache.hasOwnProperty(game.id)) {
-                regionalDexCache[game.id] = extractRegionalDexNumber(document, game.id);
+              gameLocations[game.id].push(entry);
+            }
+          });
+        } else if (tds.length === 1) {
+          // All games share this single location
+          const location = cleanLocation(tds[0].textContent);
+          if (isValidLocation(location)) {
+            for (const game of games) {
+              if (!gameLocations[game.id]) {
+                gameLocations[game.id] = [];
               }
-              const dexNumber = regionalDex || regionalDexCache[game.id];
               
-              const entry = {
-                id: pokemonId,
-                location: cleanLocation
-              };
-              
-              // Only add regionalDex if we found one
-              if (dexNumber) {
-                entry.regionalDex = dexNumber;
-              }
+              const { cleanLocation: loc, regionalDex } = extractRegionalDexInfo(location);
+              const entry = { id: pokemonId, location: loc };
+              if (regionalDex) entry.regionalDex = regionalDex;
               
               gameLocations[game.id].push(entry);
             }
           }
         }
+        // If counts don't match, skip this row (ambiguous mapping)
       }
     }
-    
-    // Strategy 2: Look for inline game mentions (for older table formats)
-    for (const row of rows) {
-      const cells = Array.from(row.querySelectorAll('td, th'));
+  }
+  
+  // Deduplicate and clean up - if a game has multiple entries, prefer the most detailed one
+  for (const [gameId, locations] of Object.entries(gameLocations)) {
+    if (locations.length > 1) {
+      // Keep the longest/most detailed location, remove generic ones like "Trade"
+      const sorted = locations.sort((a, b) => {
+        // Prefer non-"Trade" locations
+        if (a.location === 'Trade' && b.location !== 'Trade') return 1;
+        if (b.location === 'Trade' && a.location !== 'Trade') return -1;
+        // Prefer longer, more detailed locations
+        return b.location.length - a.location.length;
+      });
       
-      for (let i = 0; i < cells.length - 1; i++) {
-        const cell = cells[i];
-        const cellText = cell.textContent.trim();
-        
-        // Find game name in this cell
-        let gameId = null;
-        for (const [name, id] of Object.entries(GAME_NAME_MAP)) {
-          if (cellText.includes(name)) {
-            gameId = id;
-            break;
-          }
-        }
-        
-        if (gameId) {
-          // Next cell likely has location
-          const locationCell = cells[i + 1];
-          let location = locationCell.textContent.trim();
-          
-          location = location
-            .replace(/\s+/g, ' ')
-            .replace(/\[.*?\]/g, '')
-            .trim();
-          
-          if (location && 
-              !location.toLowerCase().includes('unavailable') &&
-              !location.toLowerCase().includes('unobtainable') &&
-              location.length > 3) {
-            
-            if (!gameLocations[gameId]) {
-              gameLocations[gameId] = [];
-            }
-            
-            if (location.length > 200) {
-              location = location.substring(0, 197) + '...';
-            }
-            
-            // Extract regional dex info and clean location
-            const { cleanLocation, regionalDex } = extractRegionalDexInfo(location);
-            const dexNumber = regionalDex || extractRegionalDexNumber(document, gameId);
-            
-            const entry = {
-              id: pokemonId,
-              location: cleanLocation
-            };
-            
-            if (dexNumber) {
-              entry.regionalDex = dexNumber;
-            }
-            
-            gameLocations[gameId].push(entry);
-          }
-        }
-      }
+      // Keep only the best one
+      gameLocations[gameId] = [sorted[0]];
     }
   }
   

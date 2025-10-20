@@ -19,8 +19,13 @@ const simplifyGameName = (fullName) => {
 };
 
 const getGameGeneration = (gameName) => {
-  for (const [key, gen] of Object.entries(GAME_GENERATION_MAP)) {
-    if (gameName.includes(key)) return gen;
+  // Sort keys by length (longest first) to match "FireRed" before "Red"
+  const sortedKeys = Object.keys(GAME_GENERATION_MAP).sort((a, b) => b.length - a.length);
+  
+  for (const key of sortedKeys) {
+    if (gameName.includes(key)) {
+      return GAME_GENERATION_MAP[key];
+    }
   }
   return 99; // Unknown
 };
@@ -73,19 +78,29 @@ const PokemonTooltip = React.memo(function PokemonTooltip({ pokemon, position, a
   
   // Smart positioning: prevent tooltip from going off-screen
   const tooltipWidth = 350; // max-width from CSS
-  const tooltipEstimatedHeight = 400; // estimated max height
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   
-  // Flip to left if too close to right edge
+  // Calculate horizontal position
   const shouldFlipLeft = position.x + tooltipWidth + 15 > windowWidth;
+  let leftPos = shouldFlipLeft ? position.x - tooltipWidth - 15 : position.x + 15;
   
-  // Flip to top if too close to bottom edge
-  const shouldFlipUp = position.y + tooltipEstimatedHeight + 15 > windowHeight;
+  // Ensure tooltip doesn't go off left edge
+  if (leftPos < 10) leftPos = 10;
+  
+  // Calculate vertical position - keep tooltip on screen
+  let topPos = position.y + 15;
+  const maxTooltipHeight = windowHeight * 0.8; // 80vh max height
+  
+  // If tooltip would go off bottom, position it higher
+  if (topPos + maxTooltipHeight > windowHeight - 20) {
+    topPos = Math.max(20, windowHeight - maxTooltipHeight - 20);
+  }
   
   const tooltipStyle = {
-    left: shouldFlipLeft ? `${position.x - tooltipWidth - 15}px` : `${position.x + 15}px`,
-    top: shouldFlipUp ? `${position.y - tooltipEstimatedHeight - 15}px` : `${position.y + 15}px`
+    left: `${leftPos}px`,
+    top: `${topPos}px`,
+    maxHeight: `${maxTooltipHeight}px`
   };
   
   if (allGames.length === 0) {
@@ -100,42 +115,82 @@ const PokemonTooltip = React.memo(function PokemonTooltip({ pokemon, position, a
     );
   }
   
-  const selectedGroups = groupGamesByLocation(selectedGames);
-  const unselectedGroups = groupGamesByLocation(unselectedGames);
+  // Group games by generation, but KEEP them in order (don't group by location!)
+  const groupGamesByGeneration = (games) => {
+    const byGen = {};
+    games.forEach(game => {
+      const gen = getGameGeneration(game.gameName);
+      if (!byGen[gen]) {
+        byGen[gen] = [];
+      }
+      byGen[gen].push(game);
+    });
+    return byGen;
+  };
+
+  const selectedByGen = groupGamesByGeneration(selectedGames);
+  const unselectedByGen = groupGamesByGeneration(unselectedGames);
+  
+  // Sort generation keys
+  const selectedGenKeys = Object.keys(selectedByGen).sort((a, b) => parseInt(a) - parseInt(b));
+  const unselectedGenKeys = Object.keys(unselectedByGen).sort((a, b) => parseInt(a) - parseInt(b));
   
   return (
     <div 
       className="pokemon-tooltip"
       style={tooltipStyle}
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="tooltip-header">
         <strong>{pokemon.name}</strong>
         <span className="tooltip-id">#{pokemon.id}</span>
       </div>
       <div className="tooltip-games">
-        {selectedGroups.length > 0 && (
+        {selectedGenKeys.length > 0 && (
           <>
             <div className="tooltip-section-title">✓ Available in selected games:</div>
-            {selectedGroups.map((group, idx) => (
-              <div key={idx} className="tooltip-game tooltip-game-selected">
-                <strong className="tooltip-game-list">{formatGameNames(group.games)}</strong>
-                <span className="tooltip-location">{group.location}</span>
-              </div>
-            ))}
+            {selectedGenKeys.map(gen => {
+              const genGames = selectedByGen[gen];
+              // Group by location to reduce redundancy, but show games clearly
+              const locationGroups = groupGamesByLocation(genGames);
+              
+              return (
+                <div key={gen} className="tooltip-generation">
+                  <div className="tooltip-gen-label">Generation {gen}</div>
+                  {locationGroups.map((group, idx) => (
+                    <div key={idx} className="tooltip-game tooltip-game-selected">
+                      <div className="tooltip-game-names">{group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}</div>
+                      <div className="tooltip-location">{group.location}</div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
           </>
         )}
         
-        {unselectedGroups.length > 0 && (
+        {unselectedGenKeys.length > 0 && (
           <>
             <div className="tooltip-section-title tooltip-section-unselected">
-              {selectedGroups.length > 0 ? '○ Also available in:' : '○ Available in (not selected):'}
+              {selectedGenKeys.length > 0 ? '○ Also available in:' : '○ Available in (not selected):'}
             </div>
-            {unselectedGroups.map((group, idx) => (
-              <div key={idx} className="tooltip-game tooltip-game-unselected">
-                <strong className="tooltip-game-list">{formatGameNames(group.games)}</strong>
-                <span className="tooltip-location">{group.location}</span>
-              </div>
-            ))}
+            {unselectedGenKeys.map(gen => {
+              const genGames = unselectedByGen[gen];
+              // Group by location to reduce redundancy
+              const locationGroups = groupGamesByLocation(genGames);
+              
+              return (
+                <div key={gen} className="tooltip-generation">
+                  <div className="tooltip-gen-label">Generation {gen}</div>
+                  {locationGroups.map((group, idx) => (
+                    <div key={idx} className="tooltip-game tooltip-game-unselected">
+                      <div className="tooltip-game-names">{group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}</div>
+                      <div className="tooltip-location">{group.location}</div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
           </>
         )}
       </div>
@@ -149,8 +204,8 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseEnter = useCallback((pokemon, event) => {
-    // Don't show hover tooltip if this pokemon is pinned
-    if (pinnedPokemon?.id !== pokemon.id) {
+    // Don't show ANY hover tooltip if ANY pokemon is pinned
+    if (!pinnedPokemon) {
       setHoveredPokemon(pokemon);
       setTooltipPosition({
         x: event.clientX,
