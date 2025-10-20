@@ -147,8 +147,17 @@ const delay = (baseMs = DELAY_MS, variance = DELAY_VARIANCE) => {
   return new Promise(resolve => setTimeout(resolve, actualMs));
 };
 
+// Detect if running in Docker (no TTY) to disable spinner
+const isDocker = !process.stdout.isTTY;
+
 // Start a spinner with a message
 function startSpinner(message) {
+  // In Docker/no TTY, just print the message once without spinner animation
+  if (isDocker) {
+    console.log(message);
+    return;
+  }
+  
   // Stop any existing spinner first
   if (spinnerInterval) {
     stopSpinner(false);
@@ -177,7 +186,7 @@ function stopSpinner(clearLine = true) {
     clearInterval(spinnerInterval);
     spinnerInterval = null;
   }
-  if (clearLine) {
+  if (clearLine && !isDocker) {
     // Clear the entire line (write spaces to overwrite)
     process.stdout.write('\r' + ' '.repeat(120) + '\r');
   }

@@ -1,6 +1,7 @@
 # Auto-Deploy for Local Portainer
 
 ## The Problem
+
 Your Portainer is at `192.168.1.210:9443` (local network), so GitHub webhooks can't reach it.
 
 ## Solution 1: Simple Pull Script (Easiest!)
@@ -19,16 +20,19 @@ echo "✅ Updated at $(date)"
 ```
 
 Make it executable:
+
 ```bash
 chmod +x /home/youruser/update-blucatch.sh
 ```
 
 **Run manually when you push:**
+
 ```bash
 ssh yourserver /home/youruser/update-blucatch.sh
 ```
 
 Or set up a cron job to check every 5 minutes:
+
 ```bash
 */5 * * * * /home/youruser/update-blucatch.sh >> /var/log/blucatch-deploy.log 2>&1
 ```
@@ -38,14 +42,15 @@ Or set up a cron job to check every 5 minutes:
 ## Solution 2: Portainer with Git Repository
 
 1. **In Portainer**:
-   - Go to your stack
-   - Edit stack
-   - Change **Build method** from "Upload" to **"Git Repository"**
-   - Repository URL: `https://github.com/BlueLinks/bluCatch`
-   - Reference: `refs/heads/main`
-   - Compose path: `docker-compose.yml`
-   - Enable **Automatic updates** 
-   - Set check interval (e.g., every 5 minutes)
+
+    - Go to your stack
+    - Edit stack
+    - Change **Build method** from "Upload" to **"Git Repository"**
+    - Repository URL: `https://github.com/BlueLinks/bluCatch`
+    - Reference: `refs/heads/main`
+    - Compose path: `docker-compose.yml`
+    - Enable **Automatic updates**
+    - Set check interval (e.g., every 5 minutes)
 
 2. **Save and redeploy**
 
@@ -62,10 +67,10 @@ Use a free service like **webhook.site** or **smee.io** to relay webhooks:
 3. Copy the webhook URL
 4. Add to GitHub as webhook
 5. On your server, run:
-   ```bash
-   npm install -g smee-client
-   smee -u https://smee.io/YOUR_CHANNEL_ID -t http://192.168.1.210:9443/api/stacks/webhooks/7e22c671-8caa-41b4-9934-51e4ee2dbd8e
-   ```
+    ```bash
+    npm install -g smee-client
+    smee -u https://smee.io/YOUR_CHANNEL_ID -t http://192.168.1.210:9443/api/stacks/webhooks/7e22c671-8caa-41b4-9934-51e4ee2dbd8e
+    ```
 
 This relays public GitHub webhooks to your local Portainer!
 
@@ -77,28 +82,28 @@ Add to your `docker-compose.yml`:
 
 ```yaml
 services:
-  # ... your existing services ...
+    # ... your existing services ...
 
-  watchtower:
-    image: containrrr/watchtower
-    container_name: watchtower
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - WATCHTOWER_POLL_INTERVAL=60     # Check every 60 seconds
-      - WATCHTOWER_CLEANUP=true         # Remove old images
-      - WATCHTOWER_LABEL_ENABLE=true    # Only watch labeled containers
-    
-  blucatch:
-    # ... existing config ...
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-  
-  blucatch-scraper:
-    # ... existing config ...
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+    watchtower:
+        image: containrrr/watchtower
+        container_name: watchtower
+        restart: unless-stopped
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            - WATCHTOWER_POLL_INTERVAL=60 # Check every 60 seconds
+            - WATCHTOWER_CLEANUP=true # Remove old images
+            - WATCHTOWER_LABEL_ENABLE=true # Only watch labeled containers
+
+    blucatch:
+        # ... existing config ...
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
+
+    blucatch-scraper:
+        # ... existing config ...
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
 ```
 
 **But wait!** For Watchtower to work with local builds, you need to:
@@ -112,11 +117,12 @@ services:
 ## 🌟 My Recommendation for You
 
 **Use Solution 2: Portainer Git Repository** because:
-- ✅ No scripts needed
-- ✅ Works entirely within Portainer
-- ✅ No public exposure required
-- ✅ Automatic checks every few minutes
-- ✅ Easy to configure and monitor
+
+-   ✅ No scripts needed
+-   ✅ Works entirely within Portainer
+-   ✅ No public exposure required
+-   ✅ Automatic checks every few minutes
+-   ✅ Easy to configure and monitor
 
 Just set your stack to pull from Git and it will handle everything!
 
@@ -125,6 +131,7 @@ Just set your stack to pull from Git and it will handle everything!
 ## Quick Test
 
 After setup, test it:
+
 ```bash
 # Make a small change
 echo "# Test" >> README.md
@@ -148,7 +155,7 @@ alias deploy-blucatch='ssh yourserver "cd /path/to/blucatch && git pull && docke
 ```
 
 Then just run:
+
 ```bash
 deploy-blucatch
 ```
-
