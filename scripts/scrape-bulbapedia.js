@@ -185,6 +185,10 @@ function stopSpinner(clearLine = true) {
 
 // Clean Pokemon name for Bulbapedia lookup (remove forme suffixes)
 function cleanPokemonName(name) {
+  // Convert Nidoran F/M to proper symbols for Bulbapedia
+  if (name === 'Nidoran F') return 'Nidoran♀';
+  if (name === 'Nidoran M') return 'Nidoran♂';
+  
   // Remove forme suffixes like "Normal", "Attack", "Defense", "Speed"
   // These are used in pokemon.json but Bulbapedia uses base name
   const formeSuffixes = [
