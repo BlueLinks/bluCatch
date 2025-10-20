@@ -7,8 +7,9 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies (including dev dependencies for build)
-RUN npm ci
+# Install ONLY production dependencies needed for the web app build
+# Skip optional dependencies (playwright, puppeteer, selenium - only needed for scraper)
+RUN npm ci --omit=optional --no-audit --prefer-offline || npm install --omit=optional --no-audit
 
 # Copy source code and necessary files
 COPY src/ ./src/

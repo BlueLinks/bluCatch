@@ -1,14 +1,25 @@
 # Scraper image with cron to run periodically
 FROM node:18-alpine
 
-# Install bash, curl, and busybox-extras for crond
-RUN apk add --no-cache bash curl busybox-extras
+# Install bash, curl, busybox-extras for crond, and dependencies for browser automation
+RUN apk add --no-cache bash curl busybox-extras \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+# Set Puppeteer to use installed Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 
 # Copy only files needed for scraper
 COPY package*.json ./
-RUN npm ci
+# Install with fallback to regular npm install if ci fails
+RUN npm ci --no-audit || npm install --no-audit
 
 COPY public/data/ ./public/data/
 COPY scripts/ ./scripts/
