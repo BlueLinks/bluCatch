@@ -1,5 +1,5 @@
 # Scraper image with cron to run periodically
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Install bash, curl, busybox-extras for crond, and dependencies for browser automation
 RUN apk add --no-cache bash curl busybox-extras \
