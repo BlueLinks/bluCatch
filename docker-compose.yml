@@ -27,6 +27,9 @@ services:
     networks:
       - pokemon-network
 
+  # Scraper service: runs immediately on startup, then on schedule
+  # View logs: docker logs -f blucatch-scraper
+  # View initial scrape: docker exec blucatch-scraper cat /var/log/initial-scrape.log
   blucatch-scraper:
     build:
       context: .
@@ -34,7 +37,7 @@ services:
     container_name: blucatch-scraper
     environment:
       - NODE_ENV=production
-      - CRON_SCHEDULE=30 3 * * *
+      - CRON_SCHEDULE=30 3 * * *  # Daily at 3:30 AM (change as needed)
     restart: unless-stopped
     volumes:
       - data:/app/public/data

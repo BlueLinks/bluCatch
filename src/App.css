@@ -9,8 +9,23 @@
 
 .app-header {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(74, 158, 255, 0.3);
+}
+
+.app-title {
+  margin: 0;
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.app-buttons {
+  display: flex;
+  gap: 0.75rem;
 }
 
 .settings-button {
@@ -45,38 +60,31 @@
   color: #ffffff;
 }
 
-.overall-stats {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
-
-.overall-stats h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  color: #ffffff;
-}
-
-.stats-content {
+.overall-stats-content {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ffffff;
+  gap: 1.5rem;
+}
+
+.stats-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .stats-number {
+  font-size: 2.5rem;
+  font-weight: bold;
   color: #4a9eff;
 }
 
-.stats-percentage {
+.stats-label {
+  font-size: 1rem;
   color: #a8dadc;
-  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .clear-button {
@@ -116,18 +124,32 @@
     padding: 1rem;
   }
 
-  .overall-stats {
-    padding: 1rem;
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
-  .stats-content {
-    flex-direction: column;
-    gap: 0.5rem;
+  .app-title {
     font-size: 1.5rem;
   }
 
-  .stats-percentage {
-    font-size: 1.2rem;
+  .app-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .settings-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .stats-number {
+    font-size: 2rem;
+  }
+
+  .stats-label {
+    font-size: 0.9rem;
   }
 }
 

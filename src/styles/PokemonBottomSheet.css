@@ -1,0 +1,275 @@
+.bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  max-height: 85vh;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.bottom-sheet.open {
+  transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+  width: 40px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+  margin: 12px auto 8px;
+  cursor: grab;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.bottom-sheet-handle:active {
+  cursor: grabbing;
+  background: rgba(255, 255, 255, 0.6);
+  width: 50px;
+}
+
+.bottom-sheet-handle::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -20px;
+  right: -20px;
+  bottom: -12px;
+  /* Larger touch target */
+}
+
+.bottom-sheet-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 1.5rem 1.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bottom-sheet-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bottom-sheet-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.bottom-sheet-content::-webkit-scrollbar-thumb {
+  background: rgba(74, 158, 255, 0.4);
+  border-radius: 3px;
+}
+
+.bottom-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(74, 158, 255, 0.3);
+}
+
+.bottom-sheet-pokemon-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bottom-sheet-sprite {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  background: rgba(74, 158, 255, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.bottom-sheet-pokemon-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #4a9eff;
+}
+
+.bottom-sheet-id {
+  font-size: 1rem;
+  color: #a8dadc;
+  font-weight: normal;
+}
+
+.bottom-sheet-close {
+  background: rgba(231, 76, 60, 0.2);
+  border: 2px solid rgba(231, 76, 60, 0.4);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bottom-sheet-close:hover {
+  background: rgba(231, 76, 60, 0.4);
+  border-color: rgba(231, 76, 60, 0.6);
+  transform: scale(1.1);
+}
+
+.bottom-sheet-games {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bottom-sheet-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bottom-sheet-section-title {
+  font-size: 1rem;
+  color: #a8dadc;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.bottom-sheet-section-title.unselected {
+  color: #7a9ca8;
+  opacity: 0.8;
+}
+
+.bottom-sheet-generation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bottom-sheet-gen-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4a9eff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0.75rem;
+  background: rgba(74, 158, 255, 0.15);
+  border-left: 4px solid #4a9eff;
+  border-radius: 4px;
+}
+
+.bottom-sheet-game {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.bottom-sheet-game.selected {
+  background: rgba(74, 158, 255, 0.15);
+  border-left-color: #4a9eff;
+}
+
+.bottom-sheet-game.unselected {
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 0.6;
+  border-left-color: #555;
+}
+
+.bottom-sheet-game-names {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.bottom-sheet-location {
+  color: #a8dadc;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.bottom-sheet-game.unselected .bottom-sheet-location {
+  color: #888;
+}
+
+.bottom-sheet-unavailable {
+  color: #e74c3c;
+  font-style: italic;
+  padding: 1rem;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Desktop view - show as modal instead */
+@media (min-width: 769px) {
+  .bottom-sheet {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%) scale(0.9);
+    border-radius: 16px;
+    max-width: 500px;
+    max-height: 80vh;
+    min-width: 400px;
+  }
+
+  .bottom-sheet.open {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .bottom-sheet-handle {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottom-sheet-content {
+    padding: 0 1rem 1rem;
+  }
+
+  .bottom-sheet-pokemon-info h3 {
+    font-size: 1.25rem;
+  }
+
+  .bottom-sheet-sprite {
+    width: 56px;
+    height: 56px;
+  }
+}
+

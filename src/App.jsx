@@ -4,6 +4,7 @@ import GameGrid from './components/GameGrid';
 import SettingsModal from './components/SettingsModal';
 import GameSuggestions from './components/GameSuggestions';
 import AcquisitionFilters, { ACQUISITION_METHODS } from './components/AcquisitionFilters';
+import CollapsibleSection from './components/CollapsibleSection';
 import { calculateAvailablePokemon, groupPokemonByGeneration, calculateStats, calculateMinimumGameSet } from './utils/calculator';
 import './App.css';
 
@@ -144,55 +145,83 @@ function App() {
   return (
     <div className="app">
       <div className="app-header">
-        <button 
-          className="settings-button"
-          onClick={handleOpenAcquisitionFilters}
-          title="Acquisition Method Filters"
-        >
-          🎯 Filters
-        </button>
-        <button 
-          className="settings-button"
-          onClick={handleOpenSettings}
-          title="Settings"
-        >
-          ⚙️ Settings
-        </button>
-      </div>
-
-      <div className="overall-stats">
-        <h2>Overall Progress</h2>
-        <div className="stats-content">
-          <span className="stats-number">{stats.available} / {stats.total}</span>
-          <span className="stats-percentage">({stats.percentage}%)</span>
-        </div>
-        {selectedGames.length > 0 && (
+        <h1 className="app-title">Pokémon Collection Tracker</h1>
+        <div className="app-buttons">
           <button 
-            className="clear-button"
-            onClick={handleClearSelections}
+            className="settings-button"
+            onClick={handleOpenAcquisitionFilters}
+            title="Acquisition Method Filters"
           >
-            Clear All Selections
+            🎯 Filters
           </button>
-        )}
+          <button 
+            className="settings-button"
+            onClick={handleOpenSettings}
+            title="Settings"
+          >
+            ⚙️ Settings
+          </button>
+        </div>
       </div>
 
-      <PokemonSprites 
-        generationData={generationData}
-        pokemonGameMap={pokemonGameMap}
-        allPokemonGamesMap={allPokemonGamesMap}
-      />
+      <CollapsibleSection 
+        title="Overall Progress" 
+        defaultOpen={true}
+        badge={`${stats.percentage}%`}
+      >
+        <div className="overall-stats-content">
+          <div className="stats-display">
+            <span className="stats-number">{stats.available} / {stats.total}</span>
+            <span className="stats-label">Pokémon Available</span>
+          </div>
+          {selectedGames.length > 0 && (
+            <button 
+              className="clear-button"
+              onClick={handleClearSelections}
+            >
+              Clear All Selections
+            </button>
+          )}
+        </div>
+      </CollapsibleSection>
 
-      <GameSuggestions
-        suggestions={suggestions}
-        selectedGames={selectedGames}
-        onGameToggle={handleGameToggle}
-      />
+      <CollapsibleSection 
+        title="Pokémon Collection" 
+        defaultOpen={true}
+        badge={`${stats.available}/${stats.total}`}
+      >
+        <PokemonSprites 
+          generationData={generationData}
+          pokemonGameMap={pokemonGameMap}
+          allPokemonGamesMap={allPokemonGamesMap}
+        />
+      </CollapsibleSection>
 
-      <GameGrid 
-        games={filteredGames}
-        selectedGames={selectedGames}
-        onGameToggle={handleGameToggle}
-      />
+      {!suggestions.complete && suggestions.suggestedGames.length > 0 && (
+        <CollapsibleSection 
+          title="Game Suggestions" 
+          defaultOpen={true}
+          badge={`${suggestions.totalMissing} missing`}
+        >
+          <GameSuggestions
+            suggestions={suggestions}
+            selectedGames={selectedGames}
+            onGameToggle={handleGameToggle}
+          />
+        </CollapsibleSection>
+      )}
+
+      <CollapsibleSection 
+        title="All Games" 
+        defaultOpen={false}
+        badge={`${selectedGames.length} selected`}
+      >
+        <GameGrid 
+          games={filteredGames}
+          selectedGames={selectedGames}
+          onGameToggle={handleGameToggle}
+        />
+      </CollapsibleSection>
 
       <SettingsModal
         isOpen={settingsOpen}

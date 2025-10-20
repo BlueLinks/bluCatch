@@ -1,21 +1,13 @@
 .pokemon-sprites-container {
-  margin-bottom: 3rem;
-}
-
-.pokemon-sprites-container h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Container is now inside collapsible section */
 }
 
 .generation-group {
-  margin-bottom: 2rem;
-  background: rgba(44, 62, 80, 0.3);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+  background: rgba(44, 62, 80, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid rgba(74, 158, 255, 0.2);
 }
 
 .generation-header {
@@ -298,8 +290,8 @@
 }
 
 @media (max-width: 768px) {
-  .pokemon-sprites-container h1 {
-    font-size: 1.8rem;
+  .generation-group {
+    padding: 0.75rem;
   }
 
   .generation-header {

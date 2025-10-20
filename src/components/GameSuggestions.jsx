@@ -1,7 +1,7 @@
-import React from 'react';
+import { memo } from 'react';
 import '../styles/GameSuggestions.css';
 
-const GameSuggestions = React.memo(function GameSuggestions({ suggestions, selectedGames, onGameToggle }) {
+const GameSuggestions = memo(function GameSuggestions({ suggestions, selectedGames, onGameToggle }) {
   if (selectedGames.length === 0) {
     return (
       <div className="game-suggestions">

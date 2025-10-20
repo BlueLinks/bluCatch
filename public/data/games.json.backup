@@ -1,0 +1,2960 @@
+{
+  "games": [
+    {
+      "id": "red",
+      "name": "Pokémon Red",
+      "generation": 1,
+      "boxArt": "/images/boxart/red.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Route 25, Viridian Forest"
+        },
+        {
+          "id": 11,
+          "location": "Route 25, Viridian Forest"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Routes 2, 24, and 25, Viridian Forest"
+        },
+        {
+          "id": 14,
+          "location": "Routes 24 and 25, Viridian Forest"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 3, 5, 6, 7, 8, 12, 13, 14, 15, 21, 24, and 25"
+        },
+        {
+          "id": 17,
+          "location": "Routes 14, 15, and 21"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 4, 9, 16, 21, and 22"
+        },
+        {
+          "id": 20,
+          "location": "Routes 16, 17, 18, and 21"
+        }
+      ],
+      "platform": "gb"
+    },
+    {
+      "id": "blue",
+      "name": "Pokémon Blue",
+      "generation": 1,
+      "boxArt": "/images/boxart/blue.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Routes 2, 24, and 25, Viridian Forest"
+        },
+        {
+          "id": 11,
+          "location": "Routes 24 and 25, Viridian Forest"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Route 25, Viridian Forest"
+        },
+        {
+          "id": 14,
+          "location": "Route 25, Viridian Forest"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 3, 5, 6, 7, 8, 12, 13, 14, 15, 21, 24, and 25"
+        },
+        {
+          "id": 17,
+          "location": "Routes 14, 15, and 21"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 4, 9, 16, 21, and 22"
+        },
+        {
+          "id": 20,
+          "location": "Routes 16, 17, 18, and 21, Cerulean Cave"
+        }
+      ],
+      "platform": "gb"
+    },
+    {
+      "id": "yellow",
+      "name": "Pokémon Yellow",
+      "generation": 1,
+      "boxArt": "/images/boxart/yellow.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Received from a boy on Route 24"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Received from Officer Jenny in Vermilion City after receiving the Thunder Badge"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 11,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 21, 24, and 25, Viridian Forest"
+        },
+        {
+          "id": 17,
+          "location": "Routes 5, 6, 7, 8, 11, 12, 13, 14, 15, 21, 24, and 25, Viridian Forest"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 16, 18, 21, and 22, Pokémon Mansion"
+        },
+        {
+          "id": 20,
+          "location": "Routes 9, 10, 11, 16, 18, and 21, Pokémon Mansion"
+        }
+      ],
+      "platform": "gbc"
+    },
+    {
+      "id": "gold",
+      "name": "Pokémon Gold",
+      "generation": 2,
+      "boxArt": "/images/boxart/gold.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 2,
+          "location": "Time Capsule"
+        },
+        {
+          "id": 3,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 4,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 5,
+          "location": "Time Capsule, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 7,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 8,
+          "location": "Time Capsule, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 10,
+          "location": "Routes 2, 30, and 31, Ilex Forest and National ParkMorningDayNational Park (Bug-Catching Contest)TuThSaRoutes 26, 27, 34, 35, 36, 37, 38, and 39, Azalea Town, Ilex Forest, Lake of Rage (Headbutt trees)"
+        },
+        {
+          "id": 11,
+          "location": "Routes 2, 30, and 31, Ilex Forest, National ParkMorningDayNational Park (Bug-Catching Contest)TuThSaRoutes 26, 27, 34, 35, 36, 37, 38, and 39, Azalea Town, Ilex Forest, Lake of Rage (Headbutt trees)"
+        },
+        {
+          "id": 12,
+          "location": "Route 2MorningNational Park (Bug-Catching Contest)TuThSaRoutes 26, 27, 34, 35, 36, 37, 38, and 39, Azalea Town, Ilex Forest, Lake of Rage (Headbutt trees)"
+        },
+        {
+          "id": 13,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 14,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 15,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 25, 29, 30, 31, 35, 36, and 37, National ParkMorningDay"
+        },
+        {
+          "id": 17,
+          "location": "Routes 2, 8, 13, 14, 15, 25, 37, and 43MorningDay"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 3, 4, 7, 9, 11, 22, 29, 30, 31, 32, 33, 34, 38, 39, and 46, Tin Tower, Mt. Mortar, Union Cave, Tohjo Falls, Sprout Tower and Burned Tower"
+        },
+        {
+          "id": 20,
+          "location": "Routes 9, 10, 26, 27, 38, and 39, Mt. Mortar, Union Cave, Tohjo Falls, Burned Tower"
+        }
+      ],
+      "platform": "gbc"
+    },
+    {
+      "id": "silver",
+      "name": "Pokémon Silver",
+      "generation": 2,
+      "boxArt": "/images/boxart/silver.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 2,
+          "location": "Time Capsule"
+        },
+        {
+          "id": 3,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 4,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 5,
+          "location": "Time Capsule, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 7,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 8,
+          "location": "Time Capsule, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 10,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 11,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 12,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 13,
+          "location": "Routes 2, 30, and 31, Ilex Forest, National ParkMorningDayNational Park (Bug-Catching Contest)TuThSaRoutes 26, 27, 34, 35, 36, 37, 38, and 39, Azalea Town, Ilex Forest, Lake of Rage (Headbutt trees)"
+        },
+        {
+          "id": 14,
+          "location": "Routes 2, 30, and 31, National Park and Ilex ForestMorningDayNational Park (Bug-Catching Contest)TuThSaRoutes 26, 27, 34, 35, 36, 37, 38, and 39, Azalea Town, Ilex Forest, Lake of Rage (Headbutt trees)"
+        },
+        {
+          "id": 15,
+          "location": "Route 2MorningNational Park (Bug-Catching Contest)TuThSaRoutes 26, 27, 34, 35, 36, 37, 38, and 39, Azalea Town, Ilex Forest, Lake of Rage (Headbutt trees)"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 25, 29, 30, 31, 35, 36, and 37, National ParkMorningDay"
+        },
+        {
+          "id": 17,
+          "location": "Routes 2, 8, 13, 14, 15, 25, 37, and 43MorningDay"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 3, 4, 7, 9, 11, 22, 29, 30, 31, 32, 33, 34, and 46, Tin Tower, Mt. Mortar, Union Cave, Tohjo Falls, Sprout Tower and Burned Tower"
+        },
+        {
+          "id": 20,
+          "location": "Routes 9, 10, 26, 27, 38, and 39, Mt. Mortar, Union Cave, Tohjo Falls, Burned Tower"
+        }
+      ],
+      "platform": "gbc"
+    },
+    {
+      "id": "crystal",
+      "name": "Pokémon Crystal",
+      "generation": 2,
+      "boxArt": "/images/boxart/crystal.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 2,
+          "location": "Time Capsule"
+        },
+        {
+          "id": 3,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 4,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 5,
+          "location": "Time Capsule, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 7,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 8,
+          "location": "Time Capsule, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Time Capsule, Event"
+        },
+        {
+          "id": 10,
+          "location": "Routes 2, 24, 25, 30, and 31, Ilex Forest and National ParkMorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 11,
+          "location": "Routes 24 and 25, Ilex ForestMorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 12,
+          "location": "Routes 2, 24, and 25MorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 13,
+          "location": "Routes 30 and 31, Ilex Forest, National ParkMorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 14,
+          "location": "Ilex ForestMorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 15,
+          "location": "National Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 25, 29, 30, 31, 32, 34, 35, 36, and 37, National Park, Ilex ForestMorningDay"
+        },
+        {
+          "id": 17,
+          "location": "Route 2DayRoutes 5, 8, 11, 13, 14, 15, 25, 37, 38, 39, and 43MorningDay"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 3, 4, 9, 21, 22, 29, 32, 33, 34, 42, and 46, Tin Tower, Mt. Mortar, Union Cave, Tohjo Falls, Sprout Tower and Burned TowerRoutes 6, 7, 11, 38, 39MorningDay"
+        },
+        {
+          "id": 20,
+          "location": "Routes 3, 4, 6, 7, 9, 10, 11, 21, 26, 27, 38, 39, 42, and 43, Mt. Mortar, Union Cave, Tohjo Falls, Burned TowerRoute 1NightRoute 7MorningDay"
+        }
+      ],
+      "platform": "gbc"
+    },
+    {
+      "id": "ruby",
+      "name": "Pokémon Ruby",
+      "generation": 3,
+      "boxArt": "/images/boxart/ruby.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 8,
+          "location": "Trade, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade"
+        },
+        {
+          "id": 19,
+          "location": "Trade"
+        },
+        {
+          "id": 20,
+          "location": "Trade"
+        }
+      ],
+      "platform": "gba"
+    },
+    {
+      "id": "sapphire",
+      "name": "Pokémon Sapphire",
+      "generation": 3,
+      "boxArt": "/images/boxart/sapphire.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 8,
+          "location": "Trade, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade"
+        },
+        {
+          "id": 19,
+          "location": "Trade"
+        },
+        {
+          "id": 20,
+          "location": "Trade"
+        }
+      ],
+      "platform": "gba"
+    },
+    {
+      "id": "emerald",
+      "name": "Pokémon Emerald",
+      "generation": 3,
+      "boxArt": "/images/boxart/emerald.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 8,
+          "location": "Trade, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade"
+        },
+        {
+          "id": 19,
+          "location": "Trade"
+        },
+        {
+          "id": 20,
+          "location": "Trade"
+        }
+      ],
+      "platform": "gba"
+    },
+    {
+      "id": "firered",
+      "name": "Pokémon FireRed",
+      "generation": 3,
+      "boxArt": "/images/boxart/firered.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Routes 2, 24, and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 11,
+          "location": "Routes 24 and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Routes 2, 24, and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 14,
+          "location": "Routes 24 and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 3, 5, 6, 7, 8, 12, 13, 14, 15, 24, and 25, Bond Bridge, Berry Forest, Five Isle Meadow"
+        },
+        {
+          "id": 17,
+          "location": "Routes 13, 14, and 15, Bond Bridge, Berry Forest, Five Isle Meadow"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 4, 9, 16, 17, 18, and 22, Pokémon Mansion"
+        },
+        {
+          "id": 20,
+          "location": "Routes 16, 17, and 18, Pokémon Mansion"
+        }
+      ],
+      "platform": "gba"
+    },
+    {
+      "id": "leafgreen",
+      "name": "Pokémon LeafGreen",
+      "generation": 3,
+      "boxArt": "/images/boxart/leafgreen.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "First partner Pokémon from Professor Oak in Pallet Town"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Routes 2, 24, and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 11,
+          "location": "Routes 24 and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Routes 2, 24, and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 14,
+          "location": "Routes 24 and 25, Viridian Forest, Pattern Bush"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 3, 5, 6, 7, 8, 12, 13, 14, 15, 24, and 25, Bond Bridge, Berry Forest, Five Isle Meadow"
+        },
+        {
+          "id": 17,
+          "location": "Routes 13, 14, and 15, Bond Bridge, Berry Forest, Five Isle Meadow"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 4, 9, 16, 17, 18, and 22, Pokémon Mansion"
+        },
+        {
+          "id": 20,
+          "location": "Routes 16, 17, and 18, Pokémon Mansion"
+        }
+      ],
+      "platform": "gba"
+    },
+    {
+      "id": "diamond",
+      "name": "Pokémon Diamond",
+      "generation": 4,
+      "boxArt": "/images/boxart/diamond.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade"
+        },
+        {
+          "id": 7,
+          "location": "Trade"
+        },
+        {
+          "id": 8,
+          "location": "Trade"
+        },
+        {
+          "id": 9,
+          "location": "Trade"
+        },
+        {
+          "id": 10,
+          "location": "Route 204 (FireRed)"
+        },
+        {
+          "id": 11,
+          "location": "Eterna Forest (FireRed)"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Route 204 (LeafGreen)"
+        },
+        {
+          "id": 14,
+          "location": "Eterna Forest (LeafGreen)"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Route 229 (Swarm)"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 19,
+          "location": "Routes 225 and 226"
+        },
+        {
+          "id": 20,
+          "location": "Routes 225 and 226"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "pearl",
+      "name": "Pokémon Pearl",
+      "generation": 4,
+      "boxArt": "/images/boxart/pearl.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade"
+        },
+        {
+          "id": 7,
+          "location": "Trade"
+        },
+        {
+          "id": 8,
+          "location": "Trade"
+        },
+        {
+          "id": 9,
+          "location": "Trade"
+        },
+        {
+          "id": 10,
+          "location": "Route 204 (FireRed)"
+        },
+        {
+          "id": 11,
+          "location": "Eterna Forest (FireRed)"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Route 204 (LeafGreen)"
+        },
+        {
+          "id": 14,
+          "location": "Eterna Forest (LeafGreen)"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Route 229 (Swarm)"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 19,
+          "location": "Routes 225 and 226"
+        },
+        {
+          "id": 20,
+          "location": "Routes 225 and 226"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "platinum",
+      "name": "Pokémon Platinum",
+      "generation": 4,
+      "boxArt": "/images/boxart/platinum.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade"
+        },
+        {
+          "id": 7,
+          "location": "Trade"
+        },
+        {
+          "id": 8,
+          "location": "Trade"
+        },
+        {
+          "id": 9,
+          "location": "Trade"
+        },
+        {
+          "id": 10,
+          "location": "Route 204, Eterna Forest (FireRed)"
+        },
+        {
+          "id": 11,
+          "location": "Eterna Forest (FireRed)"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Route 204, Eterna Forest (LeafGreen)"
+        },
+        {
+          "id": 14,
+          "location": "Eterna Forest (LeafGreen)"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Route 229"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 19,
+          "location": "Routes 225 and 226"
+        },
+        {
+          "id": 20,
+          "location": "Routes 225 and 226"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "heartgold",
+      "name": "Pokémon HeartGold",
+      "generation": 4,
+      "boxArt": "/images/boxart/heartgold.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Received from Professor Oak in Pallet Town after defeating Red"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Received from Professor Oak in Pallet Town after defeating Red"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Received from Professor Oak in Pallet Town after defeating Red"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Routes 2, 30, and 31, Ilex Forest, National Park, Viridian ForestMorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 11,
+          "location": "Routes 2, 30, and 31, Ilex Forest, National Park, Viridian ForestMorningDayNational Park (Bug-Catching Contest)TuThSaRoute 47, Ilex Forest (Headbutt trees)"
+        },
+        {
+          "id": 12,
+          "location": "Route 2MorningDayViridian ForestMorningNational Park (Bug-Catching Contest)TuThSaRoute 47, Ilex Forest (Headbutt trees)"
+        },
+        {
+          "id": 13,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 14,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 15,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 25, 29, 30, 31, 35, 36, and 37, National Park, Viridian ForestMorningDaySafari ZoneMorningDay (Forest, default)"
+        },
+        {
+          "id": 17,
+          "location": "Routes 2, 8, 13, 14, 15, 25, 37, and 43, Viridian Forest"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 3, 4, 7, 9, 11, 22, 29, 30, 31, 32, 33, 34, 38, 39, and 46, Sprout Tower, Union Cave, Burned Tower, Bell Tower, Mt. Mortar, Tohjo FallsSafari Zone (Plains, defaultMorningDay; Mountain, default)"
+        },
+        {
+          "id": 20,
+          "location": "Routes 7, 9, 10, 26, 27, 38, 39, and 47, Mt. Mortar, Union Cave, Burned Tower, Tohjo FallsSafari Zone (Plains, defaultNight; tall grass in Meadow with 5 Plains points; Mountain, defaultMorningDay)"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "soulsilver",
+      "name": "Pokémon SoulSilver",
+      "generation": 4,
+      "boxArt": "/images/boxart/soulsilver.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Received from Professor Oak in Pallet Town after defeating Red"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Received from Professor Oak in Pallet Town after defeating Red"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Received from Professor Oak in Pallet Town after defeating Red"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 11,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 12,
+          "location": "National Park (Bug-Catching Contest)TuThSa"
+        },
+        {
+          "id": 13,
+          "location": "Routes 2, 30, and 31, Ilex Forest, National Park, Viridian ForestMorningDayNational Park (Bug-Catching Contest)TuThSaIlex Forest (Headbutt trees)"
+        },
+        {
+          "id": 14,
+          "location": "Routes 2, 30, and 31, Ilex Forest, National Park, Viridian ForestMorningDayNational Park (Bug-Catching Contest)TuThSaRoute 47, Ilex Forest (Headbutt trees)"
+        },
+        {
+          "id": 15,
+          "location": "Route 2MorningNightViridian ForestMorningNational Park (Bug-Catching Contest)TuThSaRoute 47, Ilex Forest (Headbutt trees)"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 25, 29, 30, 31, 35, 36, and 37, National Park, Viridian ForestMorningDaySafari ZoneMorningDay (Forest, default)"
+        },
+        {
+          "id": 17,
+          "location": "Routes 2, 8, 13, 14, 15, 25, 37, and 43, Viridian Forest"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 3, 4, 7, 9, 11, 22, 29, 30, 31, 32, 33, 34, and 46, Sprout Tower, Union Cave, Burned Tower, Bell Tower, Mt. Mortar, Tohjo FallsSafari Zone (Plains, defaultMorningDay; Mountain, default)"
+        },
+        {
+          "id": 20,
+          "location": "Routes 7, 9, 10, 26, 27, 38, 39, and 47, Mt. Mortar, Union Cave, Burned Tower, Tohjo FallsSafari Zone (Plains, defaultNight; tall grass in Meadow with 5 Plains points; Mountain, defaultMorningDay)"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "black",
+      "name": "Pokémon Black",
+      "generation": 5,
+      "boxArt": "/images/boxart/black.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Global Link Event"
+        },
+        {
+          "id": 2,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 3,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 4,
+          "location": "Global Link Event"
+        },
+        {
+          "id": 5,
+          "location": "Poké Transfer, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Poké Transfer, Evolve Charmeleon (from Event Charmander)"
+        },
+        {
+          "id": 7,
+          "location": "Global Link Event"
+        },
+        {
+          "id": 8,
+          "location": "Poké Transfer, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Poké Transfer, Evolve Wartortle (from Event Squirtle)"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Breed Kakuna or Beedrill"
+        },
+        {
+          "id": 14,
+          "location": "Route 12"
+        },
+        {
+          "id": 15,
+          "location": "Route 12 (rustling grass)"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 19,
+          "location": "Breed Raticate"
+        },
+        {
+          "id": 20,
+          "location": "Dreamyard (dark grass)"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "white",
+      "name": "Pokémon White",
+      "generation": 5,
+      "boxArt": "/images/boxart/white.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Global Link Event"
+        },
+        {
+          "id": 2,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 3,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 4,
+          "location": "Global Link Event"
+        },
+        {
+          "id": 5,
+          "location": "Poké Transfer, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Poké Transfer, Evolve Charmeleon (from Event Charmander)"
+        },
+        {
+          "id": 7,
+          "location": "Global Link Event"
+        },
+        {
+          "id": 8,
+          "location": "Poké Transfer, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Poké Transfer, Evolve Wartortle (from Event Squirtle)"
+        },
+        {
+          "id": 10,
+          "location": "Breed Metapod or Butterfree"
+        },
+        {
+          "id": 11,
+          "location": "Route 12"
+        },
+        {
+          "id": 12,
+          "location": "Route 12 (Rustling grass)"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "White Forest"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 19,
+          "location": "Breed Raticate"
+        },
+        {
+          "id": 20,
+          "location": "Dreamyard (dark grass)"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "black2",
+      "name": "Pokémon Black 2",
+      "generation": 5,
+      "boxArt": "/images/boxart/black2.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Poké Transfer, Event"
+        },
+        {
+          "id": 2,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 3,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 4,
+          "location": "Poké Transfer, Event"
+        },
+        {
+          "id": 5,
+          "location": "Poké Transfer, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Poké Transfer, Evolve Charmeleon (from Event Charmander)"
+        },
+        {
+          "id": 7,
+          "location": "Poké Transfer, Event"
+        },
+        {
+          "id": 8,
+          "location": "Poké Transfer, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Poké Transfer, Evolve Wartortle (from Event Squirtle)"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Breed Beedrill"
+        },
+        {
+          "id": 14,
+          "location": "Evolve Weedle"
+        },
+        {
+          "id": 15,
+          "location": "Pinwheel Forest (Hidden Grotto)*"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 19,
+          "location": "Castelia Sewers, Castelia Park, Relic Passage"
+        },
+        {
+          "id": 20,
+          "location": "Dreamyard, Strange House, Relic Passage"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "white2",
+      "name": "Pokémon White 2",
+      "generation": 5,
+      "boxArt": "/images/boxart/white2.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Poké Transfer, Event"
+        },
+        {
+          "id": 2,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 3,
+          "location": "Poké Transfer"
+        },
+        {
+          "id": 4,
+          "location": "Poké Transfer, Event"
+        },
+        {
+          "id": 5,
+          "location": "Poké Transfer, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Poké Transfer, Evolve Charmeleon (from Event Charmander)"
+        },
+        {
+          "id": 7,
+          "location": "Poké Transfer, Event"
+        },
+        {
+          "id": 8,
+          "location": "Poké Transfer, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Poké Transfer, Evolve Wartortle (from Event Squirtle)"
+        },
+        {
+          "id": 10,
+          "location": "Breed Butterfree"
+        },
+        {
+          "id": 11,
+          "location": "Evolve Caterpie"
+        },
+        {
+          "id": 12,
+          "location": "Pinwheel Forest (Hidden Grotto)*"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 19,
+          "location": "Castelia Sewers, Castelia Park, Relic Passage"
+        },
+        {
+          "id": 20,
+          "location": "Dreamyard, Strange House, Relic Passage"
+        }
+      ],
+      "platform": "nds"
+    },
+    {
+      "id": "x",
+      "name": "Pokémon X",
+      "generation": 6,
+      "boxArt": "/images/boxart/x.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Received from Professor Sycamore in Lumiose City after defeating him"
+        },
+        {
+          "id": 2,
+          "location": "Friend Safari (Grass)"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Received from Professor Sycamore in Lumiose City after defeating him"
+        },
+        {
+          "id": 5,
+          "location": "Friend Safari (Fire)"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Received from Professor Sycamore in Lumiose City after defeating him"
+        },
+        {
+          "id": 8,
+          "location": "Friend Safari (Water)"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Santalune Forest"
+        },
+        {
+          "id": 11,
+          "location": "Evolve Caterpie"
+        },
+        {
+          "id": 12,
+          "location": "Cipher Key Lair (Shadow)"
+        },
+        {
+          "id": 13,
+          "location": "Route 2, Santalune Forest"
+        },
+        {
+          "id": 14,
+          "location": "Santalune Forest, Friend Safari (Poison)"
+        },
+        {
+          "id": 15,
+          "location": "Cipher Key Lair (Shadow)"
+        },
+        {
+          "id": 16,
+          "location": "Routes 2 and 3, Friend Safari (Flying)"
+        },
+        {
+          "id": 17,
+          "location": "Cipher Key Lair (Shadow)"
+        },
+        {
+          "id": 19,
+          "location": "Trade"
+        },
+        {
+          "id": 20,
+          "location": "Citadark Isle (Shadow)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "y",
+      "name": "Pokémon Y",
+      "generation": 6,
+      "boxArt": "/images/boxart/y.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Received from Professor Sycamore in Lumiose City after defeating him"
+        },
+        {
+          "id": 2,
+          "location": "Friend Safari (Grass)"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Received from Professor Sycamore in Lumiose City after defeating him"
+        },
+        {
+          "id": 5,
+          "location": "Friend Safari (Fire)"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Received from Professor Sycamore in Lumiose City after defeating him"
+        },
+        {
+          "id": 8,
+          "location": "Friend Safari (Water)"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Route 2, Santalune Forest"
+        },
+        {
+          "id": 11,
+          "location": "Santalune Forest"
+        },
+        {
+          "id": 12,
+          "location": "Friend Safari (Bug)"
+        },
+        {
+          "id": 13,
+          "location": "Santalune Forest"
+        },
+        {
+          "id": 14,
+          "location": "Friend Safari (Poison)"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Routes 2 and 3, Friend Safari (Flying)"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 19,
+          "location": "Trade"
+        },
+        {
+          "id": 20,
+          "location": "Trade"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "omegaruby",
+      "name": "Pokémon Omega Ruby",
+      "generation": 6,
+      "boxArt": "/images/boxart/omegaruby.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 8,
+          "location": "Trade, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Breed Kakuna or Beedrill"
+        },
+        {
+          "id": 14,
+          "location": "Safari Zone (hidden Pokémon*)"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Breed Pidgeotto"
+        },
+        {
+          "id": 17,
+          "location": "Safari Zone (hidden Pokémon*)"
+        },
+        {
+          "id": 19,
+          "location": "Route 117 (hidden Pokémon*)"
+        },
+        {
+          "id": 20,
+          "location": "Route 118 (hidden Pokémon*)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "alphasapphire",
+      "name": "Pokémon Alpha Sapphire",
+      "generation": 6,
+      "boxArt": "/images/boxart/alphasapphire.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 4,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 5,
+          "location": "Trade, Evolve Event Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 8,
+          "location": "Trade, Evolve Event Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Breed Kakuna or Beedrill"
+        },
+        {
+          "id": 14,
+          "location": "Safari Zone (hidden Pokémon*)"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Breed Pidgeotto"
+        },
+        {
+          "id": 17,
+          "location": "Safari Zone (hidden Pokémon*)"
+        },
+        {
+          "id": 19,
+          "location": "Route 117 (hidden Pokémon*)"
+        },
+        {
+          "id": 20,
+          "location": "Route 118 (hidden Pokémon*)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "sun",
+      "name": "Pokémon Sun",
+      "generation": 7,
+      "boxArt": "/images/boxart/sun.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade"
+        },
+        {
+          "id": 5,
+          "location": "Trade"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade"
+        },
+        {
+          "id": 8,
+          "location": "Trade"
+        },
+        {
+          "id": 9,
+          "location": "Trade"
+        },
+        {
+          "id": 10,
+          "location": "Routes 1 and 5, Lush Jungle, Melemele Meadow"
+        },
+        {
+          "id": 11,
+          "location": "Routes 1 and 5, Lush Jungle, Melemele Meadow"
+        },
+        {
+          "id": 12,
+          "location": "Route 5, Melemele MeadowRoute 5, Lush Jungle, Melemele Meadow (SOS Battle)"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 3, 4, 6, 8, Hau'oli City, Kala'e BayNight (Alolan Form)Pokémon Bank (Kantonian Form)"
+        },
+        {
+          "id": 20,
+          "location": "Routes 10, 11, 15, 16, 17, Akala Outskirts, Ancient Poni Path, Malie City, Poni Gauntlet, Poni Grove, Poni Plains, Poni Wilds, Tapu VillageNight (Alolan Form) Pokémon Bank (Kantonian Form)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "moon",
+      "name": "Pokémon Moon",
+      "generation": 7,
+      "boxArt": "/images/boxart/moon.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Trade"
+        },
+        {
+          "id": 2,
+          "location": "Trade"
+        },
+        {
+          "id": 3,
+          "location": "Trade"
+        },
+        {
+          "id": 4,
+          "location": "Trade"
+        },
+        {
+          "id": 5,
+          "location": "Trade"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Event"
+        },
+        {
+          "id": 7,
+          "location": "Trade"
+        },
+        {
+          "id": 8,
+          "location": "Trade"
+        },
+        {
+          "id": 9,
+          "location": "Trade"
+        },
+        {
+          "id": 10,
+          "location": "Routes 1 and 5, Lush Jungle, Melemele Meadow"
+        },
+        {
+          "id": 11,
+          "location": "Routes 1 and 5, Lush Jungle, Melemele Meadow"
+        },
+        {
+          "id": 12,
+          "location": "Route 5, Melemele MeadowRoute 5, Lush Jungle, Melemele Meadow (SOS Battle)"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Trade"
+        },
+        {
+          "id": 17,
+          "location": "Trade"
+        },
+        {
+          "id": 18,
+          "location": "Trade"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 3, 4, 6, 8, Hau'oli City, Kala'e BayNight (Alolan Form)Verdant Cavern (Alolan Form) Pokémon Bank (Kantonian Form)"
+        },
+        {
+          "id": 20,
+          "location": "Routes 10, 11, 15, 16, 17, Akala Outskirts, Ancient Poni Path, Malie City, Poni Gauntlet, Poni Grove, Poni Plains, Poni Wilds, Tapu VillageNight (Alolan Form) Pokémon Bank (Kantonian Form)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "ultrasun",
+      "name": "Pokémon Ultra Sun",
+      "generation": 7,
+      "boxArt": "/images/boxart/ultrasun.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Route 2 (Island Scan)Fr"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Route 3 (Island Scan)Su"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Seaward Cave (Island Scan)Mo"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Routes 1 and 5, Melemele MeadowLush Jungle (SOS Battle)"
+        },
+        {
+          "id": 11,
+          "location": "Route 5, Lush Jungle, Melemele Meadow"
+        },
+        {
+          "id": 12,
+          "location": "Route 5, Melemele MeadowRoute 5, Lush Jungle, Melemele Meadow (SOS Battle)"
+        },
+        {
+          "id": 13,
+          "location": "Breed Beedrill"
+        },
+        {
+          "id": 14,
+          "location": "Evolve Weedle"
+        },
+        {
+          "id": 15,
+          "location": "Route 4 (Island Scan)Th"
+        },
+        {
+          "id": 16,
+          "location": "Breed Pidgeot"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 18,
+          "location": "Route 10 (Island Scan)Th"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 4, 6, 8, Kala'e BayNight (Alolan Form)Pokémon Bank (Kantonian Form)"
+        },
+        {
+          "id": 20,
+          "location": "Routes 10, 15, 16, 17, Akala Outskirts, Tapu Village, Mount Lanakila, Poni PlainsNight (Alolan Form)Route 8Night (SOS Battle) (Alolan Form) Pokémon Bank (Kantonian Form)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "ultramoon",
+      "name": "Pokémon Ultra Moon",
+      "generation": 7,
+      "boxArt": "/images/boxart/ultramoon.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Route 2 (Island Scan)Fr"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Route 3 (Island Scan)Su"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Seaward Cave (Island Scan)Mo"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Routes 1 and 5, Melemele MeadowLush Jungle (SOS Battle)"
+        },
+        {
+          "id": 11,
+          "location": "Route 5, Lush Jungle, Melemele Meadow"
+        },
+        {
+          "id": 12,
+          "location": "Route 5, Melemele MeadowRoute 5, Lush Jungle, Melemele Meadow (SOS Battle)"
+        },
+        {
+          "id": 13,
+          "location": "Breed Beedrill"
+        },
+        {
+          "id": 14,
+          "location": "Evolve Weedle"
+        },
+        {
+          "id": 15,
+          "location": "Route 4 (Island Scan)Th"
+        },
+        {
+          "id": 16,
+          "location": "Breed Pidgeot"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        },
+        {
+          "id": 18,
+          "location": "Route 10 (Island Scan)Th"
+        },
+        {
+          "id": 19,
+          "location": "Routes 1, 2, 4, 6, 8, Kala'e BayNight (Alolan Form)Verdant Cavern (Alolan Form)Pokémon Bank (Kantonian Form)"
+        },
+        {
+          "id": 20,
+          "location": "Routes 10, 15, 16, 17, Akala Outskirts, Tapu Village, Mount Lanakila, Poni PlainsNight (Alolan Form)Route 8Night (SOS Battle) (Alolan Form)Received from Samson Oak at Heahea Beach* (Totem-sized; Alolan Form) Pokémon Bank (Kantonian Form)"
+        }
+      ],
+      "platform": "3ds"
+    },
+    {
+      "id": "letsgopikachu",
+      "name": "Pokémon Let's Go, Pikachu!",
+      "generation": 7,
+      "boxArt": "/images/boxart/letsgopikachu.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Viridian ForestCerulean City (Only one)"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Route 3, Route 4, Rock TunnelRoute 24 (Only one)"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Routes 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, and 25"
+        },
+        {
+          "id": 7,
+          "location": "Route 24, Route 25, Seafoam IslandsVermilion City (Only one)"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Route 2, Viridian Forest"
+        },
+        {
+          "id": 11,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 12,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 13,
+          "location": "Route 2, Viridian Forest"
+        },
+        {
+          "id": 14,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, and 25, Viridian Forest"
+        },
+        {
+          "id": 17,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, and 25"
+        },
+        {
+          "id": 18,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, and 25"
+        },
+        {
+          "id": 20,
+          "location": "Routes 7, 8, 9, 10, 11, 16, 17, 18 and 21, Pokémon Mansion (Kantonian Form)Evolve Rattata (Alolan Form)"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "letsgoeevee",
+      "name": "Pokémon Let's Go, Eevee!",
+      "generation": 7,
+      "boxArt": "/images/boxart/letsgoeevee.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Viridian ForestCerulean City (Only one)"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Route 3, Route 4, Rock TunnelRoute 24 (Only one)"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Routes 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, and 25"
+        },
+        {
+          "id": 7,
+          "location": "Route 24, Route 25, Seafoam IslandsVermilion City (Only one)"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Route 2, Viridian Forest"
+        },
+        {
+          "id": 11,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Route 2, Viridian Forest"
+        },
+        {
+          "id": 14,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 15,
+          "location": "Viridian Forest"
+        },
+        {
+          "id": 16,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, and 25, Viridian Forest"
+        },
+        {
+          "id": 17,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, and 25"
+        },
+        {
+          "id": 18,
+          "location": "Routes 1, 2, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, and 25"
+        },
+        {
+          "id": 20,
+          "location": "Routes 7, 8, 9, 10, 11, 16, 17, 18 and 21, Pokémon Mansion (Kantonian Form)Evolve Rattata (Alolan Form)"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "sword",
+      "name": "Pokémon Sword",
+      "generation": 8,
+      "boxArt": "/images/boxart/sword.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Wild Area News, Pokémon HOME EventTradeVersion 1.2.0+"
+        },
+        {
+          "id": 2,
+          "location": "Wild Area News, Evolve Pokémon HOME event BulbasaurTradeVersion 1.2.0+"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Wild Area News IvysaurTradeVersion 1.2.0+"
+        },
+        {
+          "id": 4,
+          "location": "Received from Leon at his house in Postwick after becoming Champion (Gigantamax Factor)Hammerlocke Hills, Lake of Outrage (Max Raid Battle)"
+        },
+        {
+          "id": 5,
+          "location": "Hammerlocke Hills, Lake of Outrage (Max Raid Battle)"
+        },
+        {
+          "id": 6,
+          "location": "Hammerlocke Hills (Max Raid Battle)Lake of Outrage (Max Raid Battle) (Gigantamax Factor)"
+        },
+        {
+          "id": 7,
+          "location": "Wild Area News, Pokémon HOME EventTradeVersion 1.2.0+"
+        },
+        {
+          "id": 8,
+          "location": "Wild Area NewsTradeVersion 1.2.0+"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wild Area News WartortleTradeVersion 1.2.0+"
+        },
+        {
+          "id": 10,
+          "location": "Route 1Bridge Field, Dappled Grove, Rolling Fields, South Lake Miloch (Max Raid Battle)"
+        },
+        {
+          "id": 11,
+          "location": "Rolling FieldsBridge Field, Dappled Grove, Rolling Fields, South Lake Miloch (Max Raid Battle)"
+        },
+        {
+          "id": 12,
+          "location": "Slumbering Weald, East Lake Axewell, Giant's Mirror, Rolling FieldsBridge Field, Dappled Grove, East Lake Axewell, Giant's Cap, Hammerlocke Hills, Rolling Fields, South Lake Miloch (Max Raid Battle)Rolling Fields (Max Raid Battle) (Gigantamax Factor)"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "shield",
+      "name": "Pokémon Shield",
+      "generation": 8,
+      "boxArt": "/images/boxart/shield.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Wild Area News, Pokémon HOME EventTradeVersion 1.2.0+"
+        },
+        {
+          "id": 2,
+          "location": "Wild Area News, Evolve Pokémon HOME event BulbasaurTradeVersion 1.2.0+"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Wild Area News IvysaurTradeVersion 1.2.0+"
+        },
+        {
+          "id": 4,
+          "location": "Received from Leon at his house in Postwick after becoming Champion (Gigantamax Factor)Hammerlocke Hills, Lake of Outrage (Max Raid Battle)"
+        },
+        {
+          "id": 5,
+          "location": "Hammerlocke Hills, Lake of Outrage (Max Raid Battle)"
+        },
+        {
+          "id": 6,
+          "location": "Hammerlocke Hills (Max Raid Battle)Lake of Outrage (Max Raid Battle) (Gigantamax Factor)"
+        },
+        {
+          "id": 7,
+          "location": "Wild Area News, Pokémon HOME EventTradeVersion 1.2.0+"
+        },
+        {
+          "id": 8,
+          "location": "Wild Area NewsTradeVersion 1.2.0+"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wild Area News WartortleTradeVersion 1.2.0+"
+        },
+        {
+          "id": 10,
+          "location": "Route 1Bridge Field, Dappled Grove, Rolling Fields, South Lake Miloch (Max Raid Battle)"
+        },
+        {
+          "id": 11,
+          "location": "Rolling FieldsBridge Field, Dappled Grove, Rolling Fields, South Lake Miloch (Max Raid Battle)"
+        },
+        {
+          "id": 12,
+          "location": "Slumbering Weald, East Lake Axewell, Giant's Mirror, Rolling FieldsBridge Field, Dappled Grove, East Lake Axewell, Giant's Cap, Hammerlocke Hills, Rolling Fields, South Lake Miloch (Max Raid Battle)Rolling Fields (Max Raid Battle) (Gigantamax Factor)"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "brilliantdiamond",
+      "name": "Pokémon Brilliant Diamond",
+      "generation": 8,
+      "boxArt": "/images/boxart/brilliantdiamond.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Grand Underground - Grassland Cave, Sunlit Cavern, Swampy Cave, Riverbank Cave, Still-Water Cavern, Bogsunk Cavern (after obtaining the National Pokédex)"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Grand Underground - Volcanic Cave, Sandsear Cave, Typhlo Cavern (after obtaining the National Pokédex)"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Grand Underground - Fountainspring Cave, Riverbank Cave, Still-Water Cavern (after obtaining the National Pokédex)"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Grand Underground - Spacious Cave, Grassland Cave, Swampy Cave, Riverbank Cave Still-Water Cavern, Sunlit Cavern, Bogsunk Cavern (After obtaining the National Pokédex)"
+        },
+        {
+          "id": 11,
+          "location": "Evolve Caterpie"
+        },
+        {
+          "id": 12,
+          "location": "Evolve Metapod"
+        },
+        {
+          "id": 13,
+          "location": "Trade"
+        },
+        {
+          "id": 14,
+          "location": "Trade"
+        },
+        {
+          "id": 15,
+          "location": "Trade"
+        },
+        {
+          "id": 16,
+          "location": "Route 229 (Swarm)"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "shiningpearl",
+      "name": "Pokémon Shining Pearl",
+      "generation": 8,
+      "boxArt": "/images/boxart/shiningpearl.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "Grand Underground - Grassland Cave, Sunlit Cavern, Swampy Cave, Riverbank Cave, Still-Water Cavern, Bogsunk Cavern (after obtaining the National Pokédex)"
+        },
+        {
+          "id": 2,
+          "location": "Evolve Bulbasaur"
+        },
+        {
+          "id": 3,
+          "location": "Evolve Ivysaur"
+        },
+        {
+          "id": 4,
+          "location": "Grand Underground - Volcanic Cave, Sandsear Cave, Typhlo Cavern (after obtaining the National Pokédex)"
+        },
+        {
+          "id": 5,
+          "location": "Evolve Charmander"
+        },
+        {
+          "id": 6,
+          "location": "Evolve Charmeleon"
+        },
+        {
+          "id": 7,
+          "location": "Grand Underground - Fountainspring Cave, Riverbank Cave, Still-Water Cavern (after obtaining the National Pokédex)"
+        },
+        {
+          "id": 8,
+          "location": "Evolve Squirtle"
+        },
+        {
+          "id": 9,
+          "location": "Evolve Wartortle"
+        },
+        {
+          "id": 10,
+          "location": "Trade"
+        },
+        {
+          "id": 11,
+          "location": "Trade"
+        },
+        {
+          "id": 12,
+          "location": "Trade"
+        },
+        {
+          "id": 13,
+          "location": "Grand Underground - Spacious Cave, Grassland Cave, Swampy Cave, Riverbank Cave Still-Water Cavern, Sunlit Cavern, Bogsunk Cavern (After obtaining the National Pokédex)"
+        },
+        {
+          "id": 14,
+          "location": "Evolve Weedle"
+        },
+        {
+          "id": 15,
+          "location": "Evolve Kakuna"
+        },
+        {
+          "id": 16,
+          "location": "Route 229 (Swarm)"
+        },
+        {
+          "id": 17,
+          "location": "Evolve Pidgey"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "legendsarceus",
+      "name": "Pokémon Legends: Arceus",
+      "generation": 8,
+      "boxArt": "/images/boxart/legendsarceus.png",
+      "pokemon": [],
+      "platform": "switch"
+    },
+    {
+      "id": "scarlet",
+      "name": "Pokémon Scarlet",
+      "generation": 9,
+      "boxArt": "/images/boxart/scarlet.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 2,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 3,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 4,
+          "location": "Trade"
+        },
+        {
+          "id": 5,
+          "location": "Trade"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Poké Portal News"
+        },
+        {
+          "id": 7,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 8,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 9,
+          "location": "TradeVersion 3.0.0+"
+        }
+      ],
+      "platform": "switch"
+    },
+    {
+      "id": "violet",
+      "name": "Pokémon Violet",
+      "generation": 9,
+      "boxArt": "/images/boxart/violet.png",
+      "pokemon": [
+        {
+          "id": 1,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 2,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 3,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 4,
+          "location": "Trade"
+        },
+        {
+          "id": 5,
+          "location": "Trade"
+        },
+        {
+          "id": 6,
+          "location": "Trade, Poké Portal News"
+        },
+        {
+          "id": 7,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 8,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 9,
+          "location": "TradeVersion 3.0.0+"
+        }
+      ],
+      "platform": "switch"
+    }
+  ]
+}

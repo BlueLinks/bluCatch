@@ -23,18 +23,29 @@ RUN npm ci --no-audit || npm install --no-audit
 
 COPY public/data/ ./public/data/
 COPY scripts/ ./scripts/
+# Note: .bulbapedia-progress.json will be created in the shared volume
 
 # Default cron schedule: run daily at 03:30 server time
 # Can be overridden with CRON_SCHEDULE env
 ENV CRON_SCHEDULE="30 3 * * *"
 
-# Create entrypoint script
+# Create entrypoint script that runs immediately and sets up cron
 RUN printf '%s\n' '#!/bin/bash' \
     'set -euo pipefail' \
     'echo "Starting scraper container..."' \
     'echo "Cron schedule: ${CRON_SCHEDULE}"' \
+    '' \
+    '# Run scraper immediately on startup (resume from last position)' \
+    'echo "Running initial scrape (resuming from last position)..."' \
+    'node /app/scripts/scrape-bulbapedia.js --range=1-1025 --resume 2>&1 | tee /var/log/initial-scrape.log' \
+    'echo "Initial scrape completed with exit code: $?"' \
+    '' \
+    '# Set up cron for scheduled full updates (starts from beginning)' \
     'echo "${CRON_SCHEDULE} node /app/scripts/scrape-bulbapedia.js --range=1-1025 --replace >> /var/log/cron.log 2>&1" > /etc/crontabs/root' \
     'touch /var/log/cron.log' \
+    '' \
+    '# Start cron in foreground' \
+    'echo "Starting cron daemon..."' \
     'crond -f -l 2' > /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Healthcheck: recent cron log activity within last 6 hours

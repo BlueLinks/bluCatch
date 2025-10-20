@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import '../styles/GameCard.css';
 
 // Memoize to prevent re-renders when props haven't changed
-const GameCard = React.memo(function GameCard({ game, isSelected, onToggle }) {
+const GameCard = memo(function GameCard({ game, isSelected, onToggle }) {
   const platformClass = game.platform ? `platform-${game.platform}` : 'platform-default';
   
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import '../styles/AcquisitionFilters.css';
 
 // Acquisition method definitions
@@ -75,7 +75,7 @@ const ACQUISITION_METHODS = [
   }
 ];
 
-const AcquisitionFilters = React.memo(function AcquisitionFilters({ 
+const AcquisitionFilters = memo(function AcquisitionFilters({ 
   enabledMethods, 
   onToggle, 
   isOpen, 

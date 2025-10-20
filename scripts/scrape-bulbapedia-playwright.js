@@ -12,7 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Same configuration as before
-const PROGRESS_FILE = path.join(__dirname, '../.bulbapedia-progress.json');
+// Use data directory for progress file so it persists in Docker volume
+const PROGRESS_FILE = path.join(__dirname, '../public/data/.bulbapedia-progress.json');
 const LOG_FILE = path.join(__dirname, '../bulbapedia-scraper.log');
 const BATCH_SIZE = 10;
 const DELAY_MS = 10000; // Slower: 10 seconds base
@@ -459,7 +460,7 @@ async function main() {
   
   // Launch with stealth args
   const browser = await chromium.launch({
-    headless: !visible && 'new',
+    headless: !visible,
     args: [
       '--disable-blink-features=AutomationControlled',
       '--exclude-switches=enable-automation',

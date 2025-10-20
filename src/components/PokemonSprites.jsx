@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect, memo } from 'react';
+import PokemonBottomSheet from './PokemonBottomSheet';
 import '../styles/PokemonSprites.css';
 
 // Helper functions moved outside component to avoid recreation on every render
@@ -71,7 +72,7 @@ const formatGameNames = (games) => {
 };
 
 // Separate tooltip component for better performance
-const PokemonTooltip = React.memo(function PokemonTooltip({ pokemon, position, allPokemonGamesMap }) {
+const PokemonTooltip = memo(function PokemonTooltip({ pokemon, position, allPokemonGamesMap }) {
   const allGames = allPokemonGamesMap.get(pokemon.id) || [];
   const selectedGames = useMemo(() => allGames.filter(g => g.isSelected), [allGames]);
   const unselectedGames = useMemo(() => allGames.filter(g => !g.isSelected), [allGames]);
@@ -198,10 +199,24 @@ const PokemonTooltip = React.memo(function PokemonTooltip({ pokemon, position, a
   );
 });
 
-const PokemonSprites = React.memo(function PokemonSprites({ generationData, pokemonGameMap, allPokemonGamesMap }) {
+const PokemonSprites = memo(function PokemonSprites({ generationData, pokemonGameMap, allPokemonGamesMap }) {
   const [hoveredPokemon, setHoveredPokemon] = useState(null);
   const [pinnedPokemon, setPinnedPokemon] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleMouseEnter = useCallback((pokemon, event) => {
     // Don't show ANY hover tooltip if ANY pokemon is pinned
@@ -233,6 +248,14 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
 
   const handleClick = useCallback((pokemon, event) => {
     event.stopPropagation();
+    
+    // On mobile, use bottom sheet
+    if (isMobile) {
+      setSelectedPokemon(pokemon);
+      return;
+    }
+    
+    // On desktop, use pin behavior
     if (pinnedPokemon?.id === pokemon.id) {
       // Unpin if clicking the same pokemon
       setPinnedPokemon(null);
@@ -246,7 +269,7 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
         y: event.clientY
       });
     }
-  }, [pinnedPokemon]);
+  }, [pinnedPokemon, isMobile]);
 
   // Close pinned tooltip when clicking outside
   const handleContainerClick = useCallback(() => {
@@ -258,8 +281,6 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
 
   return (
     <div className="pokemon-sprites-container" onClick={handleContainerClick}>
-      <h1>Pokémon Collection Tracker</h1>
-      
       {Object.entries(generationData).map(([gen, data]) => (
         <div key={gen} className="generation-group">
           <div className="generation-header">
@@ -273,9 +294,9 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
               <div
                 key={pokemon.id}
                 className={`sprite-container ${pokemon.isAvailable ? 'available' : 'unavailable'} ${pinnedPokemon?.id === pokemon.id ? 'pinned' : ''}`}
-                onMouseEnter={(e) => handleMouseEnter(pokemon, e)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={(e) => !isMobile && handleMouseEnter(pokemon, e)}
+                onMouseMove={!isMobile ? handleMouseMove : undefined}
+                onMouseLeave={!isMobile ? handleMouseLeave : undefined}
                 onClick={(e) => handleClick(pokemon, e)}
                 style={{ cursor: 'pointer' }}
               >
@@ -290,13 +311,22 @@ const PokemonSprites = React.memo(function PokemonSprites({ generationData, poke
         </div>
       ))}
 
-      {(hoveredPokemon || pinnedPokemon) && (
+      {/* Desktop tooltip */}
+      {!isMobile && (hoveredPokemon || pinnedPokemon) && (
         <PokemonTooltip
           pokemon={hoveredPokemon || pinnedPokemon}
           position={tooltipPosition}
           allPokemonGamesMap={allPokemonGamesMap}
         />
       )}
+
+      {/* Mobile bottom sheet */}
+      <PokemonBottomSheet
+        pokemon={selectedPokemon}
+        isOpen={!!selectedPokemon}
+        onClose={() => setSelectedPokemon(null)}
+        allPokemonGamesMap={allPokemonGamesMap}
+      />
     </div>
   );
 });

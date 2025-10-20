@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, memo } from 'react';
 import '../styles/SettingsModal.css';
 
 // Move static data outside component
@@ -14,7 +14,7 @@ const GENERATIONS = [
   { num: 9, name: 'Paldea', games: 'Scarlet, Violet' }
 ];
 
-const SettingsModal = React.memo(function SettingsModal({ isOpen, onClose, enabledGenerations, onToggleGeneration }) {
+const SettingsModal = memo(function SettingsModal({ isOpen, onClose, enabledGenerations, onToggleGeneration }) {
   // Memoize expensive checks
   const allEnabled = useMemo(
     () => GENERATIONS.every(g => enabledGenerations[g.num]),

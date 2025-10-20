@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import GameCard from './GameCard';
 import '../styles/GameGrid.css';
 
-const GameGrid = React.memo(function GameGrid({ games, selectedGames, onGameToggle }) {
+const GameGrid = memo(function GameGrid({ games, selectedGames, onGameToggle }) {
   // Memoize grouping to avoid recalculating on every render
   const gamesByGeneration = useMemo(() => {
     return games.reduce((acc, game) => {
