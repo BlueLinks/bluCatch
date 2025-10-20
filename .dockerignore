@@ -1,0 +1,72 @@
+# Exclude unnecessary files from Docker build context
+
+# Development files and documentation
+*.md
+CHANGELOG.md
+CLOUDFLARE_ISSUE.md
+DATA_GUIDE.md
+DATA_IMPROVEMENT_PLAN.md
+ENHANCED_TOOLTIPS.md
+EVOLUTION_FIX_SUMMARY.md
+EXPANSION_SUMMARY.md
+FINAL_SUMMARY.md
+GENERATION_FIX.md
+IN_GAME_TRADES_FIX.md
+PERFORMANCE_OPTIMIZATIONS.md
+PROJECT_COMPLETE.md
+README.md
+RUN_BULBAPEDIA_SCRAPER.md
+SETTINGS_GUIDE.md
+USAGE.md
+BULBAPEDIA_SCRAPER_GUIDE.md
+
+# Log files
+*.log
+bulbapedia-scraper.log
+encounter-fetch.log
+evolution-add.log
+evolution-fix.log
+
+# Backup files and temporary data
+backups/
+public/data/games.backup.json
+public/data/games.before-*.json
+public/data/games.before-*.json
+
+# Keep scripts for scraper image builds (do NOT exclude)
+
+# Node modules (will be installed fresh)
+node_modules/
+
+# Build artifacts (will be created during build)
+dist/
+dist-ssr/
+
+# Development files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Git files
+.git/
+.gitignore
+
+# Docker files (to avoid recursive copying)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Package lock (will be copied separately)
+package-lock.json

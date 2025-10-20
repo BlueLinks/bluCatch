@@ -210,4 +210,5 @@ cp public/data/games.json backups/games-$(date +%Y%m%d-%H%M%S).json
 ## License
 
 This project is for educational purposes. Pokémon and related properties are owned by Nintendo, Game Freak, and The Pokémon Company.
+
 # bluCatch

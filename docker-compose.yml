@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  blucatch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: blucatch
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.blucatch.rule=Host(`blucatch.local`)"
+      - "traefik.http.routers.blucatch.entrypoints=web"
+      - "traefik.http.services.blucatch.loadbalancer.server.port=80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - data:/usr/share/nginx/html/data:ro
+    networks:
+      - pokemon-network
+
+  blucatch-scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile.scraper
+    container_name: blucatch-scraper
+    environment:
+      - NODE_ENV=production
+      - CRON_SCHEDULE=30 3 * * *
+    restart: unless-stopped
+    volumes:
+      - data:/app/public/data
+    networks:
+      - pokemon-network
+
+networks:
+  pokemon-network:
+    driver: bridge
+
+volumes:
+  data:
