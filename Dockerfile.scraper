@@ -33,8 +33,7 @@ RUN printf '%s\n' '#!/bin/bash' \
     'set -euo pipefail' \
     'echo "Starting scraper container..."' \
     'echo "Cron schedule: ${CRON_SCHEDULE}"' \
-    'echo "*/5 * * * * node /app/scripts/scrape-bulbapedia.js --range=1-1025 --replace >> /var/log/cron.log 2>&1" > /etc/crontabs/root' \
-    'sed -i "1s#^#${CRON_SCHEDULE} node /app/scripts/scrape-bulbapedia.js --range=1-1025 --replace >> /var/log/cron.log 2>&1\n#" /etc/crontabs/root' \
+    'echo "${CRON_SCHEDULE} node /app/scripts/scrape-bulbapedia.js --range=1-1025 --replace >> /var/log/cron.log 2>&1" > /etc/crontabs/root' \
     'touch /var/log/cron.log' \
     'crond -f -l 2' > /entrypoint.sh && chmod +x /entrypoint.sh
 
