@@ -140,13 +140,48 @@ function isValidLocation(locationName) {
   
   // Filter out spin-off game specific locations
   const spinoffLocations = [
-    'baram town', 'capim town', 'dolce island', 'rand\'s house', 'aegis cave',
-    'poképark', 'island scan', 'gym leader castle', 'sky tower', 'joyous tower',
-    'origin hideaway', 'meadow zone', 'mightywide river', 'odd temple',
-    'torchlit labyrinth', 'verdant plaza', 'lyra forest', 'mystifying forest',
-    'silent forest', 'ultra forest', 'lapis lakeside', 'western cave'
+    // Mystery Dungeon series
+    'baram town', 'capim town', 'dolce island', 'aegis cave', 'sky tower', 'joyous tower',
+    'mystifying forest', 'mystery jungle', 'silent forest', 'torchlit labyrinth', 'verdant plaza',
+    'lyra forest', 'ultra forest', 'lapis lakeside', 'western cave', 'buried relic', 
+    'silver trench', 'hero pokémon', 'partner pokémon', 'fainted pokémon',
+    
+    // Snap / New Snap
+    'florio nature park', 'elsewhere forest', 'belusylva island', 'lental seafloor',
+    'cave (snap)', 'river (snap)', 'reef (snap)', 'jungle (snap)',
+    
+    // Ranger series
+    'fall city', 'ringtown', 'summerland', 'wintown', 'chicole village', 'hinder cape',
+    'forest temple', 'kisara plain', 'olive jungle', 'dolce island',
+    
+    // Rumble series
+    'silent forest', 'everspring valley', 'model train room', 'locomotive café', 'variety battle',
+    'origin hideaway', 'old-growth woods',
+    
+    // PokéPark
+    'poképark', 'meeting place', 'meadow zone', 'granite zone', 'beach zone', 'iceberg zone',
+    
+    // Pinball
+    'red field:', 'blue field:', 'bonus stage', 'pallet town (pinball)', 'viridian city (pinball)',
+    
+    // Channel, Trozei, Quest, Shuffle, Sleep
+    'bus stop', 'phobos train', 'endless level', 'trozei battle', 'mr. who\'s den',
+    'puerto blanco', 'blau salon', 'greengrass isle', 'cyan beach', 'taupe hollow', 'snowdrop tundra',
+    
+    // Rumble Rush (Seas)
+    'charizard sea', 'gengar sea', 'castform sea', 'mimikyu sea', 'mewtwo sea', 'bulbasaur sea',
+    
+    // Masters EX, Café ReMix, other
+    'trainer lodge', 'menu development', 'delivery', 'celebration stamps', 'scottie/bettie',
+    'gym leader castle', 'island scan', 'mightywide river', 'odd temple', 'mirage spot', 
+    'nfc figurine', 'random chance'
   ];
   if (spinoffLocations.some(loc => lower.includes(loc))) return false;
+  
+  // Filter out generic single-word locations (usually from spin-offs like Snap)
+  // These are too vague to be real main-series locations
+  const genericWords = ['river', 'jungle', 'beach', 'meadow', 'plains', 'mountain', 'desert', 'reef'];
+  if (genericWords.includes(lower)) return false;
   
   // Filter out transfer/migration methods
   if (lower === 'trade') return false;
