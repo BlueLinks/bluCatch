@@ -28,8 +28,8 @@ COPY scripts/ ./scripts/
 # Default cron schedule: run daily at 03:30 server time
 # Can be overridden with CRON_SCHEDULE env
 ENV CRON_SCHEDULE="30 3 * * *"
-ENV FORCE_FRESH=false
-ENV SCRAPE_MODE=routes-only
+ENV FORCE_FRESH=true
+ENV SCRAPE_MODE=full
 ENV START_POKEMON=1
 ENV END_POKEMON=151
 

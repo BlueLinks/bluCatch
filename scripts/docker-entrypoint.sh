@@ -7,8 +7,8 @@ echo "╚═══════════════════════�
 echo ""
 
 DB_PATH="/app/public/data/pokemon.db"
-FORCE_FRESH=${FORCE_FRESH:-false}
-SCRAPE_MODE=${SCRAPE_MODE:-routes-only}
+FORCE_FRESH=${FORCE_FRESH:-true}
+SCRAPE_MODE=${SCRAPE_MODE:-full}
 START_POKEMON=${START_POKEMON:-1}
 END_POKEMON=${END_POKEMON:-151}
 
