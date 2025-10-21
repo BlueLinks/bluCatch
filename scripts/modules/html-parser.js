@@ -264,6 +264,8 @@ function findGameHeaders(table) {
     'moon': /\bmoon\b(?!\s*ultra)/i,
     'ultrasun': /\bultra\s*sun\b/i,
     'ultramoon': /\bultra\s*moon\b/i,
+    'letsgopikachu': /let'?s\s*go.*pikachu/i,
+    'letsgoeevee': /let'?s\s*go.*eevee/i,
     'sword': /\bsword\b/i,
     'shield': /\bshield\b/i,
     'brilliantdiamond': /\bbrilliant\s*diamond\b/i,
@@ -275,8 +277,13 @@ function findGameHeaders(table) {
   
   headers.forEach((header, index) => {
     const text = header.textContent.trim();
+    // Also check link title attribute (e.g., "P" displays but title has "Let's Go, Pikachu!")
+    const link = header.querySelector('a');
+    const linkTitle = link?.getAttribute('title') || '';
+    const fullText = `${text} ${linkTitle}`;
+    
     for (const [gameId, pattern] of Object.entries(gamePatterns)) {
-      if (pattern.test(text)) {
+      if (pattern.test(fullText)) {
         gameMap[index] = gameId;
         break;
       }

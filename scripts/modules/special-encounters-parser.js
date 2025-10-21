@@ -18,38 +18,52 @@ export function parseSpecialEncounters(html, locationName, db = null) {
   
   const encounters = [];
   
-  // Find the "Special encounters" section
+  // Find ALL sections (h2, h3) that might contain encounters
   const headers = document.querySelectorAll('h2, h3');
-  let specialSection = null;
   
   for (const header of headers) {
     const span = header.querySelector('span.mw-headline');
-    if (span && span.textContent.includes('Special encounters')) {
-      specialSection = header;
-      break;
-    }
-  }
-  
-  if (!specialSection) {
-    return []; // No special encounters section
-  }
-  
-  // Find all PKMNbox divs after this header
-  let currentElement = specialSection.nextElementSibling;
-  
-  while (currentElement && currentElement.tagName !== 'H2') {
-    // Look for Pokemon boxes
-    const pkmnBoxes = currentElement.querySelectorAll ? 
-      currentElement.querySelectorAll('.PKMNbox') : [];
+    if (!span) continue;
     
-    for (const box of pkmnBoxes) {
-      const encounter = parseSpecialEncounterBox(box, locationName, db);
-      if (encounter) {
-        encounters.push(encounter);
+    const headerText = span.textContent;
+    const headerHTML = span.innerHTML;
+    
+    // Get context from next few elements (paragraphs often contain game indicators like "BD"/"SP")
+    let sectionContext = '';
+    let sectionHTML = '';
+    let contextElement = header.nextElementSibling;
+    let contextCount = 0;
+    
+    while (contextElement && contextCount < 3 && !['H2', 'H3'].includes(contextElement.tagName)) {
+      if (contextElement.tagName === 'P') {
+        sectionContext += contextElement.textContent + ' ';
+        sectionHTML += contextElement.innerHTML + ' ';
       }
+      contextElement = contextElement.nextElementSibling;
+      contextCount++;
     }
     
-    currentElement = currentElement.nextElementSibling;
+    // Find all PKMNbox divs after this header
+    let currentElement = header.nextElementSibling;
+    
+    while (currentElement && !['H2', 'H3'].includes(currentElement.tagName)) {
+      // Look for Pokemon boxes
+      const pkmnBoxes = currentElement.querySelectorAll ? 
+        currentElement.querySelectorAll('.PKMNbox') : [];
+      
+      for (const box of pkmnBoxes) {
+        // Pass section context to help detect game
+        const encounter = parseSpecialEncounterBox(box, locationName, db, { 
+          headerText: headerText + ' ' + sectionContext, 
+          headerHTML: headerHTML + ' ' + sectionHTML 
+        });
+        if (encounter) {
+          encounters.push(encounter);
+        }
+      }
+      
+      currentElement = currentElement.nextElementSibling;
+    }
   }
   
   return encounters;
@@ -60,9 +74,10 @@ export function parseSpecialEncounters(html, locationName, db = null) {
  * @param {HTMLElement} box - PKMNbox div element
  * @param {string} locationName - Location name
  * @param {Database} db - Database for lookups
+ * @param {Object} sectionContext - Section header context for game detection
  * @returns {Object|null} Encounter object or null
  */
-function parseSpecialEncounterBox(box, locationName, db) {
+function parseSpecialEncounterBox(box, locationName, db, sectionContext = {}) {
   // Get Pokemon name
   const nameBox = box.querySelector('.PKMNnamebox');
   if (!nameBox) return null;
@@ -97,12 +112,18 @@ function parseSpecialEncounterBox(box, locationName, db) {
   // Try to determine game from context
   // Special encounters are usually game-specific
   // Look for game indicators in surrounding text or box styling
-  const games = detectGameFromContext(box);
+  const games = detectGameFromContext(box, sectionContext);
+  
+  // If we can't detect the game, return null instead of guessing
+  if (games.length === 0) {
+    console.log(`    ⚠️  Could not detect game for ${pokemonName} at ${locationName}`);
+    return null;
+  }
   
   return {
     pokemonName,
     pokemonId,
-    games: games.length > 0 ? games : ['firered', 'leafgreen'], // Mt. Ember is FRLG only
+    games,
     area: 'special',
     levelRange: level,
     rate: 'One time only',
@@ -115,20 +136,87 @@ function parseSpecialEncounterBox(box, locationName, db) {
 /**
  * Detect game from box context
  * @param {HTMLElement} box - PKMNbox element
+ * @param {Object} sectionContext - Section header context
  * @returns {Array} Array of game IDs
  */
-function detectGameFromContext(box) {
-  const games = [];
+function detectGameFromContext(box, sectionContext = {}) {
+  const games = new Set();
   
-  // Check surrounding content for game indicators
+  // Check surrounding content for game indicators (including version abbreviations)
   const containerText = box.parentElement?.textContent || '';
+  const containerHTML = box.parentElement?.innerHTML || '';
   
-  if (containerText.includes('FireRed') || containerText.includes('LeafGreen')) {
-    games.push('firered', 'leafgreen');
+  // Also check section header (where BD/SP indicators often appear)
+  const headerText = sectionContext.headerText || '';
+  const headerHTML = sectionContext.headerHTML || '';
+  
+  const fullText = `${containerText} ${headerText}`;
+  const fullHTML = `${containerHTML} ${headerHTML}`;
+  
+  // Gen 1
+  if (fullText.match(/\bRed\b/i) && !fullText.includes('Fire')) games.add('red');
+  if (fullText.match(/\bBlue\b/i) && !fullText.includes('Alpha')) games.add('blue');
+  if (fullText.match(/\bYellow\b/i)) games.add('yellow');
+  
+  // Gen 2
+  if (fullText.match(/\bGold\b/i) && !fullText.includes('Heart')) games.add('gold');
+  if (fullText.match(/\bSilver\b/i) && !fullText.includes('Soul')) games.add('silver');
+  if (fullText.match(/\bCrystal\b/i)) games.add('crystal');
+  
+  // Gen 3
+  if (fullText.match(/\bRuby\b/i) && !fullText.includes('Omega')) games.add('ruby');
+  if (fullText.match(/\bSapphire\b/i) && !fullText.includes('Alpha')) games.add('sapphire');
+  if (fullText.match(/\bEmerald\b/i)) games.add('emerald');
+  if (fullText.includes('FireRed') || fullHTML.match(/\bFR\b/)) games.add('firered');
+  if (fullText.includes('LeafGreen') || fullHTML.match(/\bLG\b/)) games.add('leafgreen');
+  
+  // Gen 4
+  if (fullText.match(/\bDiamond\b/i) && !fullText.includes('Brilliant')) games.add('diamond');
+  if (fullText.match(/\bPearl\b/i) && !fullText.includes('Shining')) games.add('pearl');
+  if (fullText.includes('Platinum') || fullHTML.match(/\bPt\b/)) games.add('platinum');
+  if (fullText.includes('HeartGold') || fullHTML.match(/\bHG\b/)) games.add('heartgold');
+  if (fullText.includes('SoulSilver') || fullHTML.match(/\bSS\b/)) games.add('soulsilver');
+  
+  // Gen 5 - Skip if context mentions "White 2" to avoid false positives
+  const hasWhite2Context = fullText.match(/White\s*2/i) || fullHTML.match(/\bW2\b/);
+  const hasBlack2Context = fullText.match(/Black\s*2/i) || fullHTML.match(/\bB2\b/);
+  
+  if (fullText.match(/\bBlack\b/i) && !hasBlack2Context) games.add('black');
+  if (fullText.match(/\bWhite\b/i) && !hasWhite2Context) {
+    // Only add if "White" appears in a Pokemon game context
+    if (fullText.includes('Pokémon White') || fullText.includes('Version White')) {
+      games.add('white');
+    }
   }
+  if (hasBlack2Context) games.add('black2');
+  if (hasWhite2Context) games.add('white2');
   
-  // Could add more detection logic here
+  // Gen 6
+  if (fullHTML.match(/\b[^a-zA-Z]X[^a-zA-Z]/)) games.add('x');
+  if (fullHTML.match(/\b[^a-zA-Z]Y[^a-zA-Z]/)) games.add('y');
+  if (fullText.includes('Omega Ruby') || fullHTML.match(/\bΩR\b/)) games.add('omegaruby');
+  if (fullText.includes('Alpha Sapphire') || fullHTML.match(/\bαS\b/)) games.add('alphasapphire');
   
-  return games;
+  // Gen 7 - Be more specific for Sun/Moon (common words)
+  if (fullText.includes('Ultra Sun') || fullHTML.match(/\bUS\b/)) games.add('ultrasun');
+  if (fullText.includes('Ultra Moon') || fullHTML.match(/\bUM\b/)) games.add('ultramoon');
+  // Only match Sun/Moon if explicitly mentioned as Pokemon games
+  if ((fullText.includes('Pokémon Sun') || fullText.includes('Version Sun')) && !fullText.includes('Ultra')) games.add('sun');
+  if ((fullText.includes('Pokémon Moon') || fullText.includes('Version Moon')) && !fullText.includes('Ultra')) games.add('moon');
+  if (fullText.includes("Let's Go") && fullText.includes('Pikachu')) games.add('letsgopikachu');
+  if (fullText.includes("Let's Go") && fullText.includes('Eevee')) games.add('letsgoeevee');
+  
+  // Gen 8
+  if (fullText.includes('Sword') || fullHTML.match(/\bSw\b/)) games.add('sword');
+  if (fullText.includes('Shield') || fullHTML.match(/\bSh\b/)) games.add('shield');
+  if (fullText.includes('Brilliant Diamond') || fullHTML.match(/\bBD\b/)) games.add('brilliantdiamond');
+  if (fullText.includes('Shining Pearl') || fullHTML.match(/\bSP\b/)) games.add('shiningpearl');
+  if (fullText.includes('Legends') && fullText.includes('Arceus')) games.add('legendsarceus');
+  
+  // Gen 9 - Only match if explicitly mentioned (single letters too ambiguous)
+  if (fullText.includes('Scarlet')) games.add('scarlet');
+  if (fullText.includes('Violet')) games.add('violet');
+  
+  return Array.from(games);
 }
 
