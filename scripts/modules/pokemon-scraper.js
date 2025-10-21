@@ -140,15 +140,18 @@ function isValidLocation(locationName) {
   
   // Filter out spin-off game specific locations
   const spinoffLocations = [
-    // Mystery Dungeon series
-    'baram town', 'capim town', 'dolce island', 'aegis cave', 'sky tower', 'joyous tower',
-    'mystifying forest', 'mystery jungle', 'silent forest', 'torchlit labyrinth', 'verdant plaza',
-    'lyra forest', 'ultra forest', 'lapis lakeside', 'western cave', 'buried relic', 
-    'silver trench', 'hero pokémon', 'partner pokémon', 'fainted pokémon',
+    // Mystery Dungeon series (dungeons and towns)
+    'baram town', 'capim town', 'dolce island', 'noe town', 'sahra town', 'aegis cave', 
+    'sky tower', 'joyous tower', 'mystifying forest', 'mystery jungle', 'silent forest', 
+    'torchlit labyrinth', 'verdant plaza', 'lyra forest', 'ultra forest', 'lapis lakeside', 
+    'western cave', 'buried relic', 'silver trench', 'hero pokémon', 'partner pokémon', 'fainted pokémon',
+    'fiery field', 'northwind field', 'lightning field', 'magma cavern', 'lava zone',
+    'mt. faraway', 'purity forest', 'murky cave', 'oran forest', 'dusk forest',
     
     // Snap / New Snap
     'florio nature park', 'elsewhere forest', 'belusylva island', 'lental seafloor',
     'cave (snap)', 'river (snap)', 'reef (snap)', 'jungle (snap)',
+    'blushing beach', 'bright beach', 'reef (new snap)', 'sweltering sands',
     
     // Ranger series
     'fall city', 'ringtown', 'summerland', 'wintown', 'chicole village', 'hinder cape',
@@ -177,6 +180,10 @@ function isValidLocation(locationName) {
     'nfc figurine', 'random chance'
   ];
   if (spinoffLocations.some(loc => lower.includes(loc))) return false;
+  
+  // Filter out locations with colons (usually spin-off game battle/challenge names)
+  // e.g., "Chill Battle: The Forest of Memories", "Pearl Marsh: Pearl Lake"
+  if (lower.includes(':') && !lower.includes("let's go")) return false;
   
   // Filter out generic single-word locations (usually from spin-offs like Snap)
   // These are too vague to be real main-series locations
