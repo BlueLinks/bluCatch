@@ -56,6 +56,10 @@ node /app/scripts/enhance-database.js
 echo "🔧 Splitting concatenated location strings..."
 node /app/scripts/split-location-strings.js
 
+# Add sprite URLs to pokemon table
+echo "🔧 Adding sprite URLs..."
+node /app/scripts/add-sprite-urls.js
+
 # Check database age
 if [ -f "$DB_PATH" ]; then
     # Get last scrape timestamp
