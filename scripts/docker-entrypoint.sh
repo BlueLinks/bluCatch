@@ -31,10 +31,14 @@ fi
 if [ ! -f "$DB_PATH" ]; then
     echo "📦 No database found - Creating from scratch..."
     
-    # Run migration script which creates the base schema + migrates data
-    # This handles both fresh creation and data import from JSON
-    echo "   Running database migration/creation..."
-    node /app/scripts/migrate-to-sqlite.js
+    # Check if we have JSON data to migrate
+    if [ -f "/app/public/data/pokemon.json" ] && [ -f "/app/public/data/games.json" ]; then
+        echo "   Found JSON files - running migration..."
+        node /app/scripts/migrate-to-sqlite.js
+    else
+        echo "   No JSON files - creating fresh database with base schema..."
+        node /app/scripts/init-database.js
+    fi
     
     if [ ! -f "$DB_PATH" ]; then
         echo "   ❌ Error: Database was not created!"
