@@ -71212,6 +71212,26 @@
         {
           "id": 1020,
           "location": "Area Zero (after starting Perrin's questline in The Indigo Disk; only one)"
+        },
+        {
+          "id": 1021,
+          "location": "Area Zero (after starting Perrin's questline in The Indigo Disk; only one)"
+        },
+        {
+          "id": 1022,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1023,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1024,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1025,
+          "location": "Trade Version 3.0.0+"
         }
       ],
       "platform": "switch"
@@ -74073,6 +74093,26 @@
         {
           "id": 1020,
           "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1021,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1022,
+          "location": "Area Zero (after starting Perrin's questline in The Indigo Disk; only one)"
+        },
+        {
+          "id": 1023,
+          "location": "Area Zero (after starting Perrin's questline in The Indigo Disk; only one)"
+        },
+        {
+          "id": 1024,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1025,
+          "location": "Trade Version 3.0.0+"
         }
       ],
       "platform": "switch"
