@@ -36,12 +36,13 @@ let generated = 0;
 // Generate a JSON file for each Pokemon
 for (const pkmn of pokemon) {
   // Get all encounters for this Pokemon
+  // Prioritize encounters with location_id (enhanced data)
   const encounters = db.prepare(`
     SELECT 
       g.id as game_id,
       g.name as game_name,
       g.generation as game_generation,
-      e.location,
+      COALESCE(l.name, e.location) as location,
       e.encounter_area,
       e.encounter_rate,
       e.level_range,
@@ -50,18 +51,31 @@ for (const pkmn of pokemon) {
       e.special_requirements,
       l.name as location_name,
       l.region,
-      l.location_type
+      l.location_type,
+      CASE WHEN e.location_id IS NOT NULL THEN 1 ELSE 0 END as has_enhanced_data
     FROM encounters e
     JOIN games g ON e.game_id = g.id
     LEFT JOIN locations l ON e.location_id = l.id
     WHERE e.pokemon_id = ?
-    ORDER BY g.generation, g.name
+    ORDER BY has_enhanced_data DESC, g.generation, g.name
   `).all(pkmn.id);
+  
+  // Skip old encounters if enhanced versions exist for same pokemon+game combo
+  const seenGameLocations = new Set();
+  const filteredEncounters = [];
+  
+  for (const enc of encounters) {
+    const key = `${enc.game_id}:${enc.location}`;
+    if (!seenGameLocations.has(key)) {
+      seenGameLocations.add(key);
+      filteredEncounters.push(enc);
+    }
+  }
   
   // Group by game
   const gameMap = new Map();
   
-  for (const enc of encounters) {
+  for (const enc of filteredEncounters) {
     if (!gameMap.has(enc.game_id)) {
       gameMap.set(enc.game_id, {
         id: enc.game_id,

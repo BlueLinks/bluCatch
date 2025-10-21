@@ -60975,6 +60975,42 @@
         {
           "id": 860,
           "location": "Glimwood TangleBridge Field, Dusty Bowl, Giant's Mirror, Hammerlocke Hills, Lake of Outrage, Rolling Fields (Max Raid Battle)"
+        },
+        {
+          "id": 861,
+          "location": "Lake of OutrageStony Wilderness (Wanderer)Bridge Field, Dusty Bowl, Giant's Mirror, Hammerlocke Hills, Lake of Outrage, Rolling Fields (Max Raid Battle)Dusty Bowl (Max Raid Battle) (Gigantamax Factor)"
+        },
+        {
+          "id": 862,
+          "location": "Lake of OutrageRoute 2 (only one), Bridge Field (Wanderer)Bridge Field, Dusty Bowl, Giant's Mirror, Stony Wilderness, West Lake Axewell (Max Raid Battle)"
+        },
+        {
+          "id": 863,
+          "location": "Route 7, Route 9, Giant's Mirror, Lake of OutrageDusty Bowl, Giant's Seat, Stony Wilderness (Max Raid Battle)"
+        },
+        {
+          "id": 864,
+          "location": "Trade"
+        },
+        {
+          "id": 866,
+          "location": "Giant's SeatSh, Dusty Bowl, Giant's Cap, Hammerlocke Hills, Motostoke Riverbank, Stony Wilderness, Watchtower Ruins (Max Raid Battle)"
+        },
+        {
+          "id": 867,
+          "location": "Bridge Field, Dusty Bowl, Giant's Mirror, Rolling Fields, South Lake Miloch, Stony Wilderness, Watchtower Ruins, Dusty Bowl (Max Raid Battle)"
+        },
+        {
+          "id": 868,
+          "location": "Route 4, Bridge Field, Giant's MirrorBridge Field, Lake of Outrage (Max Raid Battle)"
+        },
+        {
+          "id": 869,
+          "location": "Evolve MilceryBridge Field, Lake of Outrage (Max Raid Battle)Bridge Field (Max Raid Battle) (Gigantamax Factor)"
+        },
+        {
+          "id": 870,
+          "location": "Route 8, Lake of OutrageDusty Bowl, North Lake Miloch, Rolling Fields, Stony Wilderness (Max Raid Battle)"
         }
       ],
       "platform": "switch"
@@ -63472,6 +63508,42 @@
         {
           "id": 860,
           "location": "Glimwood TangleBridge Field, Dusty Bowl, Giant's Mirror, Hammerlocke Hills, Lake of Outrage, Rolling Fields (Max Raid Battle)"
+        },
+        {
+          "id": 861,
+          "location": "Lake of OutrageStony Wilderness (Wanderer)Bridge Field, Dusty Bowl, Giant's Mirror, Hammerlocke Hills, Lake of Outrage, Rolling Fields (Max Raid Battle)Dusty Bowl (Max Raid Battle) (Gigantamax Factor)"
+        },
+        {
+          "id": 862,
+          "location": "Lake of OutrageRoute 2 (only one), Bridge Field (Wanderer)Bridge Field, Dusty Bowl, Giant's Mirror, Stony Wilderness, West Lake Axewell (Max Raid Battle)"
+        },
+        {
+          "id": 863,
+          "location": "Route 7, Route 9, Giant's Mirror, Lake of OutrageDusty Bowl, Giant's Seat, Stony Wilderness (Max Raid Battle)"
+        },
+        {
+          "id": 864,
+          "location": "Slippery Slope, Old Cemetery, Giant's Foot, Frigid Sea, Ballimere Lake (Max Raid Battle)"
+        },
+        {
+          "id": 866,
+          "location": "Giant's SeatSh, Dusty Bowl, Giant's Cap, Hammerlocke Hills, Motostoke Riverbank, Stony Wilderness, Watchtower Ruins (Max Raid Battle)"
+        },
+        {
+          "id": 867,
+          "location": "Bridge Field, Dusty Bowl, Giant's Mirror, Rolling Fields, South Lake Miloch, Stony Wilderness, Watchtower Ruins, Dusty Bowl (Max Raid Battle)"
+        },
+        {
+          "id": 868,
+          "location": "Route 4, Bridge Field, Giant's MirrorBridge Field, Lake of Outrage (Max Raid Battle)"
+        },
+        {
+          "id": 869,
+          "location": "Evolve MilceryBridge Field, Lake of Outrage (Max Raid Battle)Bridge Field (Max Raid Battle) (Gigantamax Factor)"
+        },
+        {
+          "id": 870,
+          "location": "Route 8, Lake of OutrageDusty Bowl, North Lake Miloch, Rolling Fields, Stony Wilderness (Max Raid Battle)"
         }
       ],
       "platform": "switch"
@@ -70332,6 +70404,26 @@
         {
           "id": 860,
           "location": "East Province: Tagtree ThicketTera Raid Battles (3★)"
+        },
+        {
+          "id": 861,
+          "location": "Tera Raid Battles (5★)"
+        },
+        {
+          "id": 863,
+          "location": "Evolve Meowth (Galarian Form)"
+        },
+        {
+          "id": 868,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 869,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 870,
+          "location": "West Province: Area One, Area TwoNorth Province: Area TwoEast Province: Area Three (Steel Tera Type)Tera Raid Battles (4★, 5★)"
         }
       ],
       "platform": "switch"
@@ -72629,6 +72721,26 @@
         {
           "id": 860,
           "location": "East Province: Tagtree ThicketTera Raid Battles (3★)"
+        },
+        {
+          "id": 861,
+          "location": "Tera Raid Battles (5★)"
+        },
+        {
+          "id": 863,
+          "location": "Evolve Meowth (Galarian Form)"
+        },
+        {
+          "id": 868,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 869,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 870,
+          "location": "West Province: Area One, Area TwoNorth Province: Area TwoEast Province: Area Three (Steel Tera Type)Tera Raid Battles (4★, 5★)"
         }
       ],
       "platform": "switch"
