@@ -27,16 +27,17 @@ node scripts/test-scraper-quality.js
 
 ## Data Quality: 99.5% Complete
 
-- **1,178 enhanced encounters** with full location data
-- **99.5% have level ranges** (11 missing due to simplified Bulbapedia tables)
-- **27 main-series locations** (filtered 52+ spin-offs)
-- **Only valid locations** (no River, Beach, Blue Field, Mt. Thunder, etc.)
+-   **1,178 enhanced encounters** with full location data
+-   **99.5% have level ranges** (11 missing due to simplified Bulbapedia tables)
+-   **27 main-series locations** (filtered 52+ spin-offs)
+-   **Only valid locations** (no River, Beach, Blue Field, Mt. Thunder, etc.)
 
 ---
 
 ## Clean Scraper Logs
 
 **Before:**
+
 ```
 📡 Querying River...
 📡 Querying Blue_Field...
@@ -48,6 +49,7 @@ Failed to fetch...
 ```
 
 **After:**
+
 ```
 📡 Querying Viridian_Forest...
 📡 Querying Sinnoh_Route_204... ✅
@@ -83,6 +85,7 @@ git push origin main
 ```
 
 After pushing, Portainer will:
+
 1. Pull latest changes
 2. Rebuild scraper container
 3. Run with `FORCE_FRESH=true` (wipe stale data)
@@ -96,14 +99,15 @@ After pushing, Portainer will:
 ## Verified Locations (27)
 
 All main-series only:
-- **Kanto**: Routes 1, 2, 5, 12, 25 | Viridian Forest, Rock Tunnel, Cerulean City, Pallet Town, Vermilion City
-- **Johto**: Azalea Town, Ilex Forest, National Park, Lake of Rage
-- **Hoenn**: Marine Cave
-- **Sinnoh**: Route 204, Eterna Forest, Grand Underground + caves
-- **Kalos**: Santalune Forest
-- **Alola**: Melemele Meadow
-- **Galar**: Bridge Field, Rolling Fields, Dappled Grove, South Lake Miloch, Crown Shrine, Ballimere Lake
-- **Multi-gen**: Victory Road, Mt. Ember, Mt. Silver Cave, Seafoam Islands
+
+-   **Kanto**: Routes 1, 2, 5, 12, 25 | Viridian Forest, Rock Tunnel, Cerulean City, Pallet Town, Vermilion City
+-   **Johto**: Azalea Town, Ilex Forest, National Park, Lake of Rage
+-   **Hoenn**: Marine Cave
+-   **Sinnoh**: Route 204, Eterna Forest, Grand Underground + caves
+-   **Kalos**: Santalune Forest
+-   **Alola**: Melemele Meadow
+-   **Galar**: Bridge Field, Rolling Fields, Dappled Grove, South Lake Miloch, Crown Shrine, Ballimere Lake
+-   **Multi-gen**: Victory Road, Mt. Ember, Mt. Silver Cave, Seafoam Islands
 
 ---
 
@@ -114,7 +118,7 @@ All main-series only:
 3. ✅ **White/Sun false positives** - Stricter pattern matching
 4. ✅ **Multi-floor locations** - Standard header detection (Pokémon/Games/Location/Levels/Rate)
 5. ✅ **Victory Road parsing** - 0 → 117 encounters
-6. ✅ **Mt. Ember parsing** - 0 → 28 encounters  
+6. ✅ **Mt. Ember parsing** - 0 → 28 encounters
 7. ✅ **Game abbreviations** - R, B, Y, FR, LG, HG, SS, P, E, BD, SP, etc.
 8. ✅ **Spin-off filtering** - 80+ patterns for Snap, Ranger, Mystery Dungeon, Rumble, etc.
 9. ✅ **Route region detection** - Route 204 → Sinnoh (not Kanto)
@@ -125,4 +129,3 @@ All main-series only:
 ## Status: ✅ PRODUCTION READY
 
 All tests passing, clean logs, comprehensive filtering, near-perfect data quality.
-
