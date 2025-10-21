@@ -448,7 +448,12 @@ function parseGameLocations(html, pokemonId, pokemonName) {
     if (lower.includes('unavailable')) return false;
     if (lower.includes('unobtainable')) return false;
     if (lower.includes('none')) return false;
-    if (lower.includes(pokemonName.toLowerCase())) return false;
+    
+    // Only filter if location is JUST the Pokemon name (not part of a location like "Diglett's Cave")
+    // This prevents self-referential entries like "Pikachu: Pikachu" but allows "Diglett's Cave"
+    const namePattern = new RegExp(`^${pokemonName.toLowerCase()}[\\s:,]*$`, 'i');
+    if (namePattern.test(lower)) return false;
+    
     if (lower.match(/^generation\s+[ivx]+$/i)) return false;
     return true;
   }
@@ -458,6 +463,8 @@ function parseGameLocations(html, pokemonId, pokemonName) {
     // Find inner tables (the actual data is nested)
     const innerTables = table.querySelectorAll('table table');
     const tablesToParse = innerTables.length > 0 ? Array.from(innerTables) : [table];
+    
+    log(`  Parsing ${tablesToParse.length} tables (${innerTables.length} inner tables found)`, true);
     
     for (const dataTable of tablesToParse) {
       const rows = Array.from(dataTable.querySelectorAll('tr'));
@@ -484,6 +491,19 @@ function parseGameLocations(html, pokemonId, pokemonName) {
         // Skip if no valid games found
         if (games.length === 0) {
           continue;
+        }
+        
+        // DEBUG: Log what we found (for debugging specific Pokemon)
+        if (pokemonId === 50 && games.length > 0) {
+          const location = tds.length > 0 ? tds[0].textContent.trim().substring(0, 40) : 'NO TDS';
+          log(`    Row: ${games.length} games (${games.map(g => g.id).join(', ')}), ${tds.length} TDs, location: "${location}"`, true);
+          
+          // Check if this row will be processed
+          if (tds.length === games.length || tds.length === 1) {
+            log(`    ✅ Will process this row`, true);
+          } else {
+            log(`    ❌ SKIPPING row (count mismatch)`, true);
+          }
         }
         
         // BEST CASE: games.length === tds.length (perfect 1:1 mapping!)
@@ -629,11 +649,19 @@ async function processPokemon(pokemon, gamesData, skipExisting = false) {
     // Data validation warnings
     validatePokemonData(id, name, gameLocations);
     
+    // DEBUG: Log what games were found in gameLocations
+    if (id === 50) {
+      log(`  DEBUG: gameLocations has ${Object.keys(gameLocations).length} games: ${Object.keys(gameLocations).join(', ')}`, true);
+    }
+    
     // Add to games
     let added = 0;
     for (const [gameId, locations] of Object.entries(gameLocations)) {
       const game = gamesData.games.find(g => g.id === gameId);
       if (!game) {
+        if (id === 50) {
+          log(`  DEBUG: Game "${gameId}" not found in gamesData!`, true);
+        }
         continue;
       }
       
@@ -644,6 +672,14 @@ async function processPokemon(pokemon, gamesData, skipExisting = false) {
           game.pokemon.push(location);
           existingIds.add(id);
           added++;
+          
+          if (id === 50) {
+            log(`  DEBUG: Added to ${gameId}: ${location.location}`, true);
+          }
+        } else {
+          if (id === 50) {
+            log(`  DEBUG: Skipped ${gameId} (already has Pokemon #${id})`, true);
+          }
         }
       }
     }
@@ -822,22 +858,8 @@ async function main() {
   let batchCount = 0;
   
   for (const pokemon of pokemonToProcess) {
-    // Skip if Pokemon already has data and we're not in replace mode
-    if (!replace) {
-      const hasData = gamesData.games.some(game => 
-        game.pokemon.some(p => p.id === pokemon.id)
-      );
-      
-      if (hasData) {
-        console.log(`  [${pokemon.id}] ${pokemon.name.padEnd(20)} ⏭️  Already has data, skipping...`);
-        log(`  #${pokemon.id} ${pokemon.name}: Skipped (already has data)`, true);
-        
-        // Update progress even for skipped Pokemon
-        progress.lastProcessedId = pokemon.id;
-        progress.lastProcessedName = pokemon.name;
-        continue;
-      }
-    }
+    // Note: Skip logic moved into processPokemon() function with skipExisting flag
+    // This allows more granular control
     
     const result = await processPokemon(pokemon, gamesData, skipExisting);
     
