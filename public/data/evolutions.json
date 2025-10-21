@@ -1,0 +1,3836 @@
+{
+  "evolutions": {
+    "2": {
+      "id": 2,
+      "name": "ivysaur",
+      "evolvesFrom": 1,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "3": {
+      "id": 3,
+      "name": "venusaur",
+      "evolvesFrom": 2,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "5": {
+      "id": 5,
+      "name": "charmeleon",
+      "evolvesFrom": 4,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "6": {
+      "id": 6,
+      "name": "charizard",
+      "evolvesFrom": 5,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "8": {
+      "id": 8,
+      "name": "wartortle",
+      "evolvesFrom": 7,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "9": {
+      "id": 9,
+      "name": "blastoise",
+      "evolvesFrom": 8,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "11": {
+      "id": 11,
+      "name": "metapod",
+      "evolvesFrom": 10,
+      "method": "level-up",
+      "requirement": "Level 7",
+      "trigger": "level-up"
+    },
+    "12": {
+      "id": 12,
+      "name": "butterfree",
+      "evolvesFrom": 11,
+      "method": "level-up",
+      "requirement": "Level 10",
+      "trigger": "level-up"
+    },
+    "14": {
+      "id": 14,
+      "name": "kakuna",
+      "evolvesFrom": 13,
+      "method": "level-up",
+      "requirement": "Level 7",
+      "trigger": "level-up"
+    },
+    "15": {
+      "id": 15,
+      "name": "beedrill",
+      "evolvesFrom": 14,
+      "method": "level-up",
+      "requirement": "Level 10",
+      "trigger": "level-up"
+    },
+    "17": {
+      "id": 17,
+      "name": "pidgeotto",
+      "evolvesFrom": 16,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "18": {
+      "id": 18,
+      "name": "pidgeot",
+      "evolvesFrom": 17,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "20": {
+      "id": 20,
+      "name": "raticate",
+      "evolvesFrom": 19,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "22": {
+      "id": 22,
+      "name": "fearow",
+      "evolvesFrom": 21,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "24": {
+      "id": 24,
+      "name": "arbok",
+      "evolvesFrom": 23,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "25": {
+      "id": 25,
+      "name": "pikachu",
+      "evolvesFrom": 172,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "26": {
+      "id": 26,
+      "name": "raichu",
+      "evolvesFrom": 25,
+      "method": "use-item",
+      "requirement": "thunder stone",
+      "trigger": "use-item"
+    },
+    "28": {
+      "id": 28,
+      "name": "sandslash",
+      "evolvesFrom": 27,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "30": {
+      "id": 30,
+      "name": "nidorina",
+      "evolvesFrom": 29,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "31": {
+      "id": 31,
+      "name": "nidoqueen",
+      "evolvesFrom": 30,
+      "method": "use-item",
+      "requirement": "moon stone",
+      "trigger": "use-item"
+    },
+    "33": {
+      "id": 33,
+      "name": "nidorino",
+      "evolvesFrom": 32,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "34": {
+      "id": 34,
+      "name": "nidoking",
+      "evolvesFrom": 33,
+      "method": "use-item",
+      "requirement": "moon stone",
+      "trigger": "use-item"
+    },
+    "35": {
+      "id": 35,
+      "name": "clefairy",
+      "evolvesFrom": 173,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "36": {
+      "id": 36,
+      "name": "clefable",
+      "evolvesFrom": 35,
+      "method": "use-item",
+      "requirement": "moon stone",
+      "trigger": "use-item"
+    },
+    "38": {
+      "id": 38,
+      "name": "ninetales",
+      "evolvesFrom": 37,
+      "method": "use-item",
+      "requirement": "fire stone",
+      "trigger": "use-item"
+    },
+    "39": {
+      "id": 39,
+      "name": "jigglypuff",
+      "evolvesFrom": 174,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "40": {
+      "id": 40,
+      "name": "wigglytuff",
+      "evolvesFrom": 39,
+      "method": "use-item",
+      "requirement": "moon stone",
+      "trigger": "use-item"
+    },
+    "42": {
+      "id": 42,
+      "name": "golbat",
+      "evolvesFrom": 41,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "44": {
+      "id": 44,
+      "name": "gloom",
+      "evolvesFrom": 43,
+      "method": "level-up",
+      "requirement": "Level 21",
+      "trigger": "level-up"
+    },
+    "45": {
+      "id": 45,
+      "name": "vileplume",
+      "evolvesFrom": 44,
+      "method": "use-item",
+      "requirement": "leaf stone",
+      "trigger": "use-item"
+    },
+    "47": {
+      "id": 47,
+      "name": "parasect",
+      "evolvesFrom": 46,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "49": {
+      "id": 49,
+      "name": "venomoth",
+      "evolvesFrom": 48,
+      "method": "level-up",
+      "requirement": "Level 31",
+      "trigger": "level-up"
+    },
+    "51": {
+      "id": 51,
+      "name": "dugtrio",
+      "evolvesFrom": 50,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "53": {
+      "id": 53,
+      "name": "persian",
+      "evolvesFrom": 52,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "55": {
+      "id": 55,
+      "name": "golduck",
+      "evolvesFrom": 54,
+      "method": "level-up",
+      "requirement": "Level 33",
+      "trigger": "level-up"
+    },
+    "57": {
+      "id": 57,
+      "name": "primeape",
+      "evolvesFrom": 56,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "59": {
+      "id": 59,
+      "name": "arcanine",
+      "evolvesFrom": 58,
+      "method": "use-item",
+      "requirement": "fire stone",
+      "trigger": "use-item"
+    },
+    "61": {
+      "id": 61,
+      "name": "poliwhirl",
+      "evolvesFrom": 60,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "62": {
+      "id": 62,
+      "name": "poliwrath",
+      "evolvesFrom": 61,
+      "method": "use-item",
+      "requirement": "water stone",
+      "trigger": "use-item"
+    },
+    "64": {
+      "id": 64,
+      "name": "kadabra",
+      "evolvesFrom": 63,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "65": {
+      "id": 65,
+      "name": "alakazam",
+      "evolvesFrom": 64,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "67": {
+      "id": 67,
+      "name": "machoke",
+      "evolvesFrom": 66,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "68": {
+      "id": 68,
+      "name": "machamp",
+      "evolvesFrom": 67,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "70": {
+      "id": 70,
+      "name": "weepinbell",
+      "evolvesFrom": 69,
+      "method": "level-up",
+      "requirement": "Level 21",
+      "trigger": "level-up"
+    },
+    "71": {
+      "id": 71,
+      "name": "victreebel",
+      "evolvesFrom": 70,
+      "method": "use-item",
+      "requirement": "leaf stone",
+      "trigger": "use-item"
+    },
+    "73": {
+      "id": 73,
+      "name": "tentacruel",
+      "evolvesFrom": 72,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "75": {
+      "id": 75,
+      "name": "graveler",
+      "evolvesFrom": 74,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "76": {
+      "id": 76,
+      "name": "golem",
+      "evolvesFrom": 75,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "78": {
+      "id": 78,
+      "name": "rapidash",
+      "evolvesFrom": 77,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "80": {
+      "id": 80,
+      "name": "slowbro",
+      "evolvesFrom": 79,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "82": {
+      "id": 82,
+      "name": "magneton",
+      "evolvesFrom": 81,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "85": {
+      "id": 85,
+      "name": "dodrio",
+      "evolvesFrom": 84,
+      "method": "level-up",
+      "requirement": "Level 31",
+      "trigger": "level-up"
+    },
+    "87": {
+      "id": 87,
+      "name": "dewgong",
+      "evolvesFrom": 86,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "89": {
+      "id": 89,
+      "name": "muk",
+      "evolvesFrom": 88,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "91": {
+      "id": 91,
+      "name": "cloyster",
+      "evolvesFrom": 90,
+      "method": "use-item",
+      "requirement": "water stone",
+      "trigger": "use-item"
+    },
+    "93": {
+      "id": 93,
+      "name": "haunter",
+      "evolvesFrom": 92,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "94": {
+      "id": 94,
+      "name": "gengar",
+      "evolvesFrom": 93,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "97": {
+      "id": 97,
+      "name": "hypno",
+      "evolvesFrom": 96,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "99": {
+      "id": 99,
+      "name": "kingler",
+      "evolvesFrom": 98,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "101": {
+      "id": 101,
+      "name": "electrode",
+      "evolvesFrom": 100,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "103": {
+      "id": 103,
+      "name": "exeggutor",
+      "evolvesFrom": 102,
+      "method": "use-item",
+      "requirement": "leaf stone",
+      "trigger": "use-item"
+    },
+    "105": {
+      "id": 105,
+      "name": "marowak",
+      "evolvesFrom": 104,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "106": {
+      "id": 106,
+      "name": "hitmonlee",
+      "evolvesFrom": 236,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "107": {
+      "id": 107,
+      "name": "hitmonchan",
+      "evolvesFrom": 236,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "110": {
+      "id": 110,
+      "name": "weezing",
+      "evolvesFrom": 109,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "112": {
+      "id": 112,
+      "name": "rhydon",
+      "evolvesFrom": 111,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "113": {
+      "id": 113,
+      "name": "chansey",
+      "evolvesFrom": 440,
+      "method": "level-up",
+      "requirement": "day time",
+      "trigger": "level-up"
+    },
+    "117": {
+      "id": 117,
+      "name": "seadra",
+      "evolvesFrom": 116,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "119": {
+      "id": 119,
+      "name": "seaking",
+      "evolvesFrom": 118,
+      "method": "level-up",
+      "requirement": "Level 33",
+      "trigger": "level-up"
+    },
+    "121": {
+      "id": 121,
+      "name": "starmie",
+      "evolvesFrom": 120,
+      "method": "use-item",
+      "requirement": "water stone",
+      "trigger": "use-item"
+    },
+    "122": {
+      "id": 122,
+      "name": "mr-mime",
+      "evolvesFrom": 439,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "124": {
+      "id": 124,
+      "name": "jynx",
+      "evolvesFrom": 238,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "125": {
+      "id": 125,
+      "name": "electabuzz",
+      "evolvesFrom": 239,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "126": {
+      "id": 126,
+      "name": "magmar",
+      "evolvesFrom": 240,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "130": {
+      "id": 130,
+      "name": "gyarados",
+      "evolvesFrom": 129,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "134": {
+      "id": 134,
+      "name": "vaporeon",
+      "evolvesFrom": 133,
+      "method": "use-item",
+      "requirement": "water stone",
+      "trigger": "use-item"
+    },
+    "135": {
+      "id": 135,
+      "name": "jolteon",
+      "evolvesFrom": 133,
+      "method": "use-item",
+      "requirement": "thunder stone",
+      "trigger": "use-item"
+    },
+    "136": {
+      "id": 136,
+      "name": "flareon",
+      "evolvesFrom": 133,
+      "method": "use-item",
+      "requirement": "fire stone",
+      "trigger": "use-item"
+    },
+    "139": {
+      "id": 139,
+      "name": "omastar",
+      "evolvesFrom": 138,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "141": {
+      "id": 141,
+      "name": "kabutops",
+      "evolvesFrom": 140,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "143": {
+      "id": 143,
+      "name": "snorlax",
+      "evolvesFrom": 446,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "148": {
+      "id": 148,
+      "name": "dragonair",
+      "evolvesFrom": 147,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "149": {
+      "id": 149,
+      "name": "dragonite",
+      "evolvesFrom": 148,
+      "method": "level-up",
+      "requirement": "Level 55",
+      "trigger": "level-up"
+    },
+    "153": {
+      "id": 153,
+      "name": "bayleef",
+      "evolvesFrom": 152,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "154": {
+      "id": 154,
+      "name": "meganium",
+      "evolvesFrom": 153,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "156": {
+      "id": 156,
+      "name": "quilava",
+      "evolvesFrom": 155,
+      "method": "level-up",
+      "requirement": "Level 14",
+      "trigger": "level-up"
+    },
+    "157": {
+      "id": 157,
+      "name": "typhlosion",
+      "evolvesFrom": 156,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "159": {
+      "id": 159,
+      "name": "croconaw",
+      "evolvesFrom": 158,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "160": {
+      "id": 160,
+      "name": "feraligatr",
+      "evolvesFrom": 159,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "162": {
+      "id": 162,
+      "name": "furret",
+      "evolvesFrom": 161,
+      "method": "level-up",
+      "requirement": "Level 15",
+      "trigger": "level-up"
+    },
+    "164": {
+      "id": 164,
+      "name": "noctowl",
+      "evolvesFrom": 163,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "166": {
+      "id": 166,
+      "name": "ledian",
+      "evolvesFrom": 165,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "168": {
+      "id": 168,
+      "name": "ariados",
+      "evolvesFrom": 167,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "169": {
+      "id": 169,
+      "name": "crobat",
+      "evolvesFrom": 42,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "171": {
+      "id": 171,
+      "name": "lanturn",
+      "evolvesFrom": 170,
+      "method": "level-up",
+      "requirement": "Level 27",
+      "trigger": "level-up"
+    },
+    "176": {
+      "id": 176,
+      "name": "togetic",
+      "evolvesFrom": 175,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "178": {
+      "id": 178,
+      "name": "xatu",
+      "evolvesFrom": 177,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "180": {
+      "id": 180,
+      "name": "flaaffy",
+      "evolvesFrom": 179,
+      "method": "level-up",
+      "requirement": "Level 15",
+      "trigger": "level-up"
+    },
+    "181": {
+      "id": 181,
+      "name": "ampharos",
+      "evolvesFrom": 180,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "182": {
+      "id": 182,
+      "name": "bellossom",
+      "evolvesFrom": 44,
+      "method": "use-item",
+      "requirement": "sun stone",
+      "trigger": "use-item"
+    },
+    "183": {
+      "id": 183,
+      "name": "marill",
+      "evolvesFrom": 298,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "184": {
+      "id": 184,
+      "name": "azumarill",
+      "evolvesFrom": 183,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "185": {
+      "id": 185,
+      "name": "sudowoodo",
+      "evolvesFrom": 438,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "186": {
+      "id": 186,
+      "name": "politoed",
+      "evolvesFrom": 61,
+      "method": "trade-with-item",
+      "requirement": "Trade holding kings rock",
+      "trigger": "trade"
+    },
+    "188": {
+      "id": 188,
+      "name": "skiploom",
+      "evolvesFrom": 187,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "189": {
+      "id": 189,
+      "name": "jumpluff",
+      "evolvesFrom": 188,
+      "method": "level-up",
+      "requirement": "Level 27",
+      "trigger": "level-up"
+    },
+    "192": {
+      "id": 192,
+      "name": "sunflora",
+      "evolvesFrom": 191,
+      "method": "use-item",
+      "requirement": "sun stone",
+      "trigger": "use-item"
+    },
+    "195": {
+      "id": 195,
+      "name": "quagsire",
+      "evolvesFrom": 194,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "196": {
+      "id": 196,
+      "name": "espeon",
+      "evolvesFrom": 133,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "197": {
+      "id": 197,
+      "name": "umbreon",
+      "evolvesFrom": 133,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "199": {
+      "id": 199,
+      "name": "slowking",
+      "evolvesFrom": 79,
+      "method": "trade-with-item",
+      "requirement": "Trade holding kings rock",
+      "trigger": "trade"
+    },
+    "202": {
+      "id": 202,
+      "name": "wobbuffet",
+      "evolvesFrom": 360,
+      "method": "level-up",
+      "requirement": "Level 15",
+      "trigger": "level-up"
+    },
+    "205": {
+      "id": 205,
+      "name": "forretress",
+      "evolvesFrom": 204,
+      "method": "level-up",
+      "requirement": "Level 31",
+      "trigger": "level-up"
+    },
+    "208": {
+      "id": 208,
+      "name": "steelix",
+      "evolvesFrom": 95,
+      "method": "trade-with-item",
+      "requirement": "Trade holding metal coat",
+      "trigger": "trade"
+    },
+    "210": {
+      "id": 210,
+      "name": "granbull",
+      "evolvesFrom": 209,
+      "method": "level-up",
+      "requirement": "Level 23",
+      "trigger": "level-up"
+    },
+    "212": {
+      "id": 212,
+      "name": "scizor",
+      "evolvesFrom": 123,
+      "method": "trade-with-item",
+      "requirement": "Trade holding metal coat",
+      "trigger": "trade"
+    },
+    "217": {
+      "id": 217,
+      "name": "ursaring",
+      "evolvesFrom": 216,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "219": {
+      "id": 219,
+      "name": "magcargo",
+      "evolvesFrom": 218,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "221": {
+      "id": 221,
+      "name": "piloswine",
+      "evolvesFrom": 220,
+      "method": "level-up",
+      "requirement": "Level 33",
+      "trigger": "level-up"
+    },
+    "224": {
+      "id": 224,
+      "name": "octillery",
+      "evolvesFrom": 223,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "226": {
+      "id": 226,
+      "name": "mantine",
+      "evolvesFrom": 458,
+      "method": "level-up",
+      "requirement": "Level up",
+      "trigger": "level-up"
+    },
+    "229": {
+      "id": 229,
+      "name": "houndoom",
+      "evolvesFrom": 228,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "230": {
+      "id": 230,
+      "name": "kingdra",
+      "evolvesFrom": 117,
+      "method": "trade-with-item",
+      "requirement": "Trade holding dragon scale",
+      "trigger": "trade"
+    },
+    "232": {
+      "id": 232,
+      "name": "donphan",
+      "evolvesFrom": 231,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "233": {
+      "id": 233,
+      "name": "porygon2",
+      "evolvesFrom": 137,
+      "method": "trade-with-item",
+      "requirement": "Trade holding up grade",
+      "trigger": "trade"
+    },
+    "237": {
+      "id": 237,
+      "name": "hitmontop",
+      "evolvesFrom": 236,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "242": {
+      "id": 242,
+      "name": "blissey",
+      "evolvesFrom": 113,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "247": {
+      "id": 247,
+      "name": "pupitar",
+      "evolvesFrom": 246,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "248": {
+      "id": 248,
+      "name": "tyranitar",
+      "evolvesFrom": 247,
+      "method": "level-up",
+      "requirement": "Level 55",
+      "trigger": "level-up"
+    },
+    "253": {
+      "id": 253,
+      "name": "grovyle",
+      "evolvesFrom": 252,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "254": {
+      "id": 254,
+      "name": "sceptile",
+      "evolvesFrom": 253,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "256": {
+      "id": 256,
+      "name": "combusken",
+      "evolvesFrom": 255,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "257": {
+      "id": 257,
+      "name": "blaziken",
+      "evolvesFrom": 256,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "259": {
+      "id": 259,
+      "name": "marshtomp",
+      "evolvesFrom": 258,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "260": {
+      "id": 260,
+      "name": "swampert",
+      "evolvesFrom": 259,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "262": {
+      "id": 262,
+      "name": "mightyena",
+      "evolvesFrom": 261,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "264": {
+      "id": 264,
+      "name": "linoone",
+      "evolvesFrom": 263,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "266": {
+      "id": 266,
+      "name": "silcoon",
+      "evolvesFrom": 265,
+      "method": "level-up",
+      "requirement": "Level 7",
+      "trigger": "level-up"
+    },
+    "267": {
+      "id": 267,
+      "name": "beautifly",
+      "evolvesFrom": 266,
+      "method": "level-up",
+      "requirement": "Level 10",
+      "trigger": "level-up"
+    },
+    "268": {
+      "id": 268,
+      "name": "cascoon",
+      "evolvesFrom": 265,
+      "method": "level-up",
+      "requirement": "Level 7",
+      "trigger": "level-up"
+    },
+    "269": {
+      "id": 269,
+      "name": "dustox",
+      "evolvesFrom": 268,
+      "method": "level-up",
+      "requirement": "Level 10",
+      "trigger": "level-up"
+    },
+    "271": {
+      "id": 271,
+      "name": "lombre",
+      "evolvesFrom": 270,
+      "method": "level-up",
+      "requirement": "Level 14",
+      "trigger": "level-up"
+    },
+    "272": {
+      "id": 272,
+      "name": "ludicolo",
+      "evolvesFrom": 271,
+      "method": "use-item",
+      "requirement": "water stone",
+      "trigger": "use-item"
+    },
+    "274": {
+      "id": 274,
+      "name": "nuzleaf",
+      "evolvesFrom": 273,
+      "method": "level-up",
+      "requirement": "Level 14",
+      "trigger": "level-up"
+    },
+    "275": {
+      "id": 275,
+      "name": "shiftry",
+      "evolvesFrom": 274,
+      "method": "use-item",
+      "requirement": "leaf stone",
+      "trigger": "use-item"
+    },
+    "277": {
+      "id": 277,
+      "name": "swellow",
+      "evolvesFrom": 276,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "279": {
+      "id": 279,
+      "name": "pelipper",
+      "evolvesFrom": 278,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "281": {
+      "id": 281,
+      "name": "kirlia",
+      "evolvesFrom": 280,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "282": {
+      "id": 282,
+      "name": "gardevoir",
+      "evolvesFrom": 281,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "284": {
+      "id": 284,
+      "name": "masquerain",
+      "evolvesFrom": 283,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "286": {
+      "id": 286,
+      "name": "breloom",
+      "evolvesFrom": 285,
+      "method": "level-up",
+      "requirement": "Level 23",
+      "trigger": "level-up"
+    },
+    "288": {
+      "id": 288,
+      "name": "vigoroth",
+      "evolvesFrom": 287,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "289": {
+      "id": 289,
+      "name": "slaking",
+      "evolvesFrom": 288,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "291": {
+      "id": 291,
+      "name": "ninjask",
+      "evolvesFrom": 290,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "292": {
+      "id": 292,
+      "name": "shedinja",
+      "evolvesFrom": 290,
+      "method": "shed",
+      "requirement": "Level up with empty party slot",
+      "trigger": "shed"
+    },
+    "294": {
+      "id": 294,
+      "name": "loudred",
+      "evolvesFrom": 293,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "295": {
+      "id": 295,
+      "name": "exploud",
+      "evolvesFrom": 294,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "297": {
+      "id": 297,
+      "name": "hariyama",
+      "evolvesFrom": 296,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "301": {
+      "id": 301,
+      "name": "delcatty",
+      "evolvesFrom": 300,
+      "method": "use-item",
+      "requirement": "moon stone",
+      "trigger": "use-item"
+    },
+    "305": {
+      "id": 305,
+      "name": "lairon",
+      "evolvesFrom": 304,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "306": {
+      "id": 306,
+      "name": "aggron",
+      "evolvesFrom": 305,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "308": {
+      "id": 308,
+      "name": "medicham",
+      "evolvesFrom": 307,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "310": {
+      "id": 310,
+      "name": "manectric",
+      "evolvesFrom": 309,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "315": {
+      "id": 315,
+      "name": "roselia",
+      "evolvesFrom": 406,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "317": {
+      "id": 317,
+      "name": "swalot",
+      "evolvesFrom": 316,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "319": {
+      "id": 319,
+      "name": "sharpedo",
+      "evolvesFrom": 318,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "321": {
+      "id": 321,
+      "name": "wailord",
+      "evolvesFrom": 320,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "323": {
+      "id": 323,
+      "name": "camerupt",
+      "evolvesFrom": 322,
+      "method": "level-up",
+      "requirement": "Level 33",
+      "trigger": "level-up"
+    },
+    "326": {
+      "id": 326,
+      "name": "grumpig",
+      "evolvesFrom": 325,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "329": {
+      "id": 329,
+      "name": "vibrava",
+      "evolvesFrom": 328,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "330": {
+      "id": 330,
+      "name": "flygon",
+      "evolvesFrom": 329,
+      "method": "level-up",
+      "requirement": "Level 45",
+      "trigger": "level-up"
+    },
+    "332": {
+      "id": 332,
+      "name": "cacturne",
+      "evolvesFrom": 331,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "334": {
+      "id": 334,
+      "name": "altaria",
+      "evolvesFrom": 333,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "340": {
+      "id": 340,
+      "name": "whiscash",
+      "evolvesFrom": 339,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "342": {
+      "id": 342,
+      "name": "crawdaunt",
+      "evolvesFrom": 341,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "344": {
+      "id": 344,
+      "name": "claydol",
+      "evolvesFrom": 343,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "346": {
+      "id": 346,
+      "name": "cradily",
+      "evolvesFrom": 345,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "348": {
+      "id": 348,
+      "name": "armaldo",
+      "evolvesFrom": 347,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "350": {
+      "id": 350,
+      "name": "milotic",
+      "evolvesFrom": 349,
+      "method": "level-up",
+      "requirement": "Level up",
+      "trigger": "level-up"
+    },
+    "354": {
+      "id": 354,
+      "name": "banette",
+      "evolvesFrom": 353,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "356": {
+      "id": 356,
+      "name": "dusclops",
+      "evolvesFrom": 355,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "358": {
+      "id": 358,
+      "name": "chimecho",
+      "evolvesFrom": 433,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "362": {
+      "id": 362,
+      "name": "glalie",
+      "evolvesFrom": 361,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "364": {
+      "id": 364,
+      "name": "sealeo",
+      "evolvesFrom": 363,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "365": {
+      "id": 365,
+      "name": "walrein",
+      "evolvesFrom": 364,
+      "method": "level-up",
+      "requirement": "Level 44",
+      "trigger": "level-up"
+    },
+    "367": {
+      "id": 367,
+      "name": "huntail",
+      "evolvesFrom": 366,
+      "method": "trade-with-item",
+      "requirement": "Trade holding deep sea tooth",
+      "trigger": "trade"
+    },
+    "368": {
+      "id": 368,
+      "name": "gorebyss",
+      "evolvesFrom": 366,
+      "method": "trade-with-item",
+      "requirement": "Trade holding deep sea scale",
+      "trigger": "trade"
+    },
+    "372": {
+      "id": 372,
+      "name": "shelgon",
+      "evolvesFrom": 371,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "373": {
+      "id": 373,
+      "name": "salamence",
+      "evolvesFrom": 372,
+      "method": "level-up",
+      "requirement": "Level 50",
+      "trigger": "level-up"
+    },
+    "375": {
+      "id": 375,
+      "name": "metang",
+      "evolvesFrom": 374,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "376": {
+      "id": 376,
+      "name": "metagross",
+      "evolvesFrom": 375,
+      "method": "level-up",
+      "requirement": "Level 45",
+      "trigger": "level-up"
+    },
+    "388": {
+      "id": 388,
+      "name": "grotle",
+      "evolvesFrom": 387,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "389": {
+      "id": 389,
+      "name": "torterra",
+      "evolvesFrom": 388,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "391": {
+      "id": 391,
+      "name": "monferno",
+      "evolvesFrom": 390,
+      "method": "level-up",
+      "requirement": "Level 14",
+      "trigger": "level-up"
+    },
+    "392": {
+      "id": 392,
+      "name": "infernape",
+      "evolvesFrom": 391,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "394": {
+      "id": 394,
+      "name": "prinplup",
+      "evolvesFrom": 393,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "395": {
+      "id": 395,
+      "name": "empoleon",
+      "evolvesFrom": 394,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "397": {
+      "id": 397,
+      "name": "staravia",
+      "evolvesFrom": 396,
+      "method": "level-up",
+      "requirement": "Level 14",
+      "trigger": "level-up"
+    },
+    "398": {
+      "id": 398,
+      "name": "staraptor",
+      "evolvesFrom": 397,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "400": {
+      "id": 400,
+      "name": "bibarel",
+      "evolvesFrom": 399,
+      "method": "level-up",
+      "requirement": "Level 15",
+      "trigger": "level-up"
+    },
+    "402": {
+      "id": 402,
+      "name": "kricketune",
+      "evolvesFrom": 401,
+      "method": "level-up",
+      "requirement": "Level 10",
+      "trigger": "level-up"
+    },
+    "404": {
+      "id": 404,
+      "name": "luxio",
+      "evolvesFrom": 403,
+      "method": "level-up",
+      "requirement": "Level 15",
+      "trigger": "level-up"
+    },
+    "405": {
+      "id": 405,
+      "name": "luxray",
+      "evolvesFrom": 404,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "407": {
+      "id": 407,
+      "name": "roserade",
+      "evolvesFrom": 315,
+      "method": "use-item",
+      "requirement": "shiny stone",
+      "trigger": "use-item"
+    },
+    "409": {
+      "id": 409,
+      "name": "rampardos",
+      "evolvesFrom": 408,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "411": {
+      "id": 411,
+      "name": "bastiodon",
+      "evolvesFrom": 410,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "413": {
+      "id": 413,
+      "name": "wormadam",
+      "evolvesFrom": 412,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "414": {
+      "id": 414,
+      "name": "mothim",
+      "evolvesFrom": 412,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "416": {
+      "id": 416,
+      "name": "vespiquen",
+      "evolvesFrom": 415,
+      "method": "level-up",
+      "requirement": "Level 21",
+      "trigger": "level-up"
+    },
+    "419": {
+      "id": 419,
+      "name": "floatzel",
+      "evolvesFrom": 418,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "421": {
+      "id": 421,
+      "name": "cherrim",
+      "evolvesFrom": 420,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "423": {
+      "id": 423,
+      "name": "gastrodon",
+      "evolvesFrom": 422,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "424": {
+      "id": 424,
+      "name": "ambipom",
+      "evolvesFrom": 190,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "426": {
+      "id": 426,
+      "name": "drifblim",
+      "evolvesFrom": 425,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "428": {
+      "id": 428,
+      "name": "lopunny",
+      "evolvesFrom": 427,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "429": {
+      "id": 429,
+      "name": "mismagius",
+      "evolvesFrom": 200,
+      "method": "use-item",
+      "requirement": "dusk stone",
+      "trigger": "use-item"
+    },
+    "430": {
+      "id": 430,
+      "name": "honchkrow",
+      "evolvesFrom": 198,
+      "method": "use-item",
+      "requirement": "dusk stone",
+      "trigger": "use-item"
+    },
+    "432": {
+      "id": 432,
+      "name": "purugly",
+      "evolvesFrom": 431,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "435": {
+      "id": 435,
+      "name": "skuntank",
+      "evolvesFrom": 434,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "437": {
+      "id": 437,
+      "name": "bronzong",
+      "evolvesFrom": 436,
+      "method": "level-up",
+      "requirement": "Level 33",
+      "trigger": "level-up"
+    },
+    "444": {
+      "id": 444,
+      "name": "gabite",
+      "evolvesFrom": 443,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "445": {
+      "id": 445,
+      "name": "garchomp",
+      "evolvesFrom": 444,
+      "method": "level-up",
+      "requirement": "Level 48",
+      "trigger": "level-up"
+    },
+    "448": {
+      "id": 448,
+      "name": "lucario",
+      "evolvesFrom": 447,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "450": {
+      "id": 450,
+      "name": "hippowdon",
+      "evolvesFrom": 449,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "452": {
+      "id": 452,
+      "name": "drapion",
+      "evolvesFrom": 451,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "454": {
+      "id": 454,
+      "name": "toxicroak",
+      "evolvesFrom": 453,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "457": {
+      "id": 457,
+      "name": "lumineon",
+      "evolvesFrom": 456,
+      "method": "level-up",
+      "requirement": "Level 31",
+      "trigger": "level-up"
+    },
+    "460": {
+      "id": 460,
+      "name": "abomasnow",
+      "evolvesFrom": 459,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "461": {
+      "id": 461,
+      "name": "weavile",
+      "evolvesFrom": 215,
+      "method": "level-up",
+      "requirement": "night time",
+      "trigger": "level-up"
+    },
+    "462": {
+      "id": 462,
+      "name": "magnezone",
+      "evolvesFrom": 82,
+      "method": "level-up",
+      "requirement": "Specific location",
+      "trigger": "level-up"
+    },
+    "463": {
+      "id": 463,
+      "name": "lickilicky",
+      "evolvesFrom": 108,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "464": {
+      "id": 464,
+      "name": "rhyperior",
+      "evolvesFrom": 112,
+      "method": "trade-with-item",
+      "requirement": "Trade holding protector",
+      "trigger": "trade"
+    },
+    "465": {
+      "id": 465,
+      "name": "tangrowth",
+      "evolvesFrom": 114,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "466": {
+      "id": 466,
+      "name": "electivire",
+      "evolvesFrom": 125,
+      "method": "trade-with-item",
+      "requirement": "Trade holding electirizer",
+      "trigger": "trade"
+    },
+    "467": {
+      "id": 467,
+      "name": "magmortar",
+      "evolvesFrom": 126,
+      "method": "trade-with-item",
+      "requirement": "Trade holding magmarizer",
+      "trigger": "trade"
+    },
+    "468": {
+      "id": 468,
+      "name": "togekiss",
+      "evolvesFrom": 176,
+      "method": "use-item",
+      "requirement": "shiny stone",
+      "trigger": "use-item"
+    },
+    "469": {
+      "id": 469,
+      "name": "yanmega",
+      "evolvesFrom": 193,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "470": {
+      "id": 470,
+      "name": "leafeon",
+      "evolvesFrom": 133,
+      "method": "level-up",
+      "requirement": "Specific location",
+      "trigger": "level-up"
+    },
+    "471": {
+      "id": 471,
+      "name": "glaceon",
+      "evolvesFrom": 133,
+      "method": "level-up",
+      "requirement": "Specific location",
+      "trigger": "level-up"
+    },
+    "472": {
+      "id": 472,
+      "name": "gliscor",
+      "evolvesFrom": 207,
+      "method": "level-up",
+      "requirement": "night time",
+      "trigger": "level-up"
+    },
+    "473": {
+      "id": 473,
+      "name": "mamoswine",
+      "evolvesFrom": 221,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "474": {
+      "id": 474,
+      "name": "porygon-z",
+      "evolvesFrom": 233,
+      "method": "trade-with-item",
+      "requirement": "Trade holding dubious disc",
+      "trigger": "trade"
+    },
+    "475": {
+      "id": 475,
+      "name": "gallade",
+      "evolvesFrom": 281,
+      "method": "use-item",
+      "requirement": "dawn stone",
+      "trigger": "use-item"
+    },
+    "476": {
+      "id": 476,
+      "name": "probopass",
+      "evolvesFrom": 299,
+      "method": "level-up",
+      "requirement": "Specific location",
+      "trigger": "level-up"
+    },
+    "477": {
+      "id": 477,
+      "name": "dusknoir",
+      "evolvesFrom": 356,
+      "method": "trade-with-item",
+      "requirement": "Trade holding reaper cloth",
+      "trigger": "trade"
+    },
+    "478": {
+      "id": 478,
+      "name": "froslass",
+      "evolvesFrom": 361,
+      "method": "use-item",
+      "requirement": "dawn stone",
+      "trigger": "use-item"
+    },
+    "496": {
+      "id": 496,
+      "name": "servine",
+      "evolvesFrom": 495,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "497": {
+      "id": 497,
+      "name": "serperior",
+      "evolvesFrom": 496,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "499": {
+      "id": 499,
+      "name": "pignite",
+      "evolvesFrom": 498,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "500": {
+      "id": 500,
+      "name": "emboar",
+      "evolvesFrom": 499,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "502": {
+      "id": 502,
+      "name": "dewott",
+      "evolvesFrom": 501,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "503": {
+      "id": 503,
+      "name": "samurott",
+      "evolvesFrom": 502,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "505": {
+      "id": 505,
+      "name": "watchog",
+      "evolvesFrom": 504,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "507": {
+      "id": 507,
+      "name": "herdier",
+      "evolvesFrom": 506,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "508": {
+      "id": 508,
+      "name": "stoutland",
+      "evolvesFrom": 507,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "510": {
+      "id": 510,
+      "name": "liepard",
+      "evolvesFrom": 509,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "512": {
+      "id": 512,
+      "name": "simisage",
+      "evolvesFrom": 511,
+      "method": "use-item",
+      "requirement": "leaf stone",
+      "trigger": "use-item"
+    },
+    "514": {
+      "id": 514,
+      "name": "simisear",
+      "evolvesFrom": 513,
+      "method": "use-item",
+      "requirement": "fire stone",
+      "trigger": "use-item"
+    },
+    "516": {
+      "id": 516,
+      "name": "simipour",
+      "evolvesFrom": 515,
+      "method": "use-item",
+      "requirement": "water stone",
+      "trigger": "use-item"
+    },
+    "518": {
+      "id": 518,
+      "name": "musharna",
+      "evolvesFrom": 517,
+      "method": "use-item",
+      "requirement": "moon stone",
+      "trigger": "use-item"
+    },
+    "520": {
+      "id": 520,
+      "name": "tranquill",
+      "evolvesFrom": 519,
+      "method": "level-up",
+      "requirement": "Level 21",
+      "trigger": "level-up"
+    },
+    "521": {
+      "id": 521,
+      "name": "unfezant",
+      "evolvesFrom": 520,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "523": {
+      "id": 523,
+      "name": "zebstrika",
+      "evolvesFrom": 522,
+      "method": "level-up",
+      "requirement": "Level 27",
+      "trigger": "level-up"
+    },
+    "525": {
+      "id": 525,
+      "name": "boldore",
+      "evolvesFrom": 524,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "526": {
+      "id": 526,
+      "name": "gigalith",
+      "evolvesFrom": 525,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "528": {
+      "id": 528,
+      "name": "swoobat",
+      "evolvesFrom": 527,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "530": {
+      "id": 530,
+      "name": "excadrill",
+      "evolvesFrom": 529,
+      "method": "level-up",
+      "requirement": "Level 31",
+      "trigger": "level-up"
+    },
+    "533": {
+      "id": 533,
+      "name": "gurdurr",
+      "evolvesFrom": 532,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "534": {
+      "id": 534,
+      "name": "conkeldurr",
+      "evolvesFrom": 533,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "536": {
+      "id": 536,
+      "name": "palpitoad",
+      "evolvesFrom": 535,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "537": {
+      "id": 537,
+      "name": "seismitoad",
+      "evolvesFrom": 536,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "541": {
+      "id": 541,
+      "name": "swadloon",
+      "evolvesFrom": 540,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "542": {
+      "id": 542,
+      "name": "leavanny",
+      "evolvesFrom": 541,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "544": {
+      "id": 544,
+      "name": "whirlipede",
+      "evolvesFrom": 543,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "545": {
+      "id": 545,
+      "name": "scolipede",
+      "evolvesFrom": 544,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "547": {
+      "id": 547,
+      "name": "whimsicott",
+      "evolvesFrom": 546,
+      "method": "use-item",
+      "requirement": "sun stone",
+      "trigger": "use-item"
+    },
+    "549": {
+      "id": 549,
+      "name": "lilligant",
+      "evolvesFrom": 548,
+      "method": "use-item",
+      "requirement": "sun stone",
+      "trigger": "use-item"
+    },
+    "552": {
+      "id": 552,
+      "name": "krokorok",
+      "evolvesFrom": 551,
+      "method": "level-up",
+      "requirement": "Level 29",
+      "trigger": "level-up"
+    },
+    "553": {
+      "id": 553,
+      "name": "krookodile",
+      "evolvesFrom": 552,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "555": {
+      "id": 555,
+      "name": "darmanitan",
+      "evolvesFrom": 554,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "558": {
+      "id": 558,
+      "name": "crustle",
+      "evolvesFrom": 557,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "560": {
+      "id": 560,
+      "name": "scrafty",
+      "evolvesFrom": 559,
+      "method": "level-up",
+      "requirement": "Level 39",
+      "trigger": "level-up"
+    },
+    "563": {
+      "id": 563,
+      "name": "cofagrigus",
+      "evolvesFrom": 562,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "565": {
+      "id": 565,
+      "name": "carracosta",
+      "evolvesFrom": 564,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "567": {
+      "id": 567,
+      "name": "archeops",
+      "evolvesFrom": 566,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "569": {
+      "id": 569,
+      "name": "garbodor",
+      "evolvesFrom": 568,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "571": {
+      "id": 571,
+      "name": "zoroark",
+      "evolvesFrom": 570,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "573": {
+      "id": 573,
+      "name": "cinccino",
+      "evolvesFrom": 572,
+      "method": "use-item",
+      "requirement": "shiny stone",
+      "trigger": "use-item"
+    },
+    "575": {
+      "id": 575,
+      "name": "gothorita",
+      "evolvesFrom": 574,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "576": {
+      "id": 576,
+      "name": "gothitelle",
+      "evolvesFrom": 575,
+      "method": "level-up",
+      "requirement": "Level 41",
+      "trigger": "level-up"
+    },
+    "578": {
+      "id": 578,
+      "name": "duosion",
+      "evolvesFrom": 577,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "579": {
+      "id": 579,
+      "name": "reuniclus",
+      "evolvesFrom": 578,
+      "method": "level-up",
+      "requirement": "Level 41",
+      "trigger": "level-up"
+    },
+    "581": {
+      "id": 581,
+      "name": "swanna",
+      "evolvesFrom": 580,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "583": {
+      "id": 583,
+      "name": "vanillish",
+      "evolvesFrom": 582,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "584": {
+      "id": 584,
+      "name": "vanilluxe",
+      "evolvesFrom": 583,
+      "method": "level-up",
+      "requirement": "Level 47",
+      "trigger": "level-up"
+    },
+    "586": {
+      "id": 586,
+      "name": "sawsbuck",
+      "evolvesFrom": 585,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "589": {
+      "id": 589,
+      "name": "escavalier",
+      "evolvesFrom": 588,
+      "method": "trade",
+      "requirement": "Trade for shelmet",
+      "trigger": "trade"
+    },
+    "591": {
+      "id": 591,
+      "name": "amoonguss",
+      "evolvesFrom": 590,
+      "method": "level-up",
+      "requirement": "Level 39",
+      "trigger": "level-up"
+    },
+    "593": {
+      "id": 593,
+      "name": "jellicent",
+      "evolvesFrom": 592,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "596": {
+      "id": 596,
+      "name": "galvantula",
+      "evolvesFrom": 595,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "598": {
+      "id": 598,
+      "name": "ferrothorn",
+      "evolvesFrom": 597,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "600": {
+      "id": 600,
+      "name": "klang",
+      "evolvesFrom": 599,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "601": {
+      "id": 601,
+      "name": "klinklang",
+      "evolvesFrom": 600,
+      "method": "level-up",
+      "requirement": "Level 49",
+      "trigger": "level-up"
+    },
+    "603": {
+      "id": 603,
+      "name": "eelektrik",
+      "evolvesFrom": 602,
+      "method": "level-up",
+      "requirement": "Level 39",
+      "trigger": "level-up"
+    },
+    "604": {
+      "id": 604,
+      "name": "eelektross",
+      "evolvesFrom": 603,
+      "method": "use-item",
+      "requirement": "thunder stone",
+      "trigger": "use-item"
+    },
+    "606": {
+      "id": 606,
+      "name": "beheeyem",
+      "evolvesFrom": 605,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "608": {
+      "id": 608,
+      "name": "lampent",
+      "evolvesFrom": 607,
+      "method": "level-up",
+      "requirement": "Level 41",
+      "trigger": "level-up"
+    },
+    "609": {
+      "id": 609,
+      "name": "chandelure",
+      "evolvesFrom": 608,
+      "method": "use-item",
+      "requirement": "dusk stone",
+      "trigger": "use-item"
+    },
+    "611": {
+      "id": 611,
+      "name": "fraxure",
+      "evolvesFrom": 610,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "612": {
+      "id": 612,
+      "name": "haxorus",
+      "evolvesFrom": 611,
+      "method": "level-up",
+      "requirement": "Level 48",
+      "trigger": "level-up"
+    },
+    "614": {
+      "id": 614,
+      "name": "beartic",
+      "evolvesFrom": 613,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "617": {
+      "id": 617,
+      "name": "accelgor",
+      "evolvesFrom": 616,
+      "method": "trade",
+      "requirement": "Trade for karrablast",
+      "trigger": "trade"
+    },
+    "620": {
+      "id": 620,
+      "name": "mienshao",
+      "evolvesFrom": 619,
+      "method": "level-up",
+      "requirement": "Level 50",
+      "trigger": "level-up"
+    },
+    "623": {
+      "id": 623,
+      "name": "golurk",
+      "evolvesFrom": 622,
+      "method": "level-up",
+      "requirement": "Level 43",
+      "trigger": "level-up"
+    },
+    "625": {
+      "id": 625,
+      "name": "bisharp",
+      "evolvesFrom": 624,
+      "method": "level-up",
+      "requirement": "Level 52",
+      "trigger": "level-up"
+    },
+    "628": {
+      "id": 628,
+      "name": "braviary",
+      "evolvesFrom": 627,
+      "method": "level-up",
+      "requirement": "Level 54",
+      "trigger": "level-up"
+    },
+    "630": {
+      "id": 630,
+      "name": "mandibuzz",
+      "evolvesFrom": 629,
+      "method": "level-up",
+      "requirement": "Level 54",
+      "trigger": "level-up"
+    },
+    "634": {
+      "id": 634,
+      "name": "zweilous",
+      "evolvesFrom": 633,
+      "method": "level-up",
+      "requirement": "Level 50",
+      "trigger": "level-up"
+    },
+    "635": {
+      "id": 635,
+      "name": "hydreigon",
+      "evolvesFrom": 634,
+      "method": "level-up",
+      "requirement": "Level 64",
+      "trigger": "level-up"
+    },
+    "637": {
+      "id": 637,
+      "name": "volcarona",
+      "evolvesFrom": 636,
+      "method": "level-up",
+      "requirement": "Level 59",
+      "trigger": "level-up"
+    },
+    "651": {
+      "id": 651,
+      "name": "quilladin",
+      "evolvesFrom": 650,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "652": {
+      "id": 652,
+      "name": "chesnaught",
+      "evolvesFrom": 651,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "654": {
+      "id": 654,
+      "name": "braixen",
+      "evolvesFrom": 653,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "655": {
+      "id": 655,
+      "name": "delphox",
+      "evolvesFrom": 654,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "657": {
+      "id": 657,
+      "name": "frogadier",
+      "evolvesFrom": 656,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "658": {
+      "id": 658,
+      "name": "greninja",
+      "evolvesFrom": 657,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "660": {
+      "id": 660,
+      "name": "diggersby",
+      "evolvesFrom": 659,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "662": {
+      "id": 662,
+      "name": "fletchinder",
+      "evolvesFrom": 661,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "663": {
+      "id": 663,
+      "name": "talonflame",
+      "evolvesFrom": 662,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "665": {
+      "id": 665,
+      "name": "spewpa",
+      "evolvesFrom": 664,
+      "method": "level-up",
+      "requirement": "Level 9",
+      "trigger": "level-up"
+    },
+    "666": {
+      "id": 666,
+      "name": "vivillon",
+      "evolvesFrom": 665,
+      "method": "level-up",
+      "requirement": "Level 12",
+      "trigger": "level-up"
+    },
+    "668": {
+      "id": 668,
+      "name": "pyroar",
+      "evolvesFrom": 667,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "670": {
+      "id": 670,
+      "name": "floette",
+      "evolvesFrom": 669,
+      "method": "level-up",
+      "requirement": "Level 19",
+      "trigger": "level-up"
+    },
+    "671": {
+      "id": 671,
+      "name": "florges",
+      "evolvesFrom": 670,
+      "method": "use-item",
+      "requirement": "shiny stone",
+      "trigger": "use-item"
+    },
+    "673": {
+      "id": 673,
+      "name": "gogoat",
+      "evolvesFrom": 672,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "675": {
+      "id": 675,
+      "name": "pangoro",
+      "evolvesFrom": 674,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "678": {
+      "id": 678,
+      "name": "meowstic",
+      "evolvesFrom": 677,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "680": {
+      "id": 680,
+      "name": "doublade",
+      "evolvesFrom": 679,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "681": {
+      "id": 681,
+      "name": "aegislash",
+      "evolvesFrom": 680,
+      "method": "use-item",
+      "requirement": "dusk stone",
+      "trigger": "use-item"
+    },
+    "683": {
+      "id": 683,
+      "name": "aromatisse",
+      "evolvesFrom": 682,
+      "method": "trade-with-item",
+      "requirement": "Trade holding sachet",
+      "trigger": "trade"
+    },
+    "685": {
+      "id": 685,
+      "name": "slurpuff",
+      "evolvesFrom": 684,
+      "method": "trade-with-item",
+      "requirement": "Trade holding whipped dream",
+      "trigger": "trade"
+    },
+    "687": {
+      "id": 687,
+      "name": "malamar",
+      "evolvesFrom": 686,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "689": {
+      "id": 689,
+      "name": "barbaracle",
+      "evolvesFrom": 688,
+      "method": "level-up",
+      "requirement": "Level 39",
+      "trigger": "level-up"
+    },
+    "691": {
+      "id": 691,
+      "name": "dragalge",
+      "evolvesFrom": 690,
+      "method": "level-up",
+      "requirement": "Level 48",
+      "trigger": "level-up"
+    },
+    "693": {
+      "id": 693,
+      "name": "clawitzer",
+      "evolvesFrom": 692,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "695": {
+      "id": 695,
+      "name": "heliolisk",
+      "evolvesFrom": 694,
+      "method": "use-item",
+      "requirement": "sun stone",
+      "trigger": "use-item"
+    },
+    "697": {
+      "id": 697,
+      "name": "tyrantrum",
+      "evolvesFrom": 696,
+      "method": "level-up",
+      "requirement": "Level 39",
+      "trigger": "level-up"
+    },
+    "699": {
+      "id": 699,
+      "name": "aurorus",
+      "evolvesFrom": 698,
+      "method": "level-up",
+      "requirement": "Level 39",
+      "trigger": "level-up"
+    },
+    "700": {
+      "id": 700,
+      "name": "sylveon",
+      "evolvesFrom": 133,
+      "method": "level-up",
+      "requirement": "High affection",
+      "trigger": "level-up"
+    },
+    "705": {
+      "id": 705,
+      "name": "sliggoo",
+      "evolvesFrom": 704,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "706": {
+      "id": 706,
+      "name": "goodra",
+      "evolvesFrom": 705,
+      "method": "level-up",
+      "requirement": "Level 50",
+      "trigger": "level-up"
+    },
+    "709": {
+      "id": 709,
+      "name": "trevenant",
+      "evolvesFrom": 708,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "711": {
+      "id": 711,
+      "name": "gourgeist",
+      "evolvesFrom": 710,
+      "method": "trade",
+      "requirement": "Trade",
+      "trigger": "trade"
+    },
+    "713": {
+      "id": 713,
+      "name": "avalugg",
+      "evolvesFrom": 712,
+      "method": "level-up",
+      "requirement": "Level 37",
+      "trigger": "level-up"
+    },
+    "715": {
+      "id": 715,
+      "name": "noivern",
+      "evolvesFrom": 714,
+      "method": "level-up",
+      "requirement": "Level 48",
+      "trigger": "level-up"
+    },
+    "723": {
+      "id": 723,
+      "name": "dartrix",
+      "evolvesFrom": 722,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "724": {
+      "id": 724,
+      "name": "decidueye",
+      "evolvesFrom": 723,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "726": {
+      "id": 726,
+      "name": "torracat",
+      "evolvesFrom": 725,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "727": {
+      "id": 727,
+      "name": "incineroar",
+      "evolvesFrom": 726,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "729": {
+      "id": 729,
+      "name": "brionne",
+      "evolvesFrom": 728,
+      "method": "level-up",
+      "requirement": "Level 17",
+      "trigger": "level-up"
+    },
+    "730": {
+      "id": 730,
+      "name": "primarina",
+      "evolvesFrom": 729,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "732": {
+      "id": 732,
+      "name": "trumbeak",
+      "evolvesFrom": 731,
+      "method": "level-up",
+      "requirement": "Level 14",
+      "trigger": "level-up"
+    },
+    "733": {
+      "id": 733,
+      "name": "toucannon",
+      "evolvesFrom": 732,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "735": {
+      "id": 735,
+      "name": "gumshoos",
+      "evolvesFrom": 734,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "737": {
+      "id": 737,
+      "name": "charjabug",
+      "evolvesFrom": 736,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "738": {
+      "id": 738,
+      "name": "vikavolt",
+      "evolvesFrom": 737,
+      "method": "level-up",
+      "requirement": "Level up",
+      "trigger": "level-up"
+    },
+    "740": {
+      "id": 740,
+      "name": "crabominable",
+      "evolvesFrom": 739,
+      "method": "level-up",
+      "requirement": "Specific location",
+      "trigger": "level-up"
+    },
+    "743": {
+      "id": 743,
+      "name": "ribombee",
+      "evolvesFrom": 742,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "745": {
+      "id": 745,
+      "name": "lycanroc",
+      "evolvesFrom": 744,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "748": {
+      "id": 748,
+      "name": "toxapex",
+      "evolvesFrom": 747,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "750": {
+      "id": 750,
+      "name": "mudsdale",
+      "evolvesFrom": 749,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "752": {
+      "id": 752,
+      "name": "araquanid",
+      "evolvesFrom": 751,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "754": {
+      "id": 754,
+      "name": "lurantis",
+      "evolvesFrom": 753,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "756": {
+      "id": 756,
+      "name": "shiinotic",
+      "evolvesFrom": 755,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "758": {
+      "id": 758,
+      "name": "salazzle",
+      "evolvesFrom": 757,
+      "method": "level-up",
+      "requirement": "Level 33",
+      "trigger": "level-up"
+    },
+    "760": {
+      "id": 760,
+      "name": "bewear",
+      "evolvesFrom": 759,
+      "method": "level-up",
+      "requirement": "Level 27",
+      "trigger": "level-up"
+    },
+    "762": {
+      "id": 762,
+      "name": "steenee",
+      "evolvesFrom": 761,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "763": {
+      "id": 763,
+      "name": "tsareena",
+      "evolvesFrom": 762,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "768": {
+      "id": 768,
+      "name": "golisopod",
+      "evolvesFrom": 767,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "770": {
+      "id": 770,
+      "name": "palossand",
+      "evolvesFrom": 769,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "773": {
+      "id": 773,
+      "name": "silvally",
+      "evolvesFrom": 772,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "783": {
+      "id": 783,
+      "name": "hakamo-o",
+      "evolvesFrom": 782,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "784": {
+      "id": 784,
+      "name": "kommo-o",
+      "evolvesFrom": 783,
+      "method": "level-up",
+      "requirement": "Level 45",
+      "trigger": "level-up"
+    },
+    "790": {
+      "id": 790,
+      "name": "cosmoem",
+      "evolvesFrom": 789,
+      "method": "level-up",
+      "requirement": "Level 43",
+      "trigger": "level-up"
+    },
+    "791": {
+      "id": 791,
+      "name": "solgaleo",
+      "evolvesFrom": 790,
+      "method": "level-up",
+      "requirement": "Level 53",
+      "trigger": "level-up"
+    },
+    "792": {
+      "id": 792,
+      "name": "lunala",
+      "evolvesFrom": 790,
+      "method": "level-up",
+      "requirement": "Level 53",
+      "trigger": "level-up"
+    },
+    "804": {
+      "id": 804,
+      "name": "naganadel",
+      "evolvesFrom": 803,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "811": {
+      "id": 811,
+      "name": "thwackey",
+      "evolvesFrom": 810,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "812": {
+      "id": 812,
+      "name": "rillaboom",
+      "evolvesFrom": 811,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "814": {
+      "id": 814,
+      "name": "raboot",
+      "evolvesFrom": 813,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "815": {
+      "id": 815,
+      "name": "cinderace",
+      "evolvesFrom": 814,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "817": {
+      "id": 817,
+      "name": "drizzile",
+      "evolvesFrom": 816,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "818": {
+      "id": 818,
+      "name": "inteleon",
+      "evolvesFrom": 817,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "820": {
+      "id": 820,
+      "name": "greedent",
+      "evolvesFrom": 819,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "822": {
+      "id": 822,
+      "name": "corvisquire",
+      "evolvesFrom": 821,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "823": {
+      "id": 823,
+      "name": "corviknight",
+      "evolvesFrom": 822,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "825": {
+      "id": 825,
+      "name": "dottler",
+      "evolvesFrom": 824,
+      "method": "level-up",
+      "requirement": "Level 10",
+      "trigger": "level-up"
+    },
+    "826": {
+      "id": 826,
+      "name": "orbeetle",
+      "evolvesFrom": 825,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "828": {
+      "id": 828,
+      "name": "thievul",
+      "evolvesFrom": 827,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "830": {
+      "id": 830,
+      "name": "eldegoss",
+      "evolvesFrom": 829,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "832": {
+      "id": 832,
+      "name": "dubwool",
+      "evolvesFrom": 831,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "834": {
+      "id": 834,
+      "name": "drednaw",
+      "evolvesFrom": 833,
+      "method": "level-up",
+      "requirement": "Level 22",
+      "trigger": "level-up"
+    },
+    "836": {
+      "id": 836,
+      "name": "boltund",
+      "evolvesFrom": 835,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "838": {
+      "id": 838,
+      "name": "carkol",
+      "evolvesFrom": 837,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "839": {
+      "id": 839,
+      "name": "coalossal",
+      "evolvesFrom": 838,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "841": {
+      "id": 841,
+      "name": "flapple",
+      "evolvesFrom": 840,
+      "method": "use-item",
+      "requirement": "tart apple",
+      "trigger": "use-item"
+    },
+    "842": {
+      "id": 842,
+      "name": "appletun",
+      "evolvesFrom": 840,
+      "method": "use-item",
+      "requirement": "sweet apple",
+      "trigger": "use-item"
+    },
+    "844": {
+      "id": 844,
+      "name": "sandaconda",
+      "evolvesFrom": 843,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "847": {
+      "id": 847,
+      "name": "barraskewda",
+      "evolvesFrom": 846,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "849": {
+      "id": 849,
+      "name": "toxtricity",
+      "evolvesFrom": 848,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "851": {
+      "id": 851,
+      "name": "centiskorch",
+      "evolvesFrom": 850,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "853": {
+      "id": 853,
+      "name": "grapploct",
+      "evolvesFrom": 852,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "855": {
+      "id": 855,
+      "name": "polteageist",
+      "evolvesFrom": 854,
+      "method": "use-item",
+      "requirement": "cracked pot",
+      "trigger": "use-item"
+    },
+    "857": {
+      "id": 857,
+      "name": "hattrem",
+      "evolvesFrom": 856,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "858": {
+      "id": 858,
+      "name": "hatterene",
+      "evolvesFrom": 857,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "860": {
+      "id": 860,
+      "name": "morgrem",
+      "evolvesFrom": 859,
+      "method": "level-up",
+      "requirement": "Level 32",
+      "trigger": "level-up"
+    },
+    "861": {
+      "id": 861,
+      "name": "grimmsnarl",
+      "evolvesFrom": 860,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "862": {
+      "id": 862,
+      "name": "obstagoon",
+      "evolvesFrom": 264,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "863": {
+      "id": 863,
+      "name": "perrserker",
+      "evolvesFrom": 52,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "864": {
+      "id": 864,
+      "name": "cursola",
+      "evolvesFrom": 222,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "865": {
+      "id": 865,
+      "name": "sirfetchd",
+      "evolvesFrom": 83,
+      "method": "three-critical-hits",
+      "requirement": "three-critical-hits",
+      "trigger": "three-critical-hits"
+    },
+    "866": {
+      "id": 866,
+      "name": "mr-rime",
+      "evolvesFrom": 122,
+      "method": "level-up",
+      "requirement": "Level 42",
+      "trigger": "level-up"
+    },
+    "867": {
+      "id": 867,
+      "name": "runerigus",
+      "evolvesFrom": 562,
+      "method": "take-damage",
+      "requirement": "take-damage",
+      "trigger": "take-damage"
+    },
+    "869": {
+      "id": 869,
+      "name": "alcremie",
+      "evolvesFrom": 868,
+      "method": "spin",
+      "requirement": "spin",
+      "trigger": "spin"
+    },
+    "873": {
+      "id": 873,
+      "name": "frosmoth",
+      "evolvesFrom": 872,
+      "method": "level-up",
+      "requirement": "High friendship",
+      "trigger": "level-up"
+    },
+    "879": {
+      "id": 879,
+      "name": "copperajah",
+      "evolvesFrom": 878,
+      "method": "level-up",
+      "requirement": "Level 34",
+      "trigger": "level-up"
+    },
+    "886": {
+      "id": 886,
+      "name": "drakloak",
+      "evolvesFrom": 885,
+      "method": "level-up",
+      "requirement": "Level 50",
+      "trigger": "level-up"
+    },
+    "887": {
+      "id": 887,
+      "name": "dragapult",
+      "evolvesFrom": 886,
+      "method": "level-up",
+      "requirement": "Level 60",
+      "trigger": "level-up"
+    },
+    "892": {
+      "id": 892,
+      "name": "urshifu",
+      "evolvesFrom": 891,
+      "method": "tower-of-darkness",
+      "requirement": "tower-of-darkness",
+      "trigger": "tower-of-darkness"
+    },
+    "899": {
+      "id": 899,
+      "name": "wyrdeer",
+      "evolvesFrom": 234,
+      "method": "agile-style-move",
+      "requirement": "agile-style-move",
+      "trigger": "agile-style-move"
+    },
+    "900": {
+      "id": 900,
+      "name": "kleavor",
+      "evolvesFrom": 123,
+      "method": "use-item",
+      "requirement": "black augurite",
+      "trigger": "use-item"
+    },
+    "901": {
+      "id": 901,
+      "name": "ursaluna",
+      "evolvesFrom": 217,
+      "method": "use-item",
+      "requirement": "peat block",
+      "trigger": "use-item"
+    },
+    "902": {
+      "id": 902,
+      "name": "basculegion",
+      "evolvesFrom": 550,
+      "method": "recoil-damage",
+      "requirement": "recoil-damage",
+      "trigger": "recoil-damage"
+    },
+    "903": {
+      "id": 903,
+      "name": "sneasler",
+      "evolvesFrom": 215,
+      "method": "level-up",
+      "requirement": "day time",
+      "trigger": "level-up"
+    },
+    "904": {
+      "id": 904,
+      "name": "overqwil",
+      "evolvesFrom": 211,
+      "method": "strong-style-move",
+      "requirement": "strong-style-move",
+      "trigger": "strong-style-move"
+    },
+    "907": {
+      "id": 907,
+      "name": "floragato",
+      "evolvesFrom": 906,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "908": {
+      "id": 908,
+      "name": "meowscarada",
+      "evolvesFrom": 907,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "910": {
+      "id": 910,
+      "name": "crocalor",
+      "evolvesFrom": 909,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "911": {
+      "id": 911,
+      "name": "skeledirge",
+      "evolvesFrom": 910,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "913": {
+      "id": 913,
+      "name": "quaxwell",
+      "evolvesFrom": 912,
+      "method": "level-up",
+      "requirement": "Level 16",
+      "trigger": "level-up"
+    },
+    "914": {
+      "id": 914,
+      "name": "quaquaval",
+      "evolvesFrom": 913,
+      "method": "level-up",
+      "requirement": "Level 36",
+      "trigger": "level-up"
+    },
+    "916": {
+      "id": 916,
+      "name": "oinkologne",
+      "evolvesFrom": 915,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "918": {
+      "id": 918,
+      "name": "spidops",
+      "evolvesFrom": 917,
+      "method": "level-up",
+      "requirement": "Level 15",
+      "trigger": "level-up"
+    },
+    "920": {
+      "id": 920,
+      "name": "lokix",
+      "evolvesFrom": 919,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "922": {
+      "id": 922,
+      "name": "pawmo",
+      "evolvesFrom": 921,
+      "method": "level-up",
+      "requirement": "Level 18",
+      "trigger": "level-up"
+    },
+    "923": {
+      "id": 923,
+      "name": "pawmot",
+      "evolvesFrom": 922,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "925": {
+      "id": 925,
+      "name": "maushold",
+      "evolvesFrom": 924,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "927": {
+      "id": 927,
+      "name": "dachsbun",
+      "evolvesFrom": 926,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "929": {
+      "id": 929,
+      "name": "dolliv",
+      "evolvesFrom": 928,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "930": {
+      "id": 930,
+      "name": "arboliva",
+      "evolvesFrom": 929,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "933": {
+      "id": 933,
+      "name": "naclstack",
+      "evolvesFrom": 932,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "934": {
+      "id": 934,
+      "name": "garganacl",
+      "evolvesFrom": 933,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "936": {
+      "id": 936,
+      "name": "armarouge",
+      "evolvesFrom": 935,
+      "method": "use-item",
+      "requirement": "auspicious armor",
+      "trigger": "use-item"
+    },
+    "937": {
+      "id": 937,
+      "name": "ceruledge",
+      "evolvesFrom": 935,
+      "method": "use-item",
+      "requirement": "malicious armor",
+      "trigger": "use-item"
+    },
+    "939": {
+      "id": 939,
+      "name": "bellibolt",
+      "evolvesFrom": 938,
+      "method": "use-item",
+      "requirement": "thunder stone",
+      "trigger": "use-item"
+    },
+    "941": {
+      "id": 941,
+      "name": "kilowattrel",
+      "evolvesFrom": 940,
+      "method": "level-up",
+      "requirement": "Level 25",
+      "trigger": "level-up"
+    },
+    "943": {
+      "id": 943,
+      "name": "mabosstiff",
+      "evolvesFrom": 942,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "945": {
+      "id": 945,
+      "name": "grafaiai",
+      "evolvesFrom": 944,
+      "method": "level-up",
+      "requirement": "Level 28",
+      "trigger": "level-up"
+    },
+    "947": {
+      "id": 947,
+      "name": "brambleghast",
+      "evolvesFrom": 946,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "949": {
+      "id": 949,
+      "name": "toedscruel",
+      "evolvesFrom": 948,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "952": {
+      "id": 952,
+      "name": "scovillain",
+      "evolvesFrom": 951,
+      "method": "use-item",
+      "requirement": "fire stone",
+      "trigger": "use-item"
+    },
+    "954": {
+      "id": 954,
+      "name": "rabsca",
+      "evolvesFrom": 953,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "956": {
+      "id": 956,
+      "name": "espathra",
+      "evolvesFrom": 955,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "958": {
+      "id": 958,
+      "name": "tinkatuff",
+      "evolvesFrom": 957,
+      "method": "level-up",
+      "requirement": "Level 24",
+      "trigger": "level-up"
+    },
+    "959": {
+      "id": 959,
+      "name": "tinkaton",
+      "evolvesFrom": 958,
+      "method": "level-up",
+      "requirement": "Level 38",
+      "trigger": "level-up"
+    },
+    "961": {
+      "id": 961,
+      "name": "wugtrio",
+      "evolvesFrom": 960,
+      "method": "level-up",
+      "requirement": "Level 26",
+      "trigger": "level-up"
+    },
+    "964": {
+      "id": 964,
+      "name": "palafin",
+      "evolvesFrom": 963,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "966": {
+      "id": 966,
+      "name": "revavroom",
+      "evolvesFrom": 965,
+      "method": "level-up",
+      "requirement": "Level 40",
+      "trigger": "level-up"
+    },
+    "970": {
+      "id": 970,
+      "name": "glimmora",
+      "evolvesFrom": 969,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "972": {
+      "id": 972,
+      "name": "houndstone",
+      "evolvesFrom": 971,
+      "method": "level-up",
+      "requirement": "Level 30",
+      "trigger": "level-up"
+    },
+    "975": {
+      "id": 975,
+      "name": "cetitan",
+      "evolvesFrom": 974,
+      "method": "use-item",
+      "requirement": "ice stone",
+      "trigger": "use-item"
+    },
+    "979": {
+      "id": 979,
+      "name": "annihilape",
+      "evolvesFrom": 57,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "980": {
+      "id": 980,
+      "name": "clodsire",
+      "evolvesFrom": 194,
+      "method": "level-up",
+      "requirement": "Level 20",
+      "trigger": "level-up"
+    },
+    "981": {
+      "id": 981,
+      "name": "farigiraf",
+      "evolvesFrom": 203,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "982": {
+      "id": 982,
+      "name": "dudunsparce",
+      "evolvesFrom": 206,
+      "method": "level-up",
+      "requirement": "Learn specific move",
+      "trigger": "level-up"
+    },
+    "983": {
+      "id": 983,
+      "name": "kingambit",
+      "evolvesFrom": 625,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    },
+    "997": {
+      "id": 997,
+      "name": "arctibax",
+      "evolvesFrom": 996,
+      "method": "level-up",
+      "requirement": "Level 35",
+      "trigger": "level-up"
+    },
+    "998": {
+      "id": 998,
+      "name": "baxcalibur",
+      "evolvesFrom": 997,
+      "method": "level-up",
+      "requirement": "Level 54",
+      "trigger": "level-up"
+    },
+    "1000": {
+      "id": 1000,
+      "name": "gholdengo",
+      "evolvesFrom": 999,
+      "method": "other",
+      "requirement": "other",
+      "trigger": "other"
+    }
+  }
+}

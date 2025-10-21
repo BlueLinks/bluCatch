@@ -7,10 +7,13 @@ The scraper service automatically updates your Pokémon data from Bulbapedia whe
 ## How It Works
 
 1. **Startup Scrape (Auto-Resume)**: When you run `docker-compose up`, the scraper runs immediately and **automatically resumes from where it left off** (using `public/data/.bulbapedia-progress.json`)
-2. **Scheduled Updates (Full Refresh)**: The cron job runs on schedule (default: daily at 3:30 AM) and does a **full refresh starting from the beginning** (uses `--fresh --replace` flags)
+2. **Scheduled Updates (Auto-Resume)**: The cron job runs on schedule (default: daily at 3:30 AM) and **continues from the last position**, updating/merging data without clearing
 3. **Shared Data**: The scraped data is shared with the main app via a Docker volume
 
-**Note**: The scraper doesn't need a `--resume` flag - it automatically resumes by default unless you use `--fresh`
+**Important**: 
+- The scraper **NEVER clears existing data** by default - it only adds/updates
+- Manual data and previous scrapes are preserved
+- To do a full refresh, manually run with `--fresh --replace` flags
 
 ## Usage
 
@@ -111,8 +114,17 @@ docker exec blucatch-scraper crontab -l
 ## Notes
 
 -   **Startup behavior**: Automatically resumes from last position (reads `public/data/.bulbapedia-progress.json`)
--   **Scheduled behavior**: Full refresh from beginning (uses `--fresh --replace` to clear progress and data)
+-   **Scheduled behavior**: Also auto-resumes from last position (merge/update only, preserves existing data)
+-   **No data clearing**: The scraper NEVER clears data unless you manually run with `--fresh --replace`
 -   **No --resume flag needed**: The scraper auto-resumes by default unless you use `--fresh`
+
+## Flags
+
+- `--fresh`: Start from Pokemon #1, clear progress file
+- `--replace`: Clear ALL Pokemon data from games.json before starting (use with caution!)
+- `--skip-existing`: Skip Pokemon that already have data (useful for preserving manual entries)
+- `--range=X-Y`: Only process Pokemon X through Y
+- `--dry-run`: Test run without saving changes
 -   A full scrape takes 30-60 minutes for all 1025 Pokémon
 -   The scraper uses simple HTTP requests (reliable and works well)
 -   Data is persisted in the `data` Docker volume

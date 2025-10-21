@@ -64,11 +64,42 @@ function detectAcquisitionMethod(location) {
 }
 
 /**
- * Check if a location is a valid acquisition method (not just a transfer)
+ * Check if a Pokemon is a baby Pokemon (breeding-only)
+ * @param {number} pokemonId - Pokemon ID
+ * @returns {boolean} True if it's a baby Pokemon
+ */
+function isBabyPokemon(pokemonId) {
+  const babyPokemonIds = [
+    172, // Pichu
+    173, // Cleffa
+    174, // Igglybuff
+    175, // Togepi
+    236, // Tyrogue
+    238, // Smoochum
+    239, // Elekid
+    240, // Magby
+    298, // Azurill
+    360, // Wynaut
+    406, // Budew
+    433, // Chingling
+    438, // Bonsly
+    439, // Mime Jr
+    440, // Happiny
+    446, // Munchlax
+    447, // Riolu
+    458  // Mantyke
+  ];
+  
+  return babyPokemonIds.includes(pokemonId);
+}
+
+/**
+ * Check if a location is a valid acquisition method (not just a transfer or breeding)
  * @param {string} location - Location string
+ * @param {number} pokemonId - Pokemon ID (optional, for baby Pokemon exception)
  * @returns {boolean} True if it's a valid acquisition method
  */
-function isValidAcquisitionMethod(location) {
+function isValidAcquisitionMethod(location, pokemonId = null) {
   const invalidMethods = [
     'trade',
     'poké transfer',
@@ -90,7 +121,19 @@ function isValidAcquisitionMethod(location) {
     locationLower === method || locationLower === method + ',' || locationLower === method + '.'
   );
   
-  return !isOnlyTransferMethod;
+  if (isOnlyTransferMethod) return false;
+  
+  // Filter out breeding entries UNLESS this is a baby Pokemon
+  if (locationLower.startsWith('breed ')) {
+    // Keep breeding entries for baby Pokemon
+    if (pokemonId && isBabyPokemon(pokemonId)) {
+      return true;
+    }
+    // Filter out for non-baby Pokemon
+    return false;
+  }
+  
+  return true;
 }
 
 /**
@@ -109,8 +152,8 @@ export function calculateAvailablePokemon(selectedGames, games, pokemon, enabled
   // First, build a map of ALL games where each Pokemon appears
   games.forEach(game => {
     game.pokemon.forEach(pokemonEntry => {
-      // Skip transfer-only methods that aren't real acquisition methods
-      if (!isValidAcquisitionMethod(pokemonEntry.location)) {
+      // Skip transfer-only methods and breeding (except for baby Pokemon)
+      if (!isValidAcquisitionMethod(pokemonEntry.location, pokemonEntry.id)) {
         return;
       }
       
@@ -136,8 +179,8 @@ export function calculateAvailablePokemon(selectedGames, games, pokemon, enabled
   
   selectedGameObjects.forEach(game => {
     game.pokemon.forEach(pokemonEntry => {
-      // Skip transfer-only methods that aren't real acquisition methods
-      if (!isValidAcquisitionMethod(pokemonEntry.location)) {
+      // Skip transfer-only methods and breeding (except for baby Pokemon)
+      if (!isValidAcquisitionMethod(pokemonEntry.location, pokemonEntry.id)) {
         return;
       }
       

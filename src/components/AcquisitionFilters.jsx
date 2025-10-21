@@ -67,6 +67,13 @@ const ACQUISITION_METHODS = [
     default: false
   },
   {
+    id: 'dual-slot',
+    label: 'Dual-Slot Mode',
+    icon: '🎮',
+    description: 'Gen 4: Requires GBA cartridge inserted',
+    default: false
+  },
+  {
     id: 'special',
     label: 'Special Methods',
     icon: '✨',

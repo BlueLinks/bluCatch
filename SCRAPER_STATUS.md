@@ -64,9 +64,9 @@ The Bulbapedia table for these Pokemon has 70+ rows with complex rowspan/colspan
 The Docker scraper is configured to:
 
 1. **Auto-resume** on startup from the last processed Pokemon
-2. **Full refresh daily** at 3:30 AM
+2. **Continue daily** at 3:30 AM (also auto-resumes, preserves all data)
 
-Just let the container run and it will process all remaining Pokemon.
+Just let the container run and it will process all remaining Pokemon. Data is never cleared unless you manually run with `--fresh --replace`.
 
 **To check progress:**
 
@@ -95,12 +95,17 @@ rm public/data/.bulbapedia-progress.json
 node scripts/scrape-bulbapedia.js --fresh --replace
 ```
 
-## Recent Fixes Applied (Not Yet Pushed)
+## Recent Fixes Applied
 
 1. ✅ **Docker Spinner Spam Fixed** - No more thousands of duplicate log lines in Portainer
 2. ✅ **Special Pokemon Names Fixed** - Ho-Oh, Nidoran♀/♂, Farfetch'd, Mr. Mime, Type: Null, etc.
 3. ✅ **Bulbapedia Links Added** - Click "📖 Bulbapedia" on any Pokemon in the UI to learn more
-4. ⚠️ **Mew Missing Data** - Not a bug! Scraper just hasn't reached #151 yet.
+4. ✅ **Cron Job Fixed** - Now merges/updates data instead of clearing everything daily
+5. ✅ **Transfer Methods Filtered** - No more "Trade" or "Poké Transfer" as acquisition methods
+6. ✅ **Breeding Filtered** - "Breed X" entries hidden except for baby Pokemon (Pichu, Cleffa, etc.)
+7. ✅ **Dual-Slot Mode** - New toggle for Gen 4 dual-slot Pokemon (requires GBA cartridge)
+8. ✅ **Evolution Methods** - Evolutions now show requirements (trade, stones, friendship, etc.)
+9. ✅ **Data Validation** - Scraper warns about suspicious/incomplete data
 
 ## What Happens When Scraping Completes
 

@@ -90,41 +90,18 @@ const formatGameNames = (games) => {
   return parts.join(' • ');
 };
 
-// Filter out unhelpful acquisition methods
-const isValidAcquisitionMethod = (location) => {
-  const invalidMethods = [
-    'trade',
-    'poké transfer',
-    'poke transfer',
-    'pal park',
-    'time capsule',
-    'poké transporter',
-    'poke transporter',
-    'pokémon bank',
-    'pokemon bank',
-    'pokémon home',
-    'pokemon home'
-  ];
-  
-  const locationLower = location.toLowerCase();
-  
-  // Check if the location is ONLY one of these methods (not a specific trade like "In-game trade")
-  const isOnlyTransferMethod = invalidMethods.some(method => 
-    locationLower === method || locationLower === method + ',' || locationLower === method + '.'
-  );
-  
-  return !isOnlyTransferMethod;
-};
-
 // Separate tooltip component for better performance
 const PokemonTooltip = memo(function PokemonTooltip({ pokemon, position, allPokemonGamesMap }) {
   const allGames = allPokemonGamesMap.get(pokemon.id) || [];
+  
+  // Note: Filtering is now handled in calculator.js at the data level
+  // All games in allPokemonGamesMap are already filtered for valid acquisition methods
   const selectedGames = useMemo(() => 
-    allGames.filter(g => g.isSelected && isValidAcquisitionMethod(g.location)), 
+    allGames.filter(g => g.isSelected), 
     [allGames]
   );
   const unselectedGames = useMemo(() => 
-    allGames.filter(g => !g.isSelected && isValidAcquisitionMethod(g.location)), 
+    allGames.filter(g => !g.isSelected), 
     [allGames]
   );
   

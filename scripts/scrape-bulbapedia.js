@@ -545,9 +545,50 @@ function parseGameLocations(html, pokemonId, pokemonName) {
   return gameLocations;
 }
 
+/**
+ * Validate Pokemon data quality
+ * @param {number} pokemonId - Pokemon ID
+ * @param {string} pokemonName - Pokemon name
+ * @param {Object} gameLocations - Game locations data
+ */
+function validatePokemonData(pokemonId, pokemonName, gameLocations) {
+  const generation = pokemonId <= 151 ? 1 : pokemonId <= 251 ? 2 : null;
+  
+  // Warn if common Pokemon (Gen 1-2) has very few entries
+  if (generation && generation <= 2) {
+    const entryCount = Object.keys(gameLocations).length;
+    if (entryCount < 3) {
+      console.log(`  [${pokemonId}] ⚠️  VALIDATION: Only ${entryCount} game entries for Gen ${generation} Pokemon (expected more)`);
+      log(`  VALIDATION WARNING: #${pokemonId} ${pokemonName} only has ${entryCount} games`, true);
+    }
+  }
+  
+  // Warn about suspiciously short/generic locations
+  for (const [gameId, locations] of Object.entries(gameLocations)) {
+    for (const loc of locations) {
+      if (loc.location.length < 5 && !loc.location.match(/^(Event|Gift|Trade)$/i)) {
+        console.log(`  [${pokemonId}] ⚠️  VALIDATION: Suspiciously short location in ${gameId}: "${loc.location}"`);
+        log(`  VALIDATION WARNING: #${pokemonId} ${pokemonName} has short location: "${loc.location}" in ${gameId}`, true);
+      }
+    }
+  }
+}
+
 // Process a single Pokemon
-async function processPokemon(pokemon, gamesData) {
+async function processPokemon(pokemon, gamesData, skipExisting = false) {
   const { id, name } = pokemon;
+  
+  // Skip if --skip-existing flag is set and Pokemon already has data
+  if (skipExisting) {
+    const hasExistingData = gamesData.games.some(game => 
+      game.pokemon.some(p => p.id === id)
+    );
+    
+    if (hasExistingData) {
+      console.log(`  [${id}] ${name.padEnd(20)} ⏭️  Skipped (already has data, --skip-existing enabled)`);
+      return { added: 0, skipped: true, reason: 'skip-existing' };
+    }
+  }
   const url = `https://bulbapedia.bulbagarden.net/w/api.php?action=parse&format=json&page=${encodeURIComponent(name)}_(Pok%C3%A9mon)`;
   
   try {
@@ -584,6 +625,9 @@ async function processPokemon(pokemon, gamesData) {
       console.log(`  [${id}] ${name.padEnd(20)} ⚠️  No locations found`);
       return { added: 0, skipped: true };
     }
+    
+    // Data validation warnings
+    validatePokemonData(id, name, gameLocations);
     
     // Add to games
     let added = 0;
@@ -634,6 +678,7 @@ async function main() {
   const dryRun = args.includes('--dry-run');
   const fresh = args.includes('--fresh');
   const replace = args.includes('--replace'); // NEW: Replace existing data
+  const skipExisting = args.includes('--skip-existing'); // NEW: Skip Pokemon with existing data
   const rangeArg = args.find(arg => arg.startsWith('--range='));
   
   let startId = 1;
@@ -696,11 +741,13 @@ async function main() {
   console.log(`   Range: Pokemon ${startId}-${endId} (${endId - startId + 1} total)`);
   console.log(`   Mode: ${dryRun ? 'DRY RUN (no saves)' : 'LIVE (will update)'}`);
   console.log(`   Data: ${replace ? 'REPLACE existing (clean slate)' : 'ADD to existing'}`);
+  console.log(`   Skip existing: ${skipExisting ? 'YES (preserve manual data)' : 'NO (fetch all)'}`);
   console.log(`   Delay: ${DELAY_MS}ms ± ${DELAY_VARIANCE}ms (randomized 4-12s)`);
   console.log(`   Retries: Up to ${MAX_RETRIES} retries with escalating delays`);
   console.log(`   Retry delays: ${RETRY_DELAYS.map(d => d/1000 + 's').join(', ')}`);
   console.log(`   Log file: bulbapedia-scraper.log`);
   console.log(`   Halt on error: YES (will not skip failed Pokemon)`);
+  console.log(`   Validation: Enabled (warnings for suspicious data)`);
   console.log(`   Estimated time: ${Math.ceil((endId - startId + 1) * (DELAY_MS / 1000) / 60)} minutes\n`);
   
   log(`\n=== New scrape session ===`);
@@ -792,7 +839,7 @@ async function main() {
       }
     }
     
-    const result = await processPokemon(pokemon, gamesData);
+    const result = await processPokemon(pokemon, gamesData, skipExisting);
     
     // HALT on error - don't continue
     if (result.error) {

@@ -29,6 +29,7 @@ public/api/
 # Progress tracking files
 .bulbapedia-progress.json
 public/data/.bulbapedia-progress.json
+public/data/evolutions.json
 
 # Development documentation (keep only essential ones)
 BULBAPEDIA_SCRAPER_GUIDE.md
