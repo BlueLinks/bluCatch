@@ -64,7 +64,7 @@ export function getAvailablePokemon(selectedGames, enabledGenerations, enabledMe
   // Build enabled methods list
   const methodsList = Object.keys(enabledMethods).filter(m => enabledMethods[m] !== false);
   
-  // Get all encounters for all pokemon (for tooltips)
+  // Get all encounters for all pokemon (for tooltips) with enhanced data
   const allEncounters = query(`
     SELECT 
       e.pokemon_id,
@@ -72,13 +72,21 @@ export function getAvailablePokemon(selectedGames, enabledGenerations, enabledMe
       g.name as game_name,
       e.location,
       e.acquisition_method,
+      e.encounter_area,
+      e.encounter_rate,
+      e.level_range,
+      e.time_of_day,
+      e.season,
+      e.special_requirements,
+      l.name as location_name,
       CASE WHEN e.game_id IN (${selectedGames.map(() => '?').join(',') || 'NULL'}) THEN 1 ELSE 0 END as is_selected
     FROM encounters e
     JOIN games g ON e.game_id = g.id
+    LEFT JOIN locations l ON e.location_id = l.id
     ORDER BY g.generation, g.name
   `, selectedGames.length > 0 ? selectedGames : []);
   
-  // Build allPokemonGamesMap (all games where each pokemon appears)
+  // Build allPokemonGamesMap (all games where each pokemon appears) with enhanced data
   const allPokemonGamesMap = new Map();
   allEncounters.forEach(enc => {
     if (!allPokemonGamesMap.has(enc.pokemon_id)) {
@@ -90,7 +98,14 @@ export function getAvailablePokemon(selectedGames, enabledGenerations, enabledMe
       gameId: enc.game_id,
       gameName: enc.game_name,
       location: enc.location,
+      locationName: enc.location_name,
       method: enc.acquisition_method,
+      encounterArea: enc.encounter_area,
+      encounterRate: enc.encounter_rate,
+      levelRange: enc.level_range,
+      timeOfDay: enc.time_of_day,
+      season: enc.season,
+      specialRequirements: enc.special_requirements ? JSON.parse(enc.special_requirements) : null,
       isSelected: enc.is_selected === 1 && isMethodEnabled,
       methodDisabled: !isMethodEnabled
     });
@@ -114,15 +129,23 @@ export function getAvailablePokemon(selectedGames, enabledGenerations, enabledMe
       e.game_id,
       g.name as game_name,
       e.location,
-      e.acquisition_method
+      e.acquisition_method,
+      e.encounter_area,
+      e.encounter_rate,
+      e.level_range,
+      e.time_of_day,
+      e.season,
+      e.special_requirements,
+      l.name as location_name
     FROM encounters e
     JOIN games g ON e.game_id = g.id
+    LEFT JOIN locations l ON e.location_id = l.id
     WHERE e.game_id IN (${gamePlaceholders})
       AND e.acquisition_method IN (${methodPlaceholders})
     ORDER BY g.generation, g.name
   `, [...selectedGames, ...methodsList]);
   
-  // Build pokemonGameMap (only selected games)
+  // Build pokemonGameMap (only selected games) with enhanced data
   const pokemonGameMap = new Map();
   availableEncounters.forEach(enc => {
     if (!pokemonGameMap.has(enc.pokemon_id)) {
@@ -132,7 +155,14 @@ export function getAvailablePokemon(selectedGames, enabledGenerations, enabledMe
       gameId: enc.game_id,
       gameName: enc.game_name,
       location: enc.location,
+      locationName: enc.location_name,
       method: enc.acquisition_method,
+      encounterArea: enc.encounter_area,
+      encounterRate: enc.encounter_rate,
+      levelRange: enc.level_range,
+      timeOfDay: enc.time_of_day,
+      season: enc.season,
+      specialRequirements: enc.special_requirements ? JSON.parse(enc.special_requirements) : null,
       isSelected: true
     });
   });
@@ -330,9 +360,18 @@ export function getPokemonDetails(pokemonId) {
       g.platform,
       g.box_art,
       e.location,
-      e.acquisition_method
+      e.acquisition_method,
+      e.encounter_area,
+      e.encounter_rate,
+      e.level_range,
+      e.time_of_day,
+      e.season,
+      e.special_requirements,
+      l.name as location_name,
+      l.location_type
     FROM encounters e
     JOIN games g ON e.game_id = g.id
+    LEFT JOIN locations l ON e.location_id = l.id
     WHERE e.pokemon_id = ?
     ORDER BY g.generation, g.name
   `, [pokemonId]);

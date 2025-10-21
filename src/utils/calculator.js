@@ -1,10 +1,24 @@
 /**
  * Detect acquisition method from location string
+ * Note: This is primarily for backward compatibility. New data uses the acquisition_method field from the database.
  * @param {string} location - Location description
+ * @param {Object} specialRequirements - Special requirements object from database
  * @returns {string} Acquisition method ID
  */
-function detectAcquisitionMethod(location) {
+function detectAcquisitionMethod(location, specialRequirements = null) {
+  // Check special requirements first (from database)
+  if (specialRequirements?.dualSlot) {
+    return 'dual-slot';
+  }
+  
   const lowerLocation = location.toLowerCase();
+  
+  // Dual-slot detection (Gen 4 DS games with GBA cartridge)
+  // Patterns: (FireRed), (LeafGreen), (Ruby), (Sapphire), (Emerald), (Any Gen III game)
+  const dualSlotPattern = /\((firered|leafgreen|ruby|sapphire|emerald|any gen iii game)\)/i;
+  if (dualSlotPattern.test(location)) {
+    return 'dual-slot';
+  }
   
   // Event detection
   if (lowerLocation.includes('event') || 

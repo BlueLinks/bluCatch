@@ -18,8 +18,8 @@ WORKDIR /app
 
 # Copy only files needed for scraper
 COPY package*.json ./
-# Install with fallback to regular npm install if ci fails
-RUN npm ci --no-audit || npm install --no-audit
+# Install ALL dependencies (including better-sqlite3 for route scraper)
+RUN npm ci --no-audit --include=dev || npm install --no-audit
 
 COPY public/data/ ./public/data/
 COPY scripts/ ./scripts/
@@ -28,25 +28,17 @@ COPY scripts/ ./scripts/
 # Default cron schedule: run daily at 03:30 server time
 # Can be overridden with CRON_SCHEDULE env
 ENV CRON_SCHEDULE="30 3 * * *"
+ENV FORCE_FRESH=false
+ENV SCRAPE_MODE=routes-only
+ENV START_POKEMON=1
+ENV END_POKEMON=151
 
-# Create entrypoint script that runs immediately and sets up cron
-RUN printf '%s\n' '#!/bin/bash' \
-    'set -euo pipefail' \
-    'echo "Starting scraper container..."' \
-    'echo "Cron schedule: ${CRON_SCHEDULE}"' \
-    '' \
-    '# Run scraper immediately on startup (automatically resumes from last position)' \
-    'echo "Running initial scrape (will auto-resume from progress file)..."' \
-    'node /app/scripts/scrape-bulbapedia.js 2>&1 | tee /var/log/initial-scrape.log' \
-    'echo "Initial scrape completed with exit code: $?"' \
-    '' \
-    '# Set up cron for scheduled updates (auto-resume, merge only)' \
-    'echo "${CRON_SCHEDULE} node /app/scripts/scrape-bulbapedia.js >> /var/log/cron.log 2>&1" > /etc/crontabs/root' \
-    'touch /var/log/cron.log' \
-    '' \
-    '# Start cron in foreground' \
-    'echo "Starting cron daemon..."' \
-    'crond -f -l 2' > /entrypoint.sh && chmod +x /entrypoint.sh
+# Copy enhanced entrypoint script
+COPY scripts/docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Install sqlite3 for database operations
+RUN apk add --no-cache sqlite
 
 # Healthcheck: recent cron log activity within last 6 hours
 HEALTHCHECK --interval=5m --timeout=10s --start-period=1m --retries=3 CMD bash -c 'test -f /var/log/cron.log && find /var/log/cron.log -mmin -360 | grep -q cron.log'
