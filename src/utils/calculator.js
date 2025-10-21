@@ -183,7 +183,14 @@ export function calculateAvailablePokemon(selectedGames, games, pokemon, enabled
         location: pokemonEntry.location,
         method: method,
         isSelected: selectedGames.includes(game.id) && isMethodEnabled,
-        methodDisabled: !isMethodEnabled
+        methodDisabled: !isMethodEnabled,
+        // Include encounter details
+        encounterArea: pokemonEntry.encounterArea,
+        encounterRate: pokemonEntry.encounterRate,
+        levelRange: pokemonEntry.levelRange,
+        timeOfDay: pokemonEntry.timeOfDay,
+        season: pokemonEntry.season,
+        specialRequirements: pokemonEntry.specialRequirements
       });
     });
   });
@@ -210,6 +217,13 @@ export function calculateAvailablePokemon(selectedGames, games, pokemon, enabled
           gameId: game.id,
           gameName: game.name,
           location: pokemonEntry.location,
+          // Include encounter details
+          encounterArea: pokemonEntry.encounterArea,
+          encounterRate: pokemonEntry.encounterRate,
+          levelRange: pokemonEntry.levelRange,
+          timeOfDay: pokemonEntry.timeOfDay,
+          season: pokemonEntry.season,
+          specialRequirements: pokemonEntry.specialRequirements,
           method: method,
           isSelected: true
         });

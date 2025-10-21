@@ -108,12 +108,13 @@
 }
 
 .sprite-container.unavailable {
-  opacity: 0.3;
-  filter: grayscale(100%);
+  opacity: 0.6;
+  filter: grayscale(80%);
 }
 
 .sprite-container.unavailable:hover {
-  opacity: 0.5;
+  opacity: 0.9;
+  filter: grayscale(0%);
   transform: scale(1.05);
 }
 
@@ -295,10 +296,22 @@
   color: #a8dadc;
   font-size: 0.85rem;
   font-style: italic;
+  line-height: 1.5;
+}
+
+.tooltip-location .encounter-detail {
+  color: #64b5f6;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .tooltip-game-unselected .tooltip-location {
   color: #888;
+}
+
+.tooltip-game-unselected .tooltip-location .encounter-detail {
+  color: #777;
 }
 
 .tooltip-unavailable {

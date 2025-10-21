@@ -1,35 +1,51 @@
-version: '3.8'
-
 services:
+  # Backend API
+  blucatch-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: blucatch-backend
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DB_PATH=/app/data/pokemon.db
+    volumes:
+      - data:/app/data:ro
+    networks:
+      - pokemon-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend (Nginx)
   blucatch:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=/api
     container_name: blucatch
     ports:
       - "3000:80"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.blucatch.rule=Host(`blucatch.local`)"
-      - "traefik.http.routers.blucatch.entrypoints=web"
-      - "traefik.http.services.blucatch.loadbalancer.server.port=80"
+    depends_on:
+      blucatch-backend:
+        condition: service_healthy
+    networks:
+      - pokemon-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
-    volumes:
-      - data:/usr/share/nginx/html/data:ro
-    networks:
-      - pokemon-network
 
-  # Scraper service: runs immediately on startup, then on schedule
-  # View logs: docker logs -f blucatch-scraper
-  # View initial scrape: docker exec blucatch-scraper cat /var/log/initial-scrape.log
+  # Scraper service
   blucatch-scraper:
     build:
       context: .
@@ -37,12 +53,15 @@ services:
     container_name: blucatch-scraper
     environment:
       - NODE_ENV=production
-      - CRON_SCHEDULE=30 3 * * *  # Daily at 3:30 AM (change as needed)
+      - CRON_SCHEDULE=30 3 * * *
     restart: unless-stopped
     volumes:
       - data:/app/public/data
     networks:
       - pokemon-network
+    depends_on:
+      blucatch-backend:
+        condition: service_healthy
 
 networks:
   pokemon-network:

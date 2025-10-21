@@ -42,15 +42,66 @@ function App() {
   
   const [acquisitionFiltersOpen, setAcquisitionFiltersOpen] = useState(false);
 
-  // Load data on mount
+  // Load data on mount from API
   useEffect(() => {
+    // Add cache-busting timestamp
+    const cacheBust = Date.now();
     Promise.all([
-      fetch('/data/pokemon.json').then(res => res.json()),
-      fetch('/data/games.json').then(res => res.json())
+      fetch(`/api/pokemon?_cb=${cacheBust}`).then(res => res.json()),
+      fetch(`/api/games?_cb=${cacheBust}`).then(res => res.json()),
+      fetch(`/api/available-pokemon?gameIds=all&_cb=${cacheBust}`).then(res => res.json())
     ])
-      .then(([pokemonData, gamesData]) => {
-        setPokemon(pokemonData.pokemon);
-        setGames(gamesData.games);
+      .then(([pokemonData, gamesData, encountersData]) => {
+        // Convert API data to the format expected by calculator
+        // Group encounters by game and deduplicate by pokemon+location
+        const gamesWithPokemon = gamesData.map(game => {
+          const gameEncounters = encountersData.filter(enc => 
+            enc.gameId === game.id || enc.game_id === game.id
+          );
+          
+          // Deduplicate encounters by pokemon_id + location
+          // Keep the one with the most complete data (most non-null fields)
+          const encounterMap = new Map();
+          gameEncounters.forEach(enc => {
+            const key = `${enc.pokemon_id || enc.pokemonId}-${enc.location}`;
+            const existing = encounterMap.get(key);
+            
+            // Count non-null fields
+            const countNonNull = (e) => [
+              e.encounter_area || e.encounterArea,
+              e.encounter_rate || e.encounterRate,
+              e.level_range || e.levelRange
+            ].filter(v => v !== null && v !== undefined).length;
+            
+            if (!existing || countNonNull(enc) > countNonNull(existing)) {
+              encounterMap.set(key, enc);
+            }
+          });
+          
+          return {
+            ...game,
+            pokemon: Array.from(encounterMap.values()).map(enc => ({
+              id: enc.pokemonId || enc.pokemon_id,
+              location: enc.location,
+              acquisitionMethod: enc.acquisitionMethod || enc.acquisition_method,
+              encounterArea: enc.encounterArea || enc.encounter_area,
+              encounterRate: enc.encounterRate || enc.encounter_rate,
+              levelRange: enc.levelRange || enc.level_range,
+              timeOfDay: enc.timeOfDay || enc.time_of_day,
+              season: enc.season,
+              specialRequirements: enc.specialRequirements || enc.special_requirements
+            }))
+          };
+        });
+        
+        console.log('=== DATA LOADED ===');
+        console.log('Total games:', gamesWithPokemon.length);
+        console.log('Sample game (Blue):', gamesWithPokemon.find(g => g.id === 'blue'));
+        console.log('Blue - Caterpie encounters:', gamesWithPokemon.find(g => g.id === 'blue')?.pokemon.filter(p => p.id === 10));
+        console.log('==================');
+        
+        setPokemon(pokemonData);
+        setGames(gamesWithPokemon);
         setLoading(false);
       })
       .catch(error => {

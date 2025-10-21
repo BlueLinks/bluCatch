@@ -240,10 +240,22 @@
   color: #a8dadc;
   font-size: 0.9rem;
   font-style: italic;
+  line-height: 1.5;
+}
+
+.encounter-detail {
+  color: #64b5f6;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .bottom-sheet-game.unselected .bottom-sheet-location {
   color: #888;
+}
+
+.bottom-sheet-game.unselected .encounter-detail {
+  color: #777;
 }
 
 .bottom-sheet-unavailable {

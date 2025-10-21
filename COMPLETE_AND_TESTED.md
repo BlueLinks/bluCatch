@@ -3,12 +3,15 @@
 ## Issue: Portainer Volume Deletion Not Working
 
 ### Root Cause
+
 **Data files were committed to git** and got restored on every deploy:
-- `public/data/pokemon.db` (732KB)
-- `public/data/games.json` (2.0MB)
-- `public/data/pokemon.json` (179KB)
+
+-   `public/data/pokemon.db` (732KB)
+-   `public/data/games.json` (2.0MB)
+-   `public/data/pokemon.json` (179KB)
 
 ### Solution Implemented
+
 1. ✅ Removed data files from git tracking
 2. ✅ Updated `.gitignore` to exclude all generated data
 3. ✅ Created `init-database.js` to build fresh schema
@@ -19,6 +22,7 @@
 ## Full Flow Tested End-to-End
 
 ### Test Command Sequence:
+
 ```bash
 # 1. Delete database
 rm -f public/data/pokemon.db
@@ -48,6 +52,7 @@ sqlite3 public/data/pokemon.db "SELECT COUNT(*) FROM encounters WHERE pokemon_id
 ```
 
 ### Test Results: ✅ ALL PASSING
+
 ```
 🧪 Running Scraper Data Quality Tests
 
@@ -72,17 +77,21 @@ sqlite3 public/data/pokemon.db "SELECT COUNT(*) FROM encounters WHERE pokemon_id
 ## What Happens on Portainer Deploy Now
 
 ### 1. Delete Volume (Optional)
-- Deletes container data
-- Truly wipes database (no git restore!)
+
+-   Deletes container data
+-   Truly wipes database (no git restore!)
 
 ### 2. Pull Latest Code
+
 ```bash
 git pull origin main
 ```
-- Gets latest scraper fixes
-- **NO data files** (removed from git)
+
+-   Gets latest scraper fixes
+-   **NO data files** (removed from git)
 
 ### 3. Docker Build & Start
+
 ```
 docker-entrypoint.sh runs:
 
@@ -140,44 +149,52 @@ c8ee874 fix: Enhanced spin-off game location filtering
 ## Key Improvements
 
 ### Data Quality
-- **99.5% encounters have level data** (was 86%)
-- **100% have location and area** (was missing)
-- **80+ spin-off patterns filtered** (was leaking through)
-- **Clean route regions** (Sinnoh Route 204, not Kanto)
+
+-   **99.5% encounters have level data** (was 86%)
+-   **100% have location and area** (was missing)
+-   **80+ spin-off patterns filtered** (was leaking through)
+-   **Clean route regions** (Sinnoh Route 204, not Kanto)
 
 ### Docker/Portainer
-- **Data files removed from git** (3MB saved)
-- **FORCE_FRESH truly wipes** (deletes DB file)
-- **Fresh database creation** (init-database.js)
-- **No stale data restoration** (git doesn't restore)
+
+-   **Data files removed from git** (3MB saved)
+-   **FORCE_FRESH truly wipes** (deletes DB file)
+-   **Fresh database creation** (init-database.js)
+-   **No stale data restoration** (git doesn't restore)
 
 ### Parser Improvements
-- **Multi-floor locations** (Victory Road 0→117 encounters)
-- **Standard table detection** (Pokémon/Games/Location/Levels/Rate headers)
-- **Game abbreviation handling** (R, B, Y, FR, LG, P, E, BD, SP, etc.)
-- **Multi-game row parsing** (one row = 3 encounters for R+B+Y)
+
+-   **Multi-floor locations** (Victory Road 0→117 encounters)
+-   **Standard table detection** (Pokémon/Games/Location/Levels/Rate headers)
+-   **Game abbreviation handling** (R, B, Y, FR, LG, P, E, BD, SP, etc.)
+-   **Multi-game row parsing** (one row = 3 encounters for R+B+Y)
 
 ### Test Suite
-- **9 automated tests** (100% passing)
-- **Edge case coverage** (Moltres, Caterpie, BDSP, Let's Go)
-- **CI/CD ready** (exits with code 1 on failure)
+
+-   **9 automated tests** (100% passing)
+-   **Edge case coverage** (Moltres, Caterpie, BDSP, Let's Go)
+-   **CI/CD ready** (exits with code 1 on failure)
 
 ---
 
 ## 🚀 Deploy Instructions
 
 ### 1. Push to GitHub
+
 ```bash
 git push origin main
 ```
 
 ### 2. In Portainer
-- **Optional**: Delete `blucatch` volume (for truly fresh start)
-- Go to Stacks → Your Stack
-- Click "Pull and redeploy"
+
+-   **Optional**: Delete `blucatch` volume (for truly fresh start)
+-   Go to Stacks → Your Stack
+-   Click "Pull and redeploy"
 
 ### 3. Monitor Logs
+
 Watch scraper container logs for:
+
 ```
 ✅ Database deleted - will recreate from scratch
 ✅ Inserted 37 games
@@ -190,7 +207,9 @@ Watch scraper container logs for:
 ```
 
 ### 4. Verify
+
 After ~15-20 minutes, check:
+
 ```bash
 # API endpoint test
 curl http://your-domain/api/dex/10.json | jq '.games[] | select(.id == "firered") | .locations[0]'
@@ -208,13 +227,12 @@ curl http://your-domain/api/dex/10.json | jq '.games[] | select(.id == "firered"
 
 ## Status: ✅ PRODUCTION READY
 
-- All critical bugs fixed
-- Full end-to-end testing complete
-- Docker flow verified
-- Data persistence issue resolved
-- 9/9 tests passing
-- 99.5% data completeness
-- Clean spin-off filtering
+-   All critical bugs fixed
+-   Full end-to-end testing complete
+-   Docker flow verified
+-   Data persistence issue resolved
+-   9/9 tests passing
+-   99.5% data completeness
+-   Clean spin-off filtering
 
 **Push now**: `git push origin main`
-

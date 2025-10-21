@@ -92,164 +92,100 @@ function isValidLocation(locationName) {
   
   const lower = locationName.toLowerCase();
   
-  // Filter out invalid entries
-  if (lower.includes('unavailable')) return false;
-  if (lower.includes('unobtainable')) return false;
-  if (lower.includes('trade only')) return false;
-  if (lower.includes('evolve')) return false;
+  // Basic exclusions
+  if (lower.includes('unavailable') || lower.includes('unobtainable')) return false;
+  if (lower.includes('trade only') || lower.includes('evolve')) return false;
   if (lower.match(/^generation\s+[ivx]+$/i)) return false;
   
-  // Filter out game names (these are not locations)
-  const gameNames = [
-    'red', 'blue', 'yellow', 'gold', 'silver', 'crystal',
-    'ruby', 'sapphire', 'emerald', 'firered', 'leafgreen',
-    'diamond', 'pearl', 'platinum', 'heartgold', 'soulsilver',
-    'black', 'white', 'black 2', 'white 2',
-    'x', 'y', 'omega ruby', 'alpha sapphire',
-    'sun', 'moon', 'ultra sun', 'ultra moon',
-    'sword', 'shield', 'brilliant diamond', 'shining pearl',
-    'legends: arceus', 'scarlet', 'violet',
-    "let's go pikachu", "let's go eevee"
+  // Whitelist patterns for main-series games
+  const validPatterns = [
+    // Routes (all regions)
+    /^route\s+\d+$/i,
+    /^(kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|paldea)\s+route\s+\d+$/i,
+    
+    // Cities and Towns (common patterns)
+    /\s+(city|town|village)$/i,
+    
+    // Known main-series locations - Gen 1 (Kanto)
+    /^(viridian|pewter|cerulean|lavender|vermilion|celadon|fuchsia|saffron|cinnabar|pallet|indigo plateau)(\s+(city|town))?$/i,
+    /^(victory road|rock tunnel|safari zone|pokemon mansion|power plant|seafoam islands|digletts cave)(\s+\(.*\))?$/i,
+    /^(mt\.\s*moon|viridian forest)(\s+\(.*\))?$/i,
+    
+    // Gen 2 (Johto)
+    /^(new bark|cherrygrove|violet|azalea|goldenrod|ecruteak|olivine|cianwood|mahogany|blackthorn)(\s+(city|town))?$/i,
+    /^(union cave|slowpoke well|ilex forest|national park|burned tower|bell tower|tin tower|whirl islands|dark cave|ice path|dragons den|mt\.\s*mortar|mt\.\s*silver|tohjo falls|sprout tower|ruins of alph)(\s+\(.*\))?$/i,
+    
+    // Gen 3 (Hoenn)
+    /^(littleroot|oldale|petalburg|rustboro|dewford|slateport|mauville|verdanturf|fallarbor|lavaridge|fortree|lilycove|mossdeep|sootopolis|pacifidlog|ever grande)(\s+(city|town))?$/i,
+    /^(petalburg woods|granite cave|meteor falls|jagged pass|fiery path|new mauville|shoal cave|cave of origin|sky pillar|mirage island|desert ruins|island cave|ancient tomb|sealed chamber|scorched slab|terra cave|marine cave|rusturf tunnel|abandoned ship|sea mauville|seafloor cavern|mt\.\s*chimney|mt\.\s*pyre|desert underpass|altering cave|artisan cave|faraway island|navel rock|birth island|southern island)(\s+\(.*\))?$/i,
+    
+    // Gen 4 (Sinnoh)
+    /^(twinleaf|sandgem|jubilife|oreburgh|floaroma|eterna|hearthome|solaceon|veilstone|pastoria|celestic|canalave|snowpoint|sunyshore|pokemon league)(\s+(city|town))?$/i,
+    /^(oreburgh gate|ravaged path|valley windworks|eterna forest|wayward cave|old chateau|great marsh|lost tower|solaceon ruins|lake valor|lake verity|lake acuity|stark mountain|snowpoint temple|spear pillar|distortion world|turnback cave|sendoff spring|fullmoon island|newmoon island|spring path|maniac tunnel|iron island|acuity lakefront|valor lakefront|verity lakefront|mt\.\s*coronet|victory road|oreburgh mine|fuego ironworks|ruin maniac cave)(\s+\(.*\))?$/i,
+    /^(ramanas park|distortion room)$/i,
+    
+    // Gen 5 (Unova)
+    /^(nuvema|accumula|striaton|nacrene|castelia|nimbasa|driftveil|mistralton|icirrus|opelucid|lacunosa|undella|black city|white forest|aspertia|virbank|humilau|lentimas)(\s+(city|town))?$/i,
+    /^(twist mountain|dragonspiral tower|relic castle|chargestone cave|celestial tower|reversal mountain|strange house|abundant shrine|undella bay|victory road|giant chasm|route 4|pinwheel forest|wellspring cave|mistralton cave|lostlorn forest|clay tunnel|seaside cave|p2 laboratory|liberty garden|marvelous bridge)(\s+\(.*\))?$/i,
+    
+    // Gen 6 (Kalos)
+    /^(vaniville|aquacorde|santalune|lumiose|camphrier|ambrette|cyllage|geosenge|shalour|coumarine|laverre|dendemille|anistar|couriway|snowbelle|kiloude)(\s+(city|town))?$/i,
+    /^(santalune forest|connecting cave|reflection cave|glittering cave|terminus cave|pokemon village|frost cavern|lost hotel|azure bay|sea spirit's den|kalos power plant|tower of mastery)(\s+\(.*\))?$/i,
+    
+    // Gen 7 (Alola)
+    /^(iki|hau'oli|heahea|paniola|konikoni|malie|tapu village|seafolk village|po town)(\s+(city|town|village))?$/i,
+    /^(ten carat hill|verdant cavern|melemele meadow|seaward cave|brooklet hill|lush jungle|diglett's tunnel|memorial hill|akala outskirts|haina desert|mount lanakila|lake of the (sunne|moone)|vast poni canyon|resolution cave|poni meadow|poni coast|ancient poni path|poni wilds|poni breaker coast|exeggutor island|wela volcano park|malie garden|hokulani observatory|thrifty megamart|aether paradise|ultra space|ultra megalopolis|konikoni city|hano beach)(\s+\(.*\))?$/i,
+    
+    // Gen 8 (Galar)
+    /^(postwick|wedgehurst|motostoke|turffield|hulbury|stow-on-side|ballonlea|circhester|spikemuth|hammerlocke|wyndon)(\s+(city|town))?$/i,
+    /^(slumbering weald|galar mine|motostoke outskirts|glimwood tangle|watchtower ruins|dusty bowl|giant's seat|stony wilderness|lake of outrage|crown tundra|giant's bed|old cemetery|snowslide slope|tunnel to the top|path to the peak|ballimere lake|dyna tree hill|max lair|wild area|route 9 tunnel|galar mine no\.\s*2|axew's eye|dynamax adventure|honeycalm island)(\s+\(.*\))?$/i,
+    
+    // Gen 9 (Paldea)
+    /^(cabo poco|mesagoza|los platos|cortondo|alfornada|zapapico|cascarrafa|medali|montenevera|levincia|artazon|porto marinada)(\s+(city|town))?$/i,
+    /^(south province|east province|west province|north province|poco path|inlet grotto|dalizapa passage|alfornada cavern|glaseado mountain|area zero|asado desert|north paldean sea|south paldean sea|west paldean sea|east paldean sea)(\s+.*)?$/i,
+    
+    // DLC Locations - Kitakami & Blueberry Academy
+    /^(mossui town|loyalty plaza|kitakami road|apple hills|oni's hold|oni mountain|crystal pool|wistful fields|fellhorn gorge|paradise barrens|timeless woods|infernal pass)(\s+.*)?$/i,
+    
+    // Islands (Sevii, Alola, etc)
+    /^(one|two|three|four|five|six|seven)\s+island$/i,
+    /^(mt\.\s*ember|berry forest|icefall cave|lost cave|altering cave|pattern bush|dotted hole|tanoby ruins|trainer tower|three isle port|five isle meadow|water path|outcast island|resort gorgeous|memorial pillar|treasure beach|kindle road|cape brink|bond bridge|water labyrinth|canyon entrance|sevault canyon|ruin valley)$/i,
+    
+    // Special battle facilities
+    /^(pokemon league|elite four|hall of fame|battle tower|battle frontier|battle subway|battle tree|battle royal dome|battle agency|battle maison|battle resort)$/i,
+    
+    // Caves and Mountains (generic patterns for main series)
+    /^(mt\.|mount)\s+\w+$/i,
   ];
   
-  for (const game of gameNames) {
-    if (lower === game || lower === game + ' version') return false;
-  }
+  // Check if location matches any valid pattern
+  const isValid = validPatterns.some(pattern => pattern.test(lower));
   
-  // Filter out spin-off games and apps
-  if (lower.includes('trozei')) return false;
-  if (lower.includes('shuffle')) return false;
-  if (lower.includes('quest')) return false;
-  if (lower.includes('duel')) return false;
-  if (lower.includes('snap')) return false;
-  if (lower.includes('stadium')) return false;
-  if (lower.includes('ranger')) return false;
-  if (lower.match(/\bstage\s+\d+/)) return false; // "Stage 1", "Stage 03", etc.
-  if (lower.match(/\bsalon:/)) return false; // Shuffle stages
-  if (lower.includes('celebration stamps')) return false;
-  if (lower.includes('anniversary')) return false;
-  if (lower.includes('rumble')) return false;
-  if (lower.includes('mystery dungeon')) return false;
-  
-  // Filter out spin-off location names
-  if (lower.includes(' sea') && !lower.includes('seafoam')) return false; // "Bulbasaur Sea", "Charizard Sea"
-  if (lower === 'field' || lower === 'cave' || lower === 'forest') return false; // Too generic
-  if (lower.includes('hideaway:')) return false; // Legends Arceus spin-off areas
-  if (lower.includes('origin hideaway')) return false;
-  if (lower.includes('temple') && !lower.includes('ruins') && !lower.includes('distortion')) return false; // Spin-off temples
-  
-  // Filter out spin-off game specific locations
-  const spinoffLocations = [
-    // Mystery Dungeon series (dungeons and towns)
-    'baram town', 'capim town', 'dolce island', 'noe town', 'sahra town', 'aegis cave', 
-    'sky tower', 'joyous tower', 'mystifying forest', 'mystery jungle', 'silent forest', 
-    'torchlit labyrinth', 'verdant plaza', 'lyra forest', 'ultra forest', 'lapis lakeside', 
-    'western cave', 'buried relic', 'silver trench', 'hero pokémon', 'partner pokémon', 'fainted pokémon',
-    'fiery field', 'northwind field', 'lightning field', 'magma cavern', 'lava zone',
-    'mt. faraway', 'mt. thunder', 'mt. freeze', 'purity forest', 'murky cave', 'oran forest', 
-    'dusk forest', 'oddity cave', 'vien forest', 'howling forest',
-    
-    // Snap / New Snap (often have generic names + island references)
-    'florio nature park', 'elsewhere forest', 'belusylva island', 'lental seafloor',
-    'cave (snap)', 'river (snap)', 'reef (snap)', 'jungle (snap)',
-    'blushing beach', 'bright beach', 'reef (new snap)', 'sweltering sands',
-    'remains island', 'faldera island', 'voluca island', 'aurus island',
-    
-    // Ranger series
-    'fall city', 'ringtown', 'summerland', 'wintown', 'chicole village', 'hinder cape',
-    'forest temple', 'kisara plain', 'olive jungle', 'dolce island',
-    
-    // Rumble series
-    'silent forest', 'everspring valley', 'model train room', 'locomotive café', 'variety battle',
-    'origin hideaway', 'old-growth woods',
-    
-    // PokéPark
-    'poképark', 'meeting place', 'meadow zone', 'granite zone', 'beach zone', 'iceberg zone',
-    
-    // Pinball
-    'red field', 'blue field', 'bonus stage', 'pallet town (pinball)', 'viridian city (pinball)',
-    
-    // Channel, Trozei, Quest, Shuffle, Sleep
-    'bus stop', 'phobos train', 'endless level', 'trozei battle', 'mr. who\'s den',
-    'puerto blanco', 'blau salon', 'greengrass isle', 'cyan beach', 'taupe hollow', 'snowdrop tundra',
-    
-    // Rumble Rush (Seas)
-    'charizard sea', 'gengar sea', 'castform sea', 'mimikyu sea', 'mewtwo sea', 'bulbasaur sea',
-    
-    // Masters EX, Café ReMix, other
-    'trainer lodge', 'menu development', 'delivery', 'celebration stamps', 'scottie/bettie',
-    'gym leader castle', 'island scan', 'mightywide river', 'odd temple', 'mirage spot', 
-    'nfc figurine', 'random chance', 'sol laboratory', 'haunted zone'
+  // Additional blacklist for BDSP unparseable caves and Legends Arceus locations
+  const blacklist = [
+    /^grand underground$/i,
+    /^(spacious|grassland|volcanic|swampy|fountainspring|riverbank|dazzling|whiteout|icy|rocky|stargleam|glacial|big bluff|typhlo|sandsear|bogsunk|still-water)\s+cav(e|ern)$/i,
+    /^(obsidian fieldlands|crimson mirelands|cobalt coastlands|coronet highlands|alabaster icelands)$/i,
+    /^(droning meadow|nature's pantry|deertrack path|grueling grove|oreburrow tunnel|celestica ruins|sacred plaza|primeval grotto|ancient retreat|shrouded ruins|solitary spring|cloudcap pass)$/i,
+    // Ranger locations
+    /^(altru building|altru tower|oil field hideout|union road|chicole village|pueltown)$/i,
+    // Mystery Dungeon
+    /^(wish cave|solar cave|mt\.\s*blaze|uproar forest|eternal tower|treeshroud forest|southern cavern|rasp cavern|midnight forest|labyrinth cave|mt\.\s*bristle)$/i,
+    // Rumble
+    /^(ruby field|sapphire field|rock mountain|cheerful meadow|cavern zone|waterfall cave)$/i,
+    // Other spin-offs
+    /^(spooky manor|town outskirts|noisy forest|pleasant forest|rugged road|rugged mountain|dim cave|scary cave|beautiful beach|stormy beach|blue lake|icy cave|volcano path|fields?|sea|treehouse|route|desert region|research camp|mirage spot)$/i,
+    // New Snap
+    /^(prestige precept center|mirage desert|green path)$/i,
+    // Masters EX / Cafe Mix / other
+    /^(nimbasa gym|cerulean gym|league club room)$/i,
+    // Generic invalid locations
+    /^(vermilion city streets|courages cavern|brawlers' cave|reveler's road|challenger's cave|kala'e bay|sea skim|cycling road|brine cave|sea of wailord|bellsproutegg|crevice cave|seagrass haven)$/i,
   ];
-  if (spinoffLocations.some(loc => lower.includes(loc))) return false;
   
-  // Filter out locations with colons (usually spin-off game battle/challenge names)
-  // e.g., "Chill Battle: The Forest of Memories", "Pearl Marsh: Pearl Lake"
-  if (lower.includes(':') && !lower.includes("let's go")) return false;
+  if (blacklist.some(pattern => pattern.test(lower))) return false;
   
-  // Filter out generic single-word locations (usually from spin-offs like Snap)
-  // These are too vague to be real main-series locations
-  const genericWords = ['river', 'jungle', 'beach', 'meadow', 'plains', 'mountain', 'desert', 'reef', 'routes'];
-  if (genericWords.includes(lower)) return false;
-  
-  // Filter out invalid route numbers (Route 47 in Kanto doesn't exist)
-  // Kanto only has routes 1-25
-  if (lower.match(/route\s+(4[7-9]|[5-9]\d)/)) return false; // Route 47-99
-  
-  // Filter out transfer/migration methods
-  if (lower === 'trade') return false;
-  if (lower === 'event') return false;
-  if (lower.includes('pokémon bank')) return false;
-  if (lower.includes('pokemon home')) return false;
-  if (lower.includes('poké transfer')) return false;
-  if (lower.includes('time capsule')) return false;
-  if (lower.includes('pal park')) return false;
-  
-  // Must have something that looks like a location
-  const hasLocationIndicator = 
-    lower.includes('route') ||
-    lower.includes('cave') ||
-    lower.includes('forest') ||
-    lower.includes('town') ||
-    lower.includes('city') ||
-    lower.includes('island') ||
-    lower.includes('mountain') ||
-    lower.includes('mt.') ||
-    lower.includes('lake') ||
-    lower.includes('path') ||
-    lower.includes('road') ||
-    lower.includes('tunnel') ||
-    lower.includes('tower') ||
-    lower.includes('gym') ||
-    lower.includes('league') ||
-    lower.includes('park') ||
-    lower.includes('garden') ||
-    lower.includes('zone') ||
-    lower.includes('building') ||
-    lower.includes('castle') ||
-    lower.includes('manor') ||
-    lower.includes('house') ||
-    lower.includes('lab') ||
-    lower.includes('center') ||
-    lower.includes('ruins') ||
-    lower.includes('temple') ||
-    lower.includes('shrine') ||
-    lower.includes('bay') ||
-    lower.includes('beach') ||
-    lower.includes('sea') ||
-    lower.includes('ocean') ||
-    lower.includes('river') ||
-    lower.includes('marsh') ||
-    lower.includes('meadow') ||
-    lower.includes('field') ||
-    lower.includes('grove') ||
-    lower.includes('canyon') ||
-    lower.includes('desert') ||
-    lower.includes('outskirts') ||
-    lower.includes('plaza') ||
-    lower.includes('underground');
-  
-  return hasLocationIndicator;
+  return isValid;
 }
 
 /**

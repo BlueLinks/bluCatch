@@ -1,22 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
+import { groupGamesByLocation, groupGamesByGeneration, getGameGeneration, simplifyGameName } from '../utils/grouping';
 import '../styles/PokemonBottomSheet.css';
-
-// Helper functions
-const GAME_GENERATION_MAP = {
-  'Red': 1, 'Blue': 1, 'Yellow': 1,
-  'Gold': 2, 'Silver': 2, 'Crystal': 2,
-  'Ruby': 3, 'Sapphire': 3, 'Emerald': 3, 'FireRed': 3, 'LeafGreen': 3,
-  'Diamond': 4, 'Pearl': 4, 'Platinum': 4, 'HeartGold': 4, 'SoulSilver': 4,
-  'Black': 5, 'White': 5,
-  'X': 6, 'Y': 6, 'Omega Ruby': 6, 'Alpha Sapphire': 6,
-  'Sun': 7, 'Moon': 7, 'Ultra Sun': 7, 'Ultra Moon': 7,
-  'Sword': 8, 'Shield': 8, 'Brilliant Diamond': 8, 'Shining Pearl': 8,
-  'Scarlet': 9, 'Violet': 9
-};
-
-const simplifyGameName = (fullName) => {
-  return fullName.replace('Pokémon ', '');
-};
 
 const getBulbapediaUrl = (pokemonName) => {
   // Convert special names to Bulbapedia format
@@ -37,45 +21,7 @@ const getBulbapediaUrl = (pokemonName) => {
   return `https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(cleanName)}_(Pokémon)`;
 };
 
-const getGameGeneration = (gameName) => {
-  const sortedKeys = Object.keys(GAME_GENERATION_MAP).sort((a, b) => b.length - a.length);
-  
-  for (const key of sortedKeys) {
-    if (gameName.includes(key)) {
-      return GAME_GENERATION_MAP[key];
-    }
-  }
-  return 99;
-};
-
-const groupGamesByLocation = (games) => {
-  const locationGroups = {};
-  
-  games.forEach(game => {
-    const key = game.location;
-    if (!locationGroups[key]) {
-      locationGroups[key] = {
-        location: game.location,
-        games: []
-      };
-    }
-    locationGroups[key].games.push(game);
-  });
-  
-  return Object.values(locationGroups).sort((a, b) => b.games.length - a.games.length);
-};
-
-const groupGamesByGeneration = (games) => {
-  const byGen = {};
-  games.forEach(game => {
-    const gen = getGameGeneration(game.gameName);
-    if (!byGen[gen]) {
-      byGen[gen] = [];
-    }
-    byGen[gen].push(game);
-  });
-  return byGen;
-};
+// Removed duplicate functions - now using shared utilities from utils/grouping.js
 
 const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) => {
   const [touchStart, setTouchStart] = useState(0);
@@ -215,7 +161,14 @@ const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) =>
                               <div className="bottom-sheet-game-names">
                                 {group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}
                               </div>
-                              <div className="bottom-sheet-location">{group.location}</div>
+                              <div className="bottom-sheet-location">
+                                {group.location}
+                                {group.encounterArea && <span className="encounter-detail"> ({group.encounterArea})</span>}
+                                {group.levelRange && <span className="encounter-detail"> • Lv. {group.levelRange}</span>}
+                                {group.encounterRate && <span className="encounter-detail"> • {group.encounterRate}</span>}
+                                {group.timeOfDay && <span className="encounter-detail"> • {group.timeOfDay}</span>}
+                                {group.season && <span className="encounter-detail"> • {group.season}</span>}
+                              </div>
                             </div>
                           ))}
                         </div>
@@ -241,7 +194,14 @@ const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) =>
                               <div className="bottom-sheet-game-names">
                                 {group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}
                               </div>
-                              <div className="bottom-sheet-location">{group.location}</div>
+                              <div className="bottom-sheet-location">
+                                {group.location}
+                                {group.encounterArea && <span className="encounter-detail"> ({group.encounterArea})</span>}
+                                {group.levelRange && <span className="encounter-detail"> • Lv. {group.levelRange}</span>}
+                                {group.encounterRate && <span className="encounter-detail"> • {group.encounterRate}</span>}
+                                {group.timeOfDay && <span className="encounter-detail"> • {group.timeOfDay}</span>}
+                                {group.season && <span className="encounter-detail"> • {group.season}</span>}
+                              </div>
                             </div>
                           ))}
                         </div>

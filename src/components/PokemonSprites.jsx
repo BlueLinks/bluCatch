@@ -1,19 +1,7 @@
 import { useState, useMemo, useCallback, useEffect, memo } from 'react';
 import PokemonBottomSheet from './PokemonBottomSheet';
+import { groupGamesByLocation, groupGamesByGeneration, getGameGeneration, simplifyGameName } from '../utils/grouping';
 import '../styles/PokemonSprites.css';
-
-// Helper functions moved outside component to avoid recreation on every render
-const GAME_GENERATION_MAP = {
-  'Red': 1, 'Blue': 1, 'Yellow': 1,
-  'Gold': 2, 'Silver': 2, 'Crystal': 2,
-  'Ruby': 3, 'Sapphire': 3, 'Emerald': 3, 'FireRed': 3, 'LeafGreen': 3,
-  'Diamond': 4, 'Pearl': 4, 'Platinum': 4, 'HeartGold': 4, 'SoulSilver': 4,
-  'Black': 5, 'White': 5,
-  'X': 6, 'Y': 6, 'Omega Ruby': 6, 'Alpha Sapphire': 6,
-  'Sun': 7, 'Moon': 7, 'Ultra Sun': 7, 'Ultra Moon': 7,
-  'Sword': 8, 'Shield': 8, 'Brilliant Diamond': 8, 'Shining Pearl': 8,
-  'Scarlet': 9, 'Violet': 9
-};
 
 const getBulbapediaUrl = (pokemonName) => {
   // Convert special names to Bulbapedia format
@@ -34,39 +22,7 @@ const getBulbapediaUrl = (pokemonName) => {
   return `https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(cleanName)}_(Pokémon)`;
 };
 
-const simplifyGameName = (fullName) => {
-  return fullName.replace('Pokémon ', '');
-};
-
-const getGameGeneration = (gameName) => {
-  // Sort keys by length (longest first) to match "FireRed" before "Red"
-  const sortedKeys = Object.keys(GAME_GENERATION_MAP).sort((a, b) => b.length - a.length);
-  
-  for (const key of sortedKeys) {
-    if (gameName.includes(key)) {
-      return GAME_GENERATION_MAP[key];
-    }
-  }
-  return 99; // Unknown
-};
-
-const groupGamesByLocation = (games) => {
-  const locationGroups = {};
-  
-  games.forEach(game => {
-    const key = game.location;
-    if (!locationGroups[key]) {
-      locationGroups[key] = {
-        location: game.location,
-        games: []
-      };
-    }
-    locationGroups[key].games.push(game);
-  });
-  
-  // Convert to array and sort by number of games (descending)
-  return Object.values(locationGroups).sort((a, b) => b.games.length - a.games.length);
-};
+// Removed - now using shared utilities from utils/grouping.js
 
 const formatGameNames = (games) => {
   if (games.length === 1) {
@@ -213,7 +169,14 @@ const PokemonTooltip = memo(function PokemonTooltip({ pokemon, position, allPoke
                   {locationGroups.map((group, idx) => (
                     <div key={idx} className="tooltip-game tooltip-game-selected">
                       <div className="tooltip-game-names">{group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}</div>
-                      <div className="tooltip-location">{group.location}</div>
+                      <div className="tooltip-location">
+                        {group.location}
+                        {group.encounterArea && <span className="encounter-detail"> ({group.encounterArea})</span>}
+                        {group.levelRange && <span className="encounter-detail"> • Lv. {group.levelRange}</span>}
+                        {group.encounterRate && <span className="encounter-detail"> • {group.encounterRate}</span>}
+                        {group.timeOfDay && <span className="encounter-detail"> • {group.timeOfDay}</span>}
+                        {group.season && <span className="encounter-detail"> • {group.season}</span>}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -238,7 +201,14 @@ const PokemonTooltip = memo(function PokemonTooltip({ pokemon, position, allPoke
                   {locationGroups.map((group, idx) => (
                     <div key={idx} className="tooltip-game tooltip-game-unselected">
                       <div className="tooltip-game-names">{group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}</div>
-                      <div className="tooltip-location">{group.location}</div>
+                      <div className="tooltip-location">
+                        {group.location}
+                        {group.encounterArea && <span className="encounter-detail"> ({group.encounterArea})</span>}
+                        {group.levelRange && <span className="encounter-detail"> • Lv. {group.levelRange}</span>}
+                        {group.encounterRate && <span className="encounter-detail"> • {group.encounterRate}</span>}
+                        {group.timeOfDay && <span className="encounter-detail"> • {group.timeOfDay}</span>}
+                        {group.season && <span className="encounter-detail"> • {group.season}</span>}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -353,7 +323,7 @@ const PokemonSprites = memo(function PokemonSprites({ generationData, pokemonGam
                 style={{ cursor: 'pointer' }}
               >
                 <img 
-                  src={pokemon.sprite} 
+                  src={pokemon.sprite_url || pokemon.sprite} 
                   alt={pokemon.name}
                   loading="lazy"
                 />
