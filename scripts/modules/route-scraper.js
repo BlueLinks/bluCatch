@@ -100,7 +100,8 @@ function insertEncounters(db, locationId, encounters) {
         continue;
       }
       
-      const method = detectAcquisitionMethod({
+      // Use acquisitionMethod from parser if available, otherwise detect it
+      const method = enc.acquisitionMethod || detectAcquisitionMethod({
         location: enc.location,
         area: enc.area,
         specialRequirements: enc.specialRequirements

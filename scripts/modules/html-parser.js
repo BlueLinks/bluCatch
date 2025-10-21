@@ -26,6 +26,67 @@ function hasEncounterTableHeaders(table) {
 }
 
 /**
+ * Get context for a table by looking at preceding headers AND section rows within table
+ * @param {HTMLTableElement} table - Table element
+ * @returns {Object} Context object with type and acquisitionMethod
+ */
+function getTableContext(table) {
+  // First check for section headers within the table itself
+  // Look for th elements that span multiple columns with keywords
+  const sectionHeaders = Array.from(table.querySelectorAll('th[colspan]'));
+  for (const header of sectionHeaders) {
+    const headerText = header.textContent.toLowerCase().trim();
+    
+    if (headerText.includes('gift') && headerText.includes('pokémon')) {
+      return { type: 'gift', acquisitionMethod: 'gift' };
+    }
+    if (headerText.includes('choice') || headerText.includes('starter')) {
+      return { type: 'starter', acquisitionMethod: 'starter' };
+    }
+    if (headerText.includes('special pokémon')) {
+      return { type: 'special', acquisitionMethod: 'special' };
+    }
+    if (headerText.includes('trade') && !headerText.includes('traded')) {
+      return { type: 'trade', acquisitionMethod: 'trade' };
+    }
+  }
+  
+  // Then look backwards for section headers (h2, h3, h4)
+  let element = table.previousElementSibling;
+  let headerText = '';
+  
+  // Search up to 5 elements back for a header
+  for (let i = 0; i < 5 && element; i++) {
+    const tagName = element.tagName?.toLowerCase();
+    if (tagName === 'h2' || tagName === 'h3' || tagName === 'h4') {
+      headerText = element.textContent.toLowerCase();
+      break;
+    }
+    element = element.previousElementSibling;
+  }
+  
+  // Determine table type based on header
+  if (headerText.includes('gift') || headerText.includes('choice')) {
+    return { type: 'gift', acquisitionMethod: 'gift' };
+  }
+  if (headerText.includes('starter')) {
+    return { type: 'starter', acquisitionMethod: 'starter' };
+  }
+  if (headerText.includes('special') && !headerText.includes('special encounter')) {
+    return { type: 'special', acquisitionMethod: 'special' };
+  }
+  if (headerText.includes('trade') && !headerText.includes('traded')) {
+    return { type: 'trade', acquisitionMethod: 'trade' };
+  }
+  if (headerText.includes('fishing')) {
+    return { type: 'fishing', acquisitionMethod: 'wild' };
+  }
+  
+  // Default to wild encounter
+  return { type: 'wild', acquisitionMethod: 'wild' };
+}
+
+/**
  * Detect game ID from a table header cell
  * @param {HTMLTableCellElement} cell - th or td cell
  * @returns {string|null} Game ID or null
@@ -102,11 +163,14 @@ export function parseRouteEncounters(html, routeName, db = null) {
     // Check if this is a standard encounter table with proper headers
     if (!hasEncounterTableHeaders(table)) continue;
     
+    // Determine table context by looking at preceding headers
+    const tableContext = getTableContext(table);
+    
     // Try to parse this table as an encounter table
-    const tableEncounters = parseEncounterTable(table, routeName, db);
+    const tableEncounters = parseEncounterTable(table, routeName, db, tableContext);
     
     for (const enc of tableEncounters) {
-      const key = `${enc.pokemonId}-${enc.game}-${enc.area}`;
+      const key = `${enc.pokemonId}-${enc.game}-${enc.area || 'none'}-${enc.acquisitionMethod || 'wild'}`;
       if (!seen.has(key) && enc.pokemonId) {
         seen.add(key);
         encounters.push(enc);
@@ -138,11 +202,15 @@ export function parseRouteEncounters(html, routeName, db = null) {
  * @param {HTMLTableElement} table - Table element
  * @param {string} routeName - Route name
  * @param {Database} db - Database instance for Pokemon name lookup
+ * @param {Object} tableContext - Context about this table (type, acquisitionMethod)
  * @returns {Array} Array of encounter objects
  */
-function parseEncounterTable(table, routeName, db = null) {
+function parseEncounterTable(table, routeName, db = null, tableContext = {}) {
   const encounters = [];
   const rows = Array.from(table.querySelectorAll('tr'));
+  
+  const isGiftTable = tableContext.type === 'gift' || tableContext.type === 'starter';
+  const acquisitionMethod = tableContext.acquisitionMethod || 'wild';
   
   for (const row of rows) {
     
@@ -178,23 +246,27 @@ function parseEncounterTable(table, routeName, db = null) {
         levelRange = text;
       }
       
-      // Check for encounter rate (e.g., "15%", "20%")
+      // Check for encounter rate (e.g., "15%", "20%", or "One" for gifts)
       if (!rate && text.match(/^\d+(\.\d+)?%$/)) {
         rate = text;
+      } else if (!rate && isGiftTable && text.toLowerCase() === 'one') {
+        rate = 'One';
       }
       
-      // Check for encounter area
-      const cellText = text.toLowerCase();
-      if (cellText === 'cave' || cell.querySelector('a[title="Cave"]')) {
-        area = 'cave';
-      } else if (cellText === 'grass' || cellText === 'tall grass' || cell.querySelector('a[title="Tall grass"]')) {
-        area = 'grass';
-      } else if (cellText.includes('surf') || cell.querySelector('a[title*="Surf"]')) {
-        area = 'surf';
-      } else if (cellText.includes('fish') || cellText.includes('rod')) {
-        area = 'fishing';
-      } else if (cellText.includes('rock smash')) {
-        area = 'rock-smash';
+      // Check for encounter area (skip for gift tables)
+      if (!isGiftTable) {
+        const cellText = text.toLowerCase();
+        if (cellText === 'cave' || cell.querySelector('a[title="Cave"]')) {
+          area = 'cave';
+        } else if (cellText === 'grass' || cellText === 'tall grass' || cell.querySelector('a[title="Tall grass"]')) {
+          area = 'grass';
+        } else if (cellText.includes('surf') || cell.querySelector('a[title*="Surf"]')) {
+          area = 'surf';
+        } else if (cellText.includes('fish') || cellText.includes('rod')) {
+          area = 'fishing';
+        } else if (cellText.includes('rock smash')) {
+          area = 'rock-smash';
+        }
       }
       
       // Detect games from th cells or links
@@ -206,8 +278,10 @@ function parseEncounterTable(table, routeName, db = null) {
       }
     }
     
-    // Default area if not detected
-    if (!area) area = 'grass';
+    // Default area if not detected (but NOT for gift/special tables)
+    if (!area && !isGiftTable) {
+      area = 'grass';
+    }
     
     // If no games found, skip this encounter
     if (games.length === 0) {
@@ -224,7 +298,8 @@ function parseEncounterTable(table, routeName, db = null) {
         levelRange,
         rate,
         specialRequirements,
-        location: routeName
+        location: routeName,
+        acquisitionMethod
       });
     }
   }
