@@ -78,18 +78,35 @@ export async function scrapeRoutePage(db, locationData, force = false) {
  * @returns {number} Number of encounters inserted
  */
 function insertEncounters(db, locationId, encounters) {
+  // Check if encounter exists
+  const checkStmt = db.prepare(`
+    SELECT id, encounter_area, level_range, encounter_rate 
+    FROM encounters 
+    WHERE pokemon_id = ? AND game_id = ? AND location = ?
+  `);
+  
+  // Insert new encounter
   const insertStmt = db.prepare(`
-    INSERT OR IGNORE INTO encounters (
+    INSERT INTO encounters (
       pokemon_id, game_id, location, location_id, 
       encounter_area, level_range, encounter_rate,
       acquisition_method, special_requirements
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   
+  // Update existing encounter if new data is more complete
+  const updateStmt = db.prepare(`
+    UPDATE encounters 
+    SET encounter_area = ?, level_range = ?, encounter_rate = ?,
+        acquisition_method = ?, special_requirements = ?
+    WHERE id = ?
+  `);
+  
   // Get valid game IDs from database
   const validGames = new Set(db.prepare('SELECT id FROM games').all().map(g => g.id));
   
   let insertedCount = 0;
+  let updatedCount = 0;
   let skippedCount = 0;
   
   const transaction = db.transaction((encounters) => {
@@ -111,20 +128,43 @@ function insertEncounters(db, locationId, encounters) {
         ? JSON.stringify(enc.specialRequirements)
         : null;
       
-      const result = insertStmt.run(
-        enc.pokemonId,
-        enc.game,
-        enc.location,
-        locationId,
-        enc.area,
-        enc.levelRange,
-        enc.rate,
-        method,
-        specialReqsJson
-      );
+      // Check if encounter already exists
+      const existing = checkStmt.get(enc.pokemonId, enc.game, enc.location);
       
-      if (result.changes > 0) {
-        insertedCount++;
+      if (existing) {
+        // Count non-null fields in new vs existing
+        const newNonNull = [enc.area, enc.levelRange, enc.rate].filter(v => v).length;
+        const existingNonNull = [existing.encounter_area, existing.level_range, existing.encounter_rate].filter(v => v).length;
+        
+        // Update if new data is more complete
+        if (newNonNull > existingNonNull) {
+          updateStmt.run(
+            enc.area,
+            enc.levelRange,
+            enc.rate,
+            method,
+            specialReqsJson,
+            existing.id
+          );
+          updatedCount++;
+        }
+      } else {
+        // Insert new encounter
+        const result = insertStmt.run(
+          enc.pokemonId,
+          enc.game,
+          enc.location,
+          locationId,
+          enc.area,
+          enc.levelRange,
+          enc.rate,
+          method,
+          specialReqsJson
+        );
+        
+        if (result.changes > 0) {
+          insertedCount++;
+        }
       }
     }
   });
@@ -133,6 +173,9 @@ function insertEncounters(db, locationId, encounters) {
   
   if (skippedCount > 0) {
     console.log(`    ⚠️  Skipped ${skippedCount} encounters with invalid game IDs`);
+  }
+  if (updatedCount > 0) {
+    console.log(`    🔄 Updated ${updatedCount} encounters with more complete data`);
   }
   
   return insertedCount;

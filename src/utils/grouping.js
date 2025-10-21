@@ -4,6 +4,40 @@
  */
 
 /**
+ * Group encounters by game, then list locations under each game
+ * Returns array of games with their locations
+ */
+export const groupByGameThenLocation = (games) => {
+  const gameGroups = {};
+  
+  games.forEach(game => {
+    // Create a unique key for each game (accounting for version pairs)
+    const gameKey = game.gameName;
+    
+    if (!gameGroups[gameKey]) {
+      gameGroups[gameKey] = {
+        gameName: game.gameName,
+        gameId: game.gameId,
+        locations: []
+      };
+    }
+    
+    // Add location to this game's list
+    gameGroups[gameKey].locations.push({
+      location: game.location,
+      encounterArea: game.encounterArea,
+      encounterRate: game.encounterRate,
+      levelRange: game.levelRange,
+      timeOfDay: game.timeOfDay,
+      season: game.season,
+      specialRequirements: game.specialRequirements
+    });
+  });
+  
+  return Object.values(gameGroups);
+};
+
+/**
  * Group games by location and deduplicate
  * Preserves encounter details (rates, levels, areas, etc.)
  */

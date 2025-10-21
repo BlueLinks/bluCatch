@@ -253,9 +253,16 @@ function parseEncounterTable(table, routeName, db = null, tableContext = {}) {
         rate = 'One';
       }
       
+      // Check for Hoenn/Sinnoh Sound special requirements
+      const cellText = text.toLowerCase();
+      if (cellText.includes('hoenn sound') || cellText.includes('sinnoh sound')) {
+        specialRequirements = text;
+        // Don't set this as the area
+        continue;
+      }
+      
       // Check for encounter area (skip for gift tables)
       if (!isGiftTable) {
-        const cellText = text.toLowerCase();
         if (cellText === 'cave' || cell.querySelector('a[title="Cave"]')) {
           area = 'cave';
         } else if (cellText === 'grass' || cellText === 'tall grass' || cell.querySelector('a[title="Tall grass"]')) {
@@ -278,8 +285,8 @@ function parseEncounterTable(table, routeName, db = null, tableContext = {}) {
       }
     }
     
-    // Default area if not detected (but NOT for gift/special tables)
-    if (!area && !isGiftTable) {
+    // Default area if not detected (but NOT for gift/special tables or sound encounters)
+    if (!area && !isGiftTable && !specialRequirements) {
       area = 'grass';
     }
     

@@ -258,6 +258,66 @@
   color: #777;
 }
 
+/* Game group styling - groups locations under each game name */
+.bottom-sheet-game-group {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.bottom-sheet-game-group.selected {
+  background: rgba(74, 158, 255, 0.15);
+  border-left-color: #4a9eff;
+}
+
+.bottom-sheet-game-group.unselected {
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 0.6;
+  border-left-color: #555;
+}
+
+.bottom-sheet-game-group .bottom-sheet-game-names {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.bottom-sheet-game-group .bottom-sheet-location {
+  color: #a8dadc;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.5;
+  padding-left: 0.5rem;
+  border-left: 2px solid rgba(74, 158, 255, 0.2);
+  margin-left: 0.25rem;
+}
+
+.bottom-sheet-game-group.unselected .bottom-sheet-location {
+  color: #888;
+  border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+.bottom-sheet-game-group.unselected .encounter-detail {
+  color: #777;
+}
+
+/* Special requirement styling (Hoenn/Sinnoh Sound, etc.) */
+.special-requirement {
+  color: #ffd700 !important;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+}
+
+.bottom-sheet-game-group.unselected .special-requirement {
+  color: #cca300 !important;
+}
+
 .bottom-sheet-unavailable {
   color: #e74c3c;
   font-style: italic;

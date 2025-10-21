@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { groupGamesByLocation, groupGamesByGeneration, getGameGeneration, simplifyGameName } from '../utils/grouping';
+import { groupGamesByLocation, groupByGameThenLocation, groupGamesByGeneration, getGameGeneration, simplifyGameName } from '../utils/grouping';
 import '../styles/PokemonBottomSheet.css';
 
 const getBulbapediaUrl = (pokemonName) => {
@@ -151,24 +151,27 @@ const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) =>
                     <div className="bottom-sheet-section-title">✓ Available in selected games</div>
                     {selectedGenKeys.map(gen => {
                       const genGames = selectedByGen[gen];
-                      const locationGroups = groupGamesByLocation(genGames);
+                      const gameGroups = groupByGameThenLocation(genGames);
                       
                       return (
                         <div key={gen} className="bottom-sheet-generation">
                           <div className="bottom-sheet-gen-label">Generation {gen}</div>
-                          {locationGroups.map((group, idx) => (
-                            <div key={idx} className="bottom-sheet-game selected">
+                          {gameGroups.map((gameGroup, idx) => (
+                            <div key={idx} className="bottom-sheet-game-group selected">
                               <div className="bottom-sheet-game-names">
-                                {group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}
+                                {simplifyGameName(gameGroup.gameName)}
                               </div>
-                              <div className="bottom-sheet-location">
-                                {group.location}
-                                {group.encounterArea && <span className="encounter-detail"> ({group.encounterArea})</span>}
-                                {group.levelRange && <span className="encounter-detail"> • Lv. {group.levelRange}</span>}
-                                {group.encounterRate && <span className="encounter-detail"> • {group.encounterRate}</span>}
-                                {group.timeOfDay && <span className="encounter-detail"> • {group.timeOfDay}</span>}
-                                {group.season && <span className="encounter-detail"> • {group.season}</span>}
-                              </div>
+                              {gameGroup.locations.map((loc, locIdx) => (
+                                <div key={locIdx} className="bottom-sheet-location">
+                                  {loc.location}
+                                  {loc.encounterArea && <span className="encounter-detail"> ({loc.encounterArea})</span>}
+                                  {loc.levelRange && <span className="encounter-detail"> • Lv. {loc.levelRange}</span>}
+                                  {loc.encounterRate && <span className="encounter-detail"> • {loc.encounterRate}</span>}
+                                  {loc.timeOfDay && <span className="encounter-detail"> • {loc.timeOfDay}</span>}
+                                  {loc.season && <span className="encounter-detail"> • {loc.season}</span>}
+                                  {loc.specialRequirements && <span className="encounter-detail special-requirement"> • {loc.specialRequirements} required</span>}
+                                </div>
+                              ))}
                             </div>
                           ))}
                         </div>
@@ -184,24 +187,27 @@ const PokemonBottomSheet = ({ pokemon, isOpen, onClose, allPokemonGamesMap }) =>
                     </div>
                     {unselectedGenKeys.map(gen => {
                       const genGames = unselectedByGen[gen];
-                      const locationGroups = groupGamesByLocation(genGames);
+                      const gameGroups = groupByGameThenLocation(genGames);
                       
                       return (
                         <div key={gen} className="bottom-sheet-generation">
                           <div className="bottom-sheet-gen-label">Generation {gen}</div>
-                          {locationGroups.map((group, idx) => (
-                            <div key={idx} className="bottom-sheet-game unselected">
+                          {gameGroups.map((gameGroup, idx) => (
+                            <div key={idx} className="bottom-sheet-game-group unselected">
                               <div className="bottom-sheet-game-names">
-                                {group.games.map(g => simplifyGameName(g.gameName)).join(' / ')}
+                                {simplifyGameName(gameGroup.gameName)}
                               </div>
-                              <div className="bottom-sheet-location">
-                                {group.location}
-                                {group.encounterArea && <span className="encounter-detail"> ({group.encounterArea})</span>}
-                                {group.levelRange && <span className="encounter-detail"> • Lv. {group.levelRange}</span>}
-                                {group.encounterRate && <span className="encounter-detail"> • {group.encounterRate}</span>}
-                                {group.timeOfDay && <span className="encounter-detail"> • {group.timeOfDay}</span>}
-                                {group.season && <span className="encounter-detail"> • {group.season}</span>}
-                              </div>
+                              {gameGroup.locations.map((loc, locIdx) => (
+                                <div key={locIdx} className="bottom-sheet-location">
+                                  {loc.location}
+                                  {loc.encounterArea && <span className="encounter-detail"> ({loc.encounterArea})</span>}
+                                  {loc.levelRange && <span className="encounter-detail"> • Lv. {loc.levelRange}</span>}
+                                  {loc.encounterRate && <span className="encounter-detail"> • {loc.encounterRate}</span>}
+                                  {loc.timeOfDay && <span className="encounter-detail"> • {loc.timeOfDay}</span>}
+                                  {loc.season && <span className="encounter-detail"> • {loc.season}</span>}
+                                  {loc.specialRequirements && <span className="encounter-detail special-requirement"> • {loc.specialRequirements} required</span>}
+                                </div>
+                              ))}
                             </div>
                           ))}
                         </div>
