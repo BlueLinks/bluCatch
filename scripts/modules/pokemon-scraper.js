@@ -146,12 +146,14 @@ function isValidLocation(locationName) {
     'torchlit labyrinth', 'verdant plaza', 'lyra forest', 'ultra forest', 'lapis lakeside', 
     'western cave', 'buried relic', 'silver trench', 'hero pokémon', 'partner pokémon', 'fainted pokémon',
     'fiery field', 'northwind field', 'lightning field', 'magma cavern', 'lava zone',
-    'mt. faraway', 'purity forest', 'murky cave', 'oran forest', 'dusk forest',
+    'mt. faraway', 'mt. thunder', 'mt. freeze', 'purity forest', 'murky cave', 'oran forest', 
+    'dusk forest', 'oddity cave', 'vien forest', 'howling forest',
     
-    // Snap / New Snap
+    // Snap / New Snap (often have generic names + island references)
     'florio nature park', 'elsewhere forest', 'belusylva island', 'lental seafloor',
     'cave (snap)', 'river (snap)', 'reef (snap)', 'jungle (snap)',
     'blushing beach', 'bright beach', 'reef (new snap)', 'sweltering sands',
+    'remains island', 'faldera island', 'voluca island', 'aurus island',
     
     // Ranger series
     'fall city', 'ringtown', 'summerland', 'wintown', 'chicole village', 'hinder cape',
@@ -165,7 +167,7 @@ function isValidLocation(locationName) {
     'poképark', 'meeting place', 'meadow zone', 'granite zone', 'beach zone', 'iceberg zone',
     
     // Pinball
-    'red field:', 'blue field:', 'bonus stage', 'pallet town (pinball)', 'viridian city (pinball)',
+    'red field', 'blue field', 'bonus stage', 'pallet town (pinball)', 'viridian city (pinball)',
     
     // Channel, Trozei, Quest, Shuffle, Sleep
     'bus stop', 'phobos train', 'endless level', 'trozei battle', 'mr. who\'s den',
@@ -177,7 +179,7 @@ function isValidLocation(locationName) {
     // Masters EX, Café ReMix, other
     'trainer lodge', 'menu development', 'delivery', 'celebration stamps', 'scottie/bettie',
     'gym leader castle', 'island scan', 'mightywide river', 'odd temple', 'mirage spot', 
-    'nfc figurine', 'random chance'
+    'nfc figurine', 'random chance', 'sol laboratory', 'haunted zone'
   ];
   if (spinoffLocations.some(loc => lower.includes(loc))) return false;
   
@@ -187,8 +189,12 @@ function isValidLocation(locationName) {
   
   // Filter out generic single-word locations (usually from spin-offs like Snap)
   // These are too vague to be real main-series locations
-  const genericWords = ['river', 'jungle', 'beach', 'meadow', 'plains', 'mountain', 'desert', 'reef'];
+  const genericWords = ['river', 'jungle', 'beach', 'meadow', 'plains', 'mountain', 'desert', 'reef', 'routes'];
   if (genericWords.includes(lower)) return false;
+  
+  // Filter out invalid route numbers (Route 47 in Kanto doesn't exist)
+  // Kanto only has routes 1-25
+  if (lower.match(/route\s+(4[7-9]|[5-9]\d)/)) return false; // Route 47-99
   
   // Filter out transfer/migration methods
   if (lower === 'trade') return false;
@@ -354,10 +360,22 @@ function generateBulbapediaPage(locationName, region) {
     .replace(/\s+/g, '_')
     .replace(/['']/g, '%27'); // URL encode apostrophes
   
-  // Add region prefix for routes
-  if (locationName.match(/route\s+\d+/i) && region) {
-    const capitalizedRegion = region.charAt(0).toUpperCase() + region.slice(1);
-    pageName = `${capitalizedRegion}_${pageName}`;
+  // Add region prefix for routes based on route number
+  const routeMatch = locationName.match(/route\s+(\d+)/i);
+  if (routeMatch) {
+    const routeNum = parseInt(routeMatch[1]);
+    let routeRegion = region; // Default to passed region
+    
+    // Infer region from route number (routes are region-specific)
+    if (routeNum >= 201 && routeNum <= 230) routeRegion = 'sinnoh';
+    else if (routeNum >= 101 && routeNum <= 134) routeRegion = 'hoenn';
+    else if (routeNum >= 29 && routeNum <= 48) routeRegion = 'johto';
+    else if (routeNum >= 1 && routeNum <= 28) routeRegion = 'kanto'; // Kanto has 1-28 (includes 25-28 in Sevii Islands)
+    
+    if (routeRegion) {
+      const capitalizedRegion = routeRegion.charAt(0).toUpperCase() + routeRegion.slice(1);
+      pageName = `${capitalizedRegion}_${pageName}`;
+    }
   }
   
   return pageName;
