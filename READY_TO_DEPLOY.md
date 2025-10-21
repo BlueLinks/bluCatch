@@ -9,16 +9,18 @@ Investigated the failing test and discovered it wasn't a bug - it identified a *
 ## 🔍 Investigation Results
 
 ### What We Found
-- **17 encounters** missing `level_range` data
-- All from: Mt. Ember, Victory Road (Kanto), Mt. Silver Cave
-- These locations use **simplified Bulbapedia tables** that only show:
-  - Pokemon name
-  - Game
-  - Encounter area (grass/surf/etc.)
-  - Encounter rate (%)
-  - ❌ **No level data exists** in these tables
+
+-   **17 encounters** missing `level_range` data
+-   All from: Mt. Ember, Victory Road (Kanto), Mt. Silver Cave
+-   These locations use **simplified Bulbapedia tables** that only show:
+    -   Pokemon name
+    -   Game
+    -   Encounter area (grass/surf/etc.)
+    -   Encounter rate (%)
+    -   ❌ **No level data exists** in these tables
 
 ### Example: Mt. Ember
+
 ```
 Bulbapedia's simplified format:
 | Ponyta | FR | LG | Grass | 10% |
@@ -30,6 +32,7 @@ vs. Standard format (Route 2):
 ```
 
 ### Root Cause
+
 This is a **Bulbapedia limitation**, not a parser bug. Some location pages simply don't include level information in their encounter tables.
 
 ---
@@ -37,12 +40,15 @@ This is a **Bulbapedia limitation**, not a parser bug. Some location pages simpl
 ## ✅ Resolution
 
 ### Test Suite Updated
+
 Changed test criteria from:
-- ❌ **Old**: Require `location_id` + `area` + `levels` (too strict)
-- ✅ **New**: Require `location_id` + `area` (critical fields only)
-- ℹ️  Report missing levels as informational, not failure
+
+-   ❌ **Old**: Require `location_id` + `area` + `levels` (too strict)
+-   ✅ **New**: Require `location_id` + `area` (critical fields only)
+-   ℹ️ Report missing levels as informational, not failure
 
 ### Final Test Results
+
 ```
 🧪 Running Scraper Data Quality Tests
 
@@ -67,13 +73,13 @@ Changed test criteria from:
 
 ## 📊 Data Quality Metrics
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| **Total enhanced encounters** | 120 | ✅ |
-| **Complete data (with levels)** | 103 (86%) | ✅ |
-| **Valid location + area** | 120 (100%) | ✅ |
-| **Missing levels (simplified tables)** | 17 (14%) | ℹ️  Expected |
-| **Test pass rate** | 9/9 (100%) | ✅ |
+| Metric                                 | Value      | Status      |
+| -------------------------------------- | ---------- | ----------- |
+| **Total enhanced encounters**          | 120        | ✅          |
+| **Complete data (with levels)**        | 103 (86%)  | ✅          |
+| **Valid location + area**              | 120 (100%) | ✅          |
+| **Missing levels (simplified tables)** | 17 (14%)   | ℹ️ Expected |
+| **Test pass rate**                     | 9/9 (100%) | ✅          |
 
 **Conclusion**: 86% complete data is excellent. The 14% missing levels is due to Bulbapedia's source data format, not our parser.
 
@@ -82,14 +88,16 @@ Changed test criteria from:
 ## 🎯 What Was Tested & Verified
 
 ### Edge Cases Validated
-- ✅ Mt. Ember HTML structure analyzed
-- ✅ Victory Road table format investigated  
-- ✅ Mt. Silver Cave confirmed same pattern
-- ✅ Parser correctly skips unparseable data
-- ✅ Database has valid encounter records (area present)
-- ✅ Frontend handles missing levels gracefully
+
+-   ✅ Mt. Ember HTML structure analyzed
+-   ✅ Victory Road table format investigated
+-   ✅ Mt. Silver Cave confirmed same pattern
+-   ✅ Parser correctly skips unparseable data
+-   ✅ Database has valid encounter records (area present)
+-   ✅ Frontend handles missing levels gracefully
 
 ### Test Coverage
+
 1. **Cross-generation pollution** - Prevents Gen 8 locations in Gen 3 games
 2. **Game-appropriate locations** - Moltres, Caterpie, etc. in correct games
 3. **BDSP-exclusive content** - Ramanas Park only in BDSP
@@ -104,14 +112,14 @@ Changed test criteria from:
 
 ## 🚀 Deployment Checklist
 
-- [x] All critical bugs fixed (Moltres/Pearl, BDSP, White/Sun)
-- [x] Test suite created with 9 automated tests
-- [x] All tests passing (9/9)
-- [x] Edge cases investigated (Mt. Ember, Victory Road)
-- [x] Data quality verified (86% complete, 100% valid)
-- [x] Frontend built successfully
-- [x] Documentation updated
-- [x] Investigation summary written
+-   [x] All critical bugs fixed (Moltres/Pearl, BDSP, White/Sun)
+-   [x] Test suite created with 9 automated tests
+-   [x] All tests passing (9/9)
+-   [x] Edge cases investigated (Mt. Ember, Victory Road)
+-   [x] Data quality verified (86% complete, 100% valid)
+-   [x] Frontend built successfully
+-   [x] Documentation updated
+-   [x] Investigation summary written
 
 ---
 
@@ -136,6 +144,7 @@ git push origin main
 ```
 
 After pushing, Portainer will:
+
 1. Pull latest code
 2. Rebuild scraper container with all fixes
 3. Run `FORCE_FRESH=true` to wipe stale data
@@ -155,14 +164,14 @@ After pushing, Portainer will:
 
 ## ✨ What's Working
 
-- ✅ Route-based scraper with enhanced data extraction
-- ✅ Correct game detection (BDSP, Let's Go, Gen 9)
-- ✅ Automated test suite (9 tests, 100% passing)
-- ✅ No cross-generation pollution
-- ✅ Dual-slot mode detection
-- ✅ 120 enhanced encounters with location + area data
-- ✅ 86% have complete data including levels
-- ✅ Frontend handles all data gracefully
+-   ✅ Route-based scraper with enhanced data extraction
+-   ✅ Correct game detection (BDSP, Let's Go, Gen 9)
+-   ✅ Automated test suite (9 tests, 100% passing)
+-   ✅ No cross-generation pollution
+-   ✅ Dual-slot mode detection
+-   ✅ 120 enhanced encounters with location + area data
+-   ✅ 86% have complete data including levels
+-   ✅ Frontend handles all data gracefully
 
 ---
 
@@ -170,10 +179,9 @@ After pushing, Portainer will:
 
 The investigation was successful! What appeared to be a test failure was actually the test working correctly - it identified that some Bulbapedia pages use simplified formats. After investigation and appropriate test adjustment, we now have:
 
-- **100% test pass rate**
-- **86% data completeness** (excellent)
-- **Zero critical bugs**
-- **Production-ready code**
+-   **100% test pass rate**
+-   **86% data completeness** (excellent)
+-   **Zero critical bugs**
+-   **Production-ready code**
 
 **Status**: ✅ **READY TO DEPLOY**
-

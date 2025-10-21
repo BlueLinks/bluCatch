@@ -7,6 +7,81 @@ import { parseLevelRange, parseEncounterRate } from './detection-utils.js';
 import { parseSpecialEncounters } from './special-encounters-parser.js';
 
 /**
+ * Check if table has standard encounter table headers
+ * @param {HTMLTableElement} table - Table element
+ * @returns {boolean} True if table has Pokémon, Games, Location, Levels, Rate headers
+ */
+function hasEncounterTableHeaders(table) {
+  const headerRow = table.querySelector('tr');
+  if (!headerRow) return false;
+  
+  const headerText = headerRow.textContent.toLowerCase();
+  
+  // Check for standard Bulbapedia encounter table headers
+  return headerText.includes('pokémon') && 
+         headerText.includes('games') && 
+         headerText.includes('location') && 
+         headerText.includes('levels') && 
+         headerText.includes('rate');
+}
+
+/**
+ * Detect game ID from a table header cell
+ * @param {HTMLTableCellElement} cell - th or td cell
+ * @returns {string|null} Game ID or null
+ */
+function detectGameFromCell(cell) {
+  const text = cell.textContent.trim();
+  const link = cell.querySelector('a');
+  const linkHref = link?.getAttribute('href') || '';
+  const linkTitle = link?.getAttribute('title') || '';
+  
+  // Single letter abbreviations (common in Gen I-II tables)
+  if (text === 'R' && linkHref.includes('Red_and_Blue')) return 'red';
+  if (text === 'B' && linkHref.includes('Red_and_Blue')) return 'blue';
+  if (text === 'Y' && linkHref.includes('Yellow')) return 'yellow';
+  if (text === 'G' && linkHref.includes('Gold_and_Silver')) return 'gold';
+  if (text === 'S' && linkHref.includes('Gold_and_Silver')) return 'silver';
+  if (text === 'C' && linkHref.includes('Crystal')) return 'crystal';
+  
+  // Two-letter abbreviations
+  if (text === 'FR' || text === 'FireRed') return 'firered';
+  if (text === 'LG' || text === 'LeafGreen') return 'leafgreen';
+  if (text === 'HG' || text === 'HeartGold') return 'heartgold';
+  if (text === 'SS' || text === 'SoulSilver') return 'soulsilver';
+  if (text === 'D' && linkHref.includes('Diamond_and_Pearl')) return 'diamond';
+  if (text === 'P' && linkHref.includes('Diamond_and_Pearl') && !linkTitle.includes("Let's Go")) return 'pearl';
+  if (text === 'Pt' || text === 'Platinum') return 'platinum';
+  
+  // Let's Go
+  if (text === 'P' && (linkTitle.includes("Let's Go, Pikachu") || linkTitle.includes("Let's Go Pikachu"))) return 'letsgopikachu';
+  if (text === 'E' && (linkTitle.includes("Let's Go, Eevee") || linkTitle.includes("Let's Go Eevee"))) return 'letsgoeevee';
+  
+  // Gen 5+
+  if (text === 'B' && linkHref.includes('Black_and_White') && !linkHref.includes('2')) return 'black';
+  if (text === 'W' && linkHref.includes('Black_and_White') && !linkHref.includes('2')) return 'white';
+  if (text === 'B2' || (text === 'B' && linkHref.includes('Black_2'))) return 'black2';
+  if (text === 'W2' || (text === 'W' && linkHref.includes('White_2'))) return 'white2';
+  if (text === 'X') return 'x';
+  if (text === 'Y') return 'y';
+  if (text === 'ΩR' || text === 'OR') return 'omegaruby';
+  if (text === 'αS' || text === 'AS') return 'alphasapphire';
+  if (text === 'S' && linkTitle.includes('Sun') && !linkTitle.includes('Ultra')) return 'sun';
+  if (text === 'M' && linkTitle.includes('Moon') && !linkTitle.includes('Ultra')) return 'moon';
+  if (text === 'US') return 'ultrasun';
+  if (text === 'UM') return 'ultramoon';
+  if (text === 'Sw') return 'sword';
+  if (text === 'Sh') return 'shield';
+  if (text === 'BD') return 'brilliantdiamond';
+  if (text === 'SP') return 'shiningpearl';
+  if (text === 'LA') return 'legendsarceus';
+  if (text === 'Sc') return 'scarlet';
+  if (text === 'Vi') return 'violet';
+  
+  return null;
+}
+
+/**
  * Parse encounter tables from route HTML
  * @param {string} html - HTML content
  * @param {string} routeName - Route name for context
@@ -20,14 +95,12 @@ export function parseRouteEncounters(html, routeName, db = null) {
   const encounters = [];
   const seen = new Set(); // Track unique encounters
   
-  // Parse regular encounter tables
+  // Parse regular encounter tables - look for standard header format
   const tables = document.querySelectorAll('table');
   
   for (const table of tables) {
-    // Look for Pokemon mini sprites (indicators of encounter tables)
-    const pokemonLinks = table.querySelectorAll('a[title*="(Pokémon)"]');
-    
-    if (pokemonLinks.length === 0) continue;
+    // Check if this is a standard encounter table with proper headers
+    if (!hasEncounterTableHeaders(table)) continue;
     
     // Try to parse this table as an encounter table
     const tableEncounters = parseEncounterTable(table, routeName, db);
@@ -72,6 +145,13 @@ function parseEncounterTable(table, routeName, db = null) {
   const rows = Array.from(table.querySelectorAll('tr'));
   
   for (const row of rows) {
+    
+    // Get all cells (both td and th)
+    const allCells = Array.from(row.querySelectorAll('td, th'));
+    
+    // Skip rows without enough cells (headers, etc.)
+    if (allCells.length < 5) continue;
+    
     // Find Pokemon link
     const pokemonLink = row.querySelector('a[title*="(Pokémon)"]');
     if (!pokemonLink) continue;
@@ -80,110 +160,58 @@ function parseEncounterTable(table, routeName, db = null) {
     const pokemonId = extractPokemonId(pokemonLink, db);
     
     // Skip if we can't get Pokemon ID
-    if (!pokemonId) {
-      continue; // Silently skip - too verbose
-    }
+    if (!pokemonId) continue;
     
-    // Get all cells in the row
-    const cells = Array.from(row.querySelectorAll('td'));
-    
-    // Extract data from cells
+    // Extract level and rate from cells
     let levelRange = null;
     let rate = null;
-    let area = 'grass'; // default
+    let area = null;
     let games = [];
     let specialRequirements = null;
     
-    // Look through cells for data
-    for (const cell of cells) {
+    // Look through all cells for data
+    for (const cell of allCells) {
       const text = cell.textContent.trim();
       
-      // Check for level range (e.g., "3-6", "15")
-      if (!levelRange && text.match(/^\d+(-\d+)?$/)) {
+      // Check for level range (e.g., "22", "39, 44", "41-46")
+      if (!levelRange && text.match(/^\d+(-\d+)?(,\s*\d+)*$/)) {
         levelRange = text;
       }
       
-      // Check for encounter rate (e.g., "50%", "20%")
+      // Check for encounter rate (e.g., "15%", "20%")
       if (!rate && text.match(/^\d+(\.\d+)?%$/)) {
         rate = text;
       }
       
       // Check for encounter area
-      if (cell.querySelector('a[title="Tall grass"]')) {
+      const cellText = text.toLowerCase();
+      if (cellText === 'cave' || cell.querySelector('a[title="Cave"]')) {
+        area = 'cave';
+      } else if (cellText === 'grass' || cellText === 'tall grass' || cell.querySelector('a[title="Tall grass"]')) {
         area = 'grass';
-      } else if (cell.querySelector('a[title*="Surfing"]') || text.toLowerCase().includes('surf')) {
+      } else if (cellText.includes('surf') || cell.querySelector('a[title*="Surf"]')) {
         area = 'surf';
-      } else if (text.toLowerCase().includes('fish') || text.toLowerCase().includes('rod')) {
+      } else if (cellText.includes('fish') || cellText.includes('rod')) {
         area = 'fishing';
+      } else if (cellText.includes('rock smash')) {
+        area = 'rock-smash';
       }
       
-      // Check for dual-slot
-      const dualSlotLink = cell.querySelector('a[title="Dual-slot mode"]');
-      if (dualSlotLink) {
-        const gameMatch = text.match(/(FireRed|LeafGreen|Ruby|Sapphire|Emerald)/i);
-        if (gameMatch) {
-          specialRequirements = {
-            dualSlot: gameMatch[1].toLowerCase()
-          };
+      // Detect games from th cells or links
+      if (cell.tagName.toLowerCase() === 'th') {
+        const gameId = detectGameFromCell(cell);
+        if (gameId && !games.includes(gameId)) {
+          games.push(gameId);
         }
       }
     }
     
-    // Try to determine games from the row headers (th elements)  
-    // Route pages use different formats: single letter (R, B, Y) or full names
-    const gameHeaders = row.querySelectorAll('th');
-    for (const header of gameHeaders) {
-      const text = header.textContent.trim();
-      const gameLinks = header.querySelectorAll('a[href*="Pokémon"]');
-      
-      // Check links first
-      for (const link of gameLinks) {
-        const href = link.getAttribute('href') || '';
-        const linkText = link.textContent.trim();
-        
-        // Match by href patterns
-        if (href.includes('Red_and_Blue')) {
-          // Could be R or B, check text
-          if (linkText === 'R' || linkText.toLowerCase().includes('red')) games.push('red');
-          if (linkText === 'B' || linkText.toLowerCase().includes('blue')) games.push('blue');
-        }
-        else if (href.includes('Yellow')) games.push('yellow');
-        else if (href.includes('FireRed')) games.push('firered');
-        else if (href.includes('LeafGreen')) games.push('leafgreen');
-        else if (href.includes('Diamond') && !href.includes('Brilliant')) games.push('diamond');
-        else if (href.includes('Pearl') && !href.includes('Shining')) games.push('pearl');
-        else if (href.includes('Platinum')) games.push('platinum');
-        else if (href.includes('HeartGold')) games.push('heartgold');
-        else if (href.includes('SoulSilver')) games.push('soulsilver');
-        else if (href.includes('Gold') && !href.includes('Heart')) games.push('gold');
-        else if (href.includes('Silver') && !href.includes('Soul')) games.push('silver');
-        else if (href.includes('Crystal')) games.push('crystal');
-        else if (href.includes('Ruby') && !href.includes('Omega')) games.push('ruby');
-        else if (href.includes('Sapphire') && !href.includes('Alpha')) games.push('sapphire');
-        else if (href.includes('Emerald')) games.push('emerald');
-      }
-      
-      // If no links, try text content for abbreviated names (R, B, Y, etc.)
-      if (games.length === 0 && text.length <= 3) {
-        if (text === 'R') games.push('red');
-        else if (text === 'B') games.push('blue');
-        else if (text === 'Y') games.push('yellow');
-        else if (text === 'G') games.push('gold');
-        else if (text === 'S') games.push('silver');
-        else if (text === 'C') games.push('crystal');
-        else if (text === 'FR') games.push('firered');
-        else if (text === 'LG') games.push('leafgreen');
-        else if (text === 'D') games.push('diamond');
-        else if (text === 'P') games.push('pearl');
-        else if (text === 'Pt') games.push('platinum');
-        else if (text === 'HG') games.push('heartgold');
-        else if (text === 'SS') games.push('soulsilver');
-      }
-    }
+    // Default area if not detected
+    if (!area) area = 'grass';
     
-    // If no games found, try to get from context
+    // If no games found, skip this encounter
     if (games.length === 0) {
-      games = ['unknown'];
+      continue;
     }
     
     // Create encounter entry for each game

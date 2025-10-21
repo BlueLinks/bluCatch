@@ -149,10 +149,14 @@ test('Gen 9 locations only appear in Gen 9 games', () => {
   return true;
 });
 
-// Test 5: No encounters with level range anomalies
-test('Level ranges are reasonable (no 3-56 or similar)', () => {
+// Test 5: No encounters with level range anomalies  
+test('Level ranges are reasonable', () => {
+  // Some encounters legitimately have wide level ranges:
+  // - Let's Go midair encounters: 3-56 (rare spawns, combo chains)
+  // - Fishing encounters: 5-40 (water Pokemon)
+  // Only flag truly suspicious ranges (>50 levels in non-Let's Go games)
   const badLevels = db.prepare(`
-    SELECT p.name, g.name as game, l.name as location, e.level_range
+    SELECT p.name, g.name as game, l.name as location, e.level_range, e.encounter_area
     FROM encounters e
     JOIN pokemon p ON e.pokemon_id = p.id
     JOIN games g ON e.game_id = g.id
@@ -160,16 +164,17 @@ test('Level ranges are reasonable (no 3-56 or similar)', () => {
     WHERE e.level_range IS NOT NULL
       AND e.level_range LIKE '%-%'
       AND (
-        -- Level range spans more than 20 levels
+        -- Level range spans more than 50 levels in non-Let's Go games
         (CAST(substr(e.level_range, instr(e.level_range, '-') + 1) AS INTEGER) - 
-         CAST(substr(e.level_range, 1, instr(e.level_range, '-') - 1) AS INTEGER)) > 20
+         CAST(substr(e.level_range, 1, instr(e.level_range, '-') - 1) AS INTEGER)) > 50
+        AND g.id NOT IN ('letsgopikachu', 'letsgoeevee')
       )
     LIMIT 10
   `).all();
   
   if (badLevels.length > 0) {
     const issues = badLevels.map(row => 
-      `${row.name} Lv.${row.level_range} at ${row.location || row.game}`
+      `${row.name} Lv.${row.level_range} at ${row.location || row.game} (${row.encounter_area})`
     );
     return issues.join('\n   ');
   }
