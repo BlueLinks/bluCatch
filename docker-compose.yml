@@ -45,7 +45,7 @@ services:
       timeout: 10s
       retries: 3
 
-  # Scraper service
+  # Scraper service (runs first to create database)
   blucatch-scraper:
     build:
       context: .
@@ -59,9 +59,6 @@ services:
       - data:/app/public/data
     networks:
       - pokemon-network
-    depends_on:
-      blucatch-backend:
-        condition: service_healthy
 
 networks:
   pokemon-network:

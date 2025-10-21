@@ -3,6 +3,7 @@ import Database from 'better-sqlite3';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -10,18 +11,55 @@ const PORT = process.env.PORT || 3001;
 
 // Initialize database
 const dbPath = process.env.DB_PATH || path.join(__dirname, '../public/data/pokemon.db');
-const db = new Database(dbPath, { readonly: true });
+
+// Wait for database to be ready (scraper creates it)
+let db = null;
+const initDatabase = () => {
+  try {
+    if (fs.existsSync(dbPath)) {
+      db = new Database(dbPath, { readonly: true });
+      console.log('✅ Database connected successfully');
+      return true;
+    } else {
+      console.log('⏳ Waiting for database to be created by scraper...');
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Database connection error:', error.message);
+    return false;
+  }
+};
+
+// Try to initialize database, retry every 5 seconds if it doesn't exist
+if (!initDatabase()) {
+  const interval = setInterval(() => {
+    if (initDatabase()) {
+      clearInterval(interval);
+    }
+  }, 5000);
+}
 
 app.use(cors());
 app.use(express.json());
 
 // Health check
 app.get('/health', (req, res) => {
+  if (!db) {
+    return res.status(503).json({ 
+      status: 'waiting', 
+      message: 'Database not ready yet',
+      timestamp: new Date().toISOString() 
+    });
+  }
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // Get all Pokemon (with optional generation filter)
 app.get('/api/pokemon', (req, res) => {
+  if (!db) {
+    return res.status(503).json({ error: 'Database not ready' });
+  }
+  
   const { generations } = req.query;
   
   let query = 'SELECT * FROM pokemon ORDER BY id';
@@ -39,6 +77,10 @@ app.get('/api/pokemon', (req, res) => {
 
 // Get all games (with optional generation filter)
 app.get('/api/games', (req, res) => {
+  if (!db) {
+    return res.status(503).json({ error: 'Database not ready' });
+  }
+  
   const { generations } = req.query;
   
   let query = 'SELECT * FROM games ORDER BY generation, name';
@@ -63,6 +105,10 @@ app.get('/api/games', (req, res) => {
 
 // Get available Pokemon for selected games
 app.get('/api/available-pokemon', (req, res) => {
+  if (!db) {
+    return res.status(503).json({ error: 'Database not ready' });
+  }
+  
   const { gameIds, acquisitionMethods, generations } = req.query;
   
   const selectedGames = gameIds && gameIds !== 'all' ? gameIds.split(',') : null;
@@ -115,6 +161,10 @@ app.get('/api/available-pokemon', (req, res) => {
 
 // Get Pokemon details
 app.get('/api/pokemon/:id', (req, res) => {
+  if (!db) {
+    return res.status(503).json({ error: 'Database not ready' });
+  }
+  
   const { id } = req.params;
   const { gameIds } = req.query;
   
@@ -160,7 +210,9 @@ app.listen(PORT, () => {
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-  db.close();
+  if (db) {
+    db.close();
+  }
   process.exit(0);
 });
 
