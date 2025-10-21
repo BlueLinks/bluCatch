@@ -128,6 +128,25 @@ function isValidLocation(locationName) {
   if (lower.match(/\bsalon:/)) return false; // Shuffle stages
   if (lower.includes('celebration stamps')) return false;
   if (lower.includes('anniversary')) return false;
+  if (lower.includes('rumble')) return false;
+  if (lower.includes('mystery dungeon')) return false;
+  
+  // Filter out spin-off location names
+  if (lower.includes(' sea') && !lower.includes('seafoam')) return false; // "Bulbasaur Sea", "Charizard Sea"
+  if (lower === 'field' || lower === 'cave' || lower === 'forest') return false; // Too generic
+  if (lower.includes('hideaway:')) return false; // Legends Arceus spin-off areas
+  if (lower.includes('origin hideaway')) return false;
+  if (lower.includes('temple') && !lower.includes('ruins') && !lower.includes('distortion')) return false; // Spin-off temples
+  
+  // Filter out spin-off game specific locations
+  const spinoffLocations = [
+    'baram town', 'capim town', 'dolce island', 'rand\'s house', 'aegis cave',
+    'poképark', 'island scan', 'gym leader castle', 'sky tower', 'joyous tower',
+    'origin hideaway', 'meadow zone', 'mightywide river', 'odd temple',
+    'torchlit labyrinth', 'verdant plaza', 'lyra forest', 'mystifying forest',
+    'silent forest', 'ultra forest', 'lapis lakeside', 'western cave'
+  ];
+  if (spinoffLocations.some(loc => lower.includes(loc))) return false;
   
   // Filter out transfer/migration methods
   if (lower === 'trade') return false;
