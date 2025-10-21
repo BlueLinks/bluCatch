@@ -17,12 +17,13 @@ if [ "$FORCE_FRESH" = "true" ]; then
     echo "🗑️  FORCE_FRESH=true - Wiping existing data..."
     if [ -f "$DB_PATH" ]; then
         # Backup before deleting
-        cp "$DB_PATH" "$DB_PATH.backup-$(date +%s)"
-        echo "   Backed up to: $DB_PATH.backup-$(date +%s)"
+        BACKUP_PATH="$DB_PATH.backup-$(date +%s)"
+        cp "$DB_PATH" "$BACKUP_PATH"
+        echo "   Backed up to: $BACKUP_PATH"
         
-        # Clear route data
-        sqlite3 "$DB_PATH" "DELETE FROM locations; DELETE FROM scraper_cache;"
-        echo "   ✅ Cleared locations and cache tables"
+        # Delete the entire database file to force fresh creation
+        rm -f "$DB_PATH"
+        echo "   ✅ Database deleted - will recreate from scratch"
     fi
 fi
 
@@ -30,24 +31,26 @@ fi
 if [ ! -f "$DB_PATH" ]; then
     echo "📦 No database found - Creating from scratch..."
     
-    # Check if we have JSON backups
-    if [ -f "/app/public/data/pokemon.json" ] && [ -f "/app/public/data/games.json" ]; then
-        echo "   Found JSON files - migrating to SQLite..."
-        node /app/scripts/migrate-to-sqlite.js
-    else
-        echo "   ⚠️  No source data found - scraper will build database"
+    # Run migration script which creates the base schema + migrates data
+    # This handles both fresh creation and data import from JSON
+    echo "   Running database migration/creation..."
+    node /app/scripts/migrate-to-sqlite.js
+    
+    if [ ! -f "$DB_PATH" ]; then
+        echo "   ❌ Error: Database was not created!"
+        exit 1
     fi
     
-    # Enhance database schema
-    echo "   Enhancing database schema..."
-    node /app/scripts/enhance-database.js
-    
-    # Split location strings
-    echo "   Splitting concatenated location strings..."
-    node /app/scripts/split-location-strings.js
-    
-    echo "   ✅ Database initialized"
+    echo "   ✅ Database created with base schema"
 fi
+
+# Always ensure enhanced schema exists (safe to run multiple times)
+echo "🔧 Ensuring enhanced schema..."
+node /app/scripts/enhance-database.js
+
+# Split any concatenated location strings (from legacy data)
+echo "🔧 Splitting concatenated location strings..."
+node /app/scripts/split-location-strings.js
 
 # Check database age
 if [ -f "$DB_PATH" ]; then
