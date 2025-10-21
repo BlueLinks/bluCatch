@@ -71172,6 +71172,46 @@
         {
           "id": 1010,
           "location": "Poké Portal NewsVersion 1.2.0+"
+        },
+        {
+          "id": 1011,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1012,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1013,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1014,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1015,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1016,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1017,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1018,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1019,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1020,
+          "location": "Area Zero (after starting Perrin's questline in The Indigo Disk; only one)"
         }
       ],
       "platform": "switch"
@@ -73993,6 +74033,46 @@
         {
           "id": 1010,
           "location": "Poké Portal NewsVersion 1.2.0+"
+        },
+        {
+          "id": 1011,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1012,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1013,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1014,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1015,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1016,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1017,
+          "location": "TradeVersion 2.0.1+"
+        },
+        {
+          "id": 1018,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1019,
+          "location": "TradeVersion 3.0.0+"
+        },
+        {
+          "id": 1020,
+          "location": "TradeVersion 3.0.0+"
         }
       ],
       "platform": "switch"
